@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0B0B0F" />
+  <script>document.documentElement.classList.add('js');</script>
+  <title>Alojamientos para despedidas en Valencia · Crea Despedidas</title>
+  <meta name="description" content="Apartamentos y hoteles para despedidas en Valencia, en zona puerto y playa según disponibilidad. Busca y reserva con nuestro buscador de Booking." />
+  <link rel="canonical" href="/alojamientos-despedidas-valencia/" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        fontFamily: { display: ['Syne', 'system-ui', 'sans-serif'], sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'] },
+        colors: { ink: '#0B0B0F', surface: '#121218', neon: { cyan: '#00F2FE', blue: '#4FACFE', pink: '#FF2FB9', orange: '#FF7A18' } },
+      } },
+    };
+  </script>
+  <link rel="stylesheet" href="/css/styles.css?v=22" />
+</head>
+
+<body class="bg-ink text-white font-sans antialiased overflow-x-hidden">
+  <div class="bg-canvas" aria-hidden="true">
+    <span class="orb orb--1"></span><span class="orb orb--2"></span><span class="orb orb--3"></span><span class="grain"></span>
+  </div>
+
+  <a href="#contenido" class="skip-link">Saltar al contenido</a>
+
+  <header id="nav" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 md:px-8" aria-label="Principal">
+      <a href="/" class="brand" aria-label="Crea Despedidas — Inicio">
+        <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+      </a>
+      <ul class="hidden items-center gap-8 text-sm text-white/70 lg:flex">
+        <li class="nav-item has-submenu">
+          <a class="nav-link" href="/#servicios" aria-haspopup="true">
+            Servicios
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="submenu" role="menu">
+            <a role="menuitem" href="/restaurantes-despedidas-cumpleanos-valencia/">Restaurante Propio</a>
+            <a role="menuitem" href="/experiencias-actividades-valencia/">Experiencias &amp; Actividades</a>
+            <a role="menuitem" href="/alojamientos-despedidas-valencia/">Alojamientos</a>
+            <a role="menuitem" href="/traslados-valencia/">Traslados</a>
+          </div>
+        </li>
+        <li><a class="nav-link" href="/#planner">Configurador</a></li>
+        <li><a class="nav-link" href="/#opiniones">Opiniones</a></li>
+        <li><a class="nav-link" href="/#contacto">Contacto</a></li>
+      </ul>
+      <div class="flex items-center gap-3">
+        <a href="https://wa.me/34644687001" target="_blank" rel="noopener" class="hidden rounded-full border border-white/15 px-4 py-2 text-sm text-white/80 backdrop-blur-md transition hover:border-white/30 hover:text-white sm:inline-flex">WhatsApp</a>
+        <a href="/#planner" data-magnetic class="btn-primary text-sm"><span>Crea tu experiencia</span></a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="subpage-main" id="contenido">
+    <div class="mx-auto max-w-7xl px-5 md:px-8">
+
+      <section class="subhero">
+        <nav class="crumbs" aria-label="Ruta">
+          <a href="/">Inicio</a><span>/</span><a href="/#servicios">Servicios</a><span>/</span> Alojamientos
+        </nav>
+        <h1>Alojamientos para <span class="text-gradient">despedidas</span> en Valencia</h1>
+        <p class="lead">
+          Apartamentos y hoteles para grupos grandes, principalmente en la zona del puerto y la
+          playa, según disponibilidad. Busca fechas y reserva directamente con nuestro buscador
+          de Booking.
+        </p>
+      </section>
+
+      <!-- Buscador de Booking (cuenta de partner) -->
+      <section class="svc-section" aria-labelledby="buscador">
+        <h2 id="buscador">Busca tu alojamiento</h2>
+        <p class="section-intro">Reserva en Booking.com a través de nuestra cuenta de partner. Se abre en una pestaña nueva.</p>
+
+        <!--
+          BOOKING PARTNER: aid = 304142 (cuenta de afiliado de Crea Despedidas). Opcional:
+          cambia el valor de "label" para tu seguimiento. Si prefieres el widget oficial de
+          Booking, pega aquí su código de inserción en lugar de este formulario.
+        -->
+        <form class="booking-box" action="https://www.booking.com/searchresults.es.html" method="get" target="_blank" rel="noopener">
+          <input type="hidden" name="aid" value="304142" />
+          <input type="hidden" name="label" value="crea-despedidas-web" />
+          <input type="hidden" name="group_children" value="0" />
+          <input type="hidden" name="sb" value="1" />
+          <div class="booking-grid">
+            <div class="sm:col-span-2">
+              <label class="form-label" for="bk-ss">Destino</label>
+              <input class="form-field" id="bk-ss" name="ss" type="text" value="Valencia" autocomplete="off" />
+            </div>
+            <div>
+              <label class="form-label" for="bk-in">Entrada</label>
+              <input class="form-field" id="bk-in" name="checkin" type="date" />
+            </div>
+            <div>
+              <label class="form-label" for="bk-out">Salida</label>
+              <input class="form-field" id="bk-out" name="checkout" type="date" />
+            </div>
+            <div>
+              <label class="form-label" for="bk-ad">Huéspedes</label>
+              <input class="form-field" id="bk-ad" name="group_adults" type="number" min="1" max="60" value="10" />
+            </div>
+            <div>
+              <label class="form-label" for="bk-rooms">Habitaciones</label>
+              <input class="form-field" id="bk-rooms" name="no_rooms" type="number" min="1" max="30" value="4" />
+            </div>
+            <div>
+              <button type="submit" data-magnetic class="btn-primary w-full justify-center text-sm"><span>Buscar en Booking</span></button>
+            </div>
+          </div>
+        </form>
+        <p class="mt-3 text-xs text-white/40">Precios y disponibilidad gestionados por Booking.com. Crea Despedidas puede recibir una comisión por las reservas realizadas desde este buscador.</p>
+      </section>
+
+      <!-- Tipos de alojamiento -->
+      <section class="svc-section" aria-label="Tipos de alojamiento">
+        <h2>Qué solemos reservar</h2>
+        <div class="svc-grid">
+          <article class="svc-card"><h3>Apartamentos turísticos</h3><p>Varios apartamentos juntos o uno grande para todo el grupo, totalmente equipados.</p><ul class="meta"><li>Grupos 6–20</li><li>Zona puerto</li></ul></article>
+          <article class="svc-card"><h3>Hoteles 3–4★</h3><p>Habitaciones dobles y triples, desayuno opcional y recepción 24 h. Cómodo y sin líos.</p><ul class="meta"><li>Cualquier tamaño</li><li>Céntrico / playa</li></ul></article>
+          <article class="svc-card"><h3>Apartamentos para grupos grandes</h3><p>Varios apartamentos en el mismo edificio o zona para grupos de 20+ personas: todos cerca y sin renunciar a vuestro espacio.</p><ul class="meta"><li>20+ pax</li><li>Según disponibilidad</li></ul></article>
+          <article class="svc-card"><h3>Todo coordinado</h3><p>Te ayudamos a elegir según fecha, presupuesto y cercanía a las actividades y a nuestra sala.</p><ul class="meta"><li>Asesoría incluida</li></ul></article>
+        </div>
+        <p class="mt-6 text-sm text-white/50">¿Prefieres que lo gestionemos nosotros? Escríbenos por <a class="underline hover:text-white" href="https://wa.me/34644687001" target="_blank" rel="noopener">WhatsApp</a> con las fechas y el número de personas.</p>
+      </section>
+
+      <section class="svc-section">
+        <div class="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] px-8 py-14 text-center backdrop-blur-xl">
+          <div class="cta-glow" aria-hidden="true"></div>
+          <h2 class="relative font-display text-[clamp(1.6rem,3.6vw,2.6rem)] font-800">¿Lo montamos completo?</h2>
+          <p class="relative mx-auto mt-3 max-w-md text-white/60">Alojamiento + actividades + comida y traslados, todo coordinado por un equipo local.</p>
+          <div class="relative mt-7 flex flex-wrap justify-center gap-4">
+            <a href="https://wa.me/34644687001" target="_blank" rel="noopener" data-magnetic class="btn-primary text-base"><span>Hablar por WhatsApp</span></a>
+            <a href="/#planner" data-magnetic class="btn-glass text-base"><span>Abrir configurador</span></a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer id="contacto" class="relative border-t border-white/10 px-5 pb-10 pt-20 md:px-8">
+    <div class="mx-auto max-w-7xl">
+      <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
+        <div>
+          <a href="/" class="brand brand--footer" aria-label="Crea Despedidas — Inicio">
+            <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+          </a>
+          <p class="mt-4 max-w-xs text-sm leading-relaxed text-white/50">Despedidas de soltero/a y eventos privados en Valencia. La despedida que nunca olvidaréis.</p>
+        </div>
+        <nav aria-label="Servicios">
+          <h3 class="footer-h">Servicios</h3>
+          <ul class="footer-list">
+            <li><a href="/restaurantes-despedidas-cumpleanos-valencia/">Restaurante Propio</a></li>
+            <li><a href="/experiencias-actividades-valencia/">Experiencias &amp; Actividades</a></li>
+            <li><a href="/alojamientos-despedidas-valencia/">Alojamientos</a></li>
+            <li><a href="/traslados-valencia/">Traslados</a></li>
+          </ul>
+        </nav>
+        <nav aria-label="Enlaces">
+          <h3 class="footer-h">Crea Despedidas</h3>
+          <ul class="footer-list">
+            <li><a href="/#planner">Configurador</a></li>
+            <li><a href="/#opiniones">Opiniones</a></li>
+            <li><a href="/#contacto">Contacto</a></li>
+          </ul>
+        </nav>
+        <div>
+          <h3 class="footer-h">Contacto</h3>
+          <address class="mt-3 space-y-1 text-sm not-italic text-white/50">
+            <p>Av. de l'Enginyer Manuel Soto, 14 Bis · Valencia</p>
+            <p><a class="hover:text-white" href="mailto:info@creadespedidas.com">info@creadespedidas.com</a></p>
+            <p><a class="hover:text-white" href="tel:+34644687001">+34 644 687 001</a> · L–S 9:00–20:00</p>
+          </address>
+        </div>
+      </div>
+      <div class="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/40 md:flex-row">
+        <p>© <span id="year">2026</span> Crea Despedidas. Todos los derechos reservados.</p>
+        <ul class="flex gap-6"><li><a href="/" class="hover:text-white">Inicio</a></li></ul>
+      </div>
+    </div>
+  </footer>
+
+  <img src="/assets/fish.png" id="fish-cursor" alt="" aria-hidden="true" />
+  <a href="https://wa.me/34644687001" target="_blank" rel="noopener" class="wa-float" aria-label="Escríbenos por WhatsApp">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.5-4.5A8 8 0 1 1 9 19L4 20Z"/><path d="M9 10c0 3 2.5 5.5 5.5 5.5M9 10c0-1 1-1.5 1.5-1l1 1.5-1 1M14.5 15.5c1 0 1.5-1 1-1.5L14 13l-1 1"/></svg>
+  </a>
+
+  <script>
+    // Fechas por defecto del buscador: próximo viernes -> domingo
+    (function () {
+      var inEl = document.getElementById('bk-in');
+      var outEl = document.getElementById('bk-out');
+      if (!inEl || !outEl) return;
+      var iso = function (d) { return d.toISOString().slice(0, 10); };
+      var today = new Date();
+      var fri = new Date(today);
+      fri.setDate(today.getDate() + ((5 - today.getDay() + 7) % 7 || 7));
+      var sun = new Date(fri);
+      sun.setDate(fri.getDate() + 2);
+      inEl.min = iso(today);
+      inEl.value = iso(fri);
+      outEl.min = iso(fri);
+      outEl.value = iso(sun);
+      inEl.addEventListener('change', function () {
+        outEl.min = inEl.value;
+        if (outEl.value <= inEl.value) {
+          var n = new Date(inEl.value);
+          n.setDate(n.getDate() + 1);
+          outEl.value = iso(n);
+        }
+      });
+    })();
+  </script>
+  <script src="/js/main.js?v=23" defer></script>
+</body>
+</html>

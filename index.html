@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0B0B0F" />
+  <!-- Marca <html> como "con JS": el contenido con scroll-reveal parte oculto solo si hay JS -->
+  <script>document.documentElement.classList.add('js');</script>
+  <title>Crea Despedidas — Despedidas que desafían la norma</title>
+  <meta
+    name="description"
+    content="Organizamos despedidas de soltero/a y eventos exclusivos en Valencia. Restaurante propio, experiencias top, alojamientos exclusivos y transporte de lujo. Diseña tu experiencia en 30 segundos."
+  />
+  <meta property="og:title" content="Crea Despedidas — Eventos que hacen historia" />
+  <meta property="og:description" content="Despedidas de soltero/a y eventos premium en Valencia. Diseña tu experiencia a medida." />
+  <meta property="og:type" content="website" />
+
+  <!-- Fuentes: Syne (display) + Space Grotesk (texto) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Tailwind CSS (Play CDN — para producción, instalar Tailwind vía npm) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Syne', 'system-ui', 'sans-serif'],
+            sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            ink: '#0B0B0F',
+            surface: '#121218',
+            neon: {
+              cyan: '#00F2FE',
+              blue: '#4FACFE',
+              pink: '#FF2FB9',
+              orange: '#FF7A18',
+            },
+          },
+          borderRadius: { '2xl': '1.25rem', '3xl': '1.75rem' },
+        },
+      },
+    };
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css?v=22" />
+</head>
+
+<body class="bg-ink text-white font-sans antialiased selection:bg-neon-cyan/30 selection:text-white overflow-x-hidden">
+  <!-- Fondo global: malla de gradientes + grano -->
+  <div class="bg-canvas" aria-hidden="true">
+    <span class="orb orb--1"></span>
+    <span class="orb orb--2"></span>
+    <span class="orb orb--3"></span>
+    <span class="grain"></span>
+  </div>
+
+  <a href="#servicios" class="skip-link">Saltar al contenido</a>
+
+  <!-- ============================================ NAV ============================================ -->
+  <header id="nav" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 md:px-8" aria-label="Principal">
+      <a href="#inicio" class="brand" aria-label="Crea Despedidas — Inicio">
+        <img src="assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+      </a>
+
+      <ul class="hidden items-center gap-8 text-sm text-white/70 lg:flex">
+        <li class="nav-item has-submenu">
+          <a class="nav-link" href="/#servicios" aria-haspopup="true">
+            Servicios
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="submenu" role="menu">
+            <a role="menuitem" href="/restaurantes-despedidas-cumpleanos-valencia/">Restaurante Propio</a>
+            <a role="menuitem" href="/experiencias-actividades-valencia/">Experiencias &amp; Actividades</a>
+            <a role="menuitem" href="/alojamientos-despedidas-valencia/">Alojamientos</a>
+            <a role="menuitem" href="/traslados-valencia/">Traslados</a>
+          </div>
+        </li>
+        <li><a class="nav-link" href="#planner">Configurador</a></li>
+        <li><a class="nav-link" href="#opiniones">Opiniones</a></li>
+        <li><a class="nav-link" href="#contacto">Contacto</a></li>
+      </ul>
+
+      <div class="flex items-center gap-3">
+        <a
+          href="https://wa.me/34644687001"
+          target="_blank"
+          rel="noopener"
+          class="hidden rounded-full border border-white/15 px-4 py-2 text-sm text-white/80 backdrop-blur-md transition hover:border-white/30 hover:text-white sm:inline-flex"
+          >WhatsApp</a
+        >
+        <a href="#planner" data-magnetic class="btn-primary text-sm">
+          <span>Crea tu experiencia</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ============================================ HERO ============================================ -->
+    <section id="inicio" class="relative flex min-h-[100svh] items-center overflow-hidden px-5 pb-16 pt-28 md:px-8">
+      <div class="mx-auto w-full max-w-7xl">
+        <p class="reveal mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-1.5 text-xs font-medium uppercase tracking-[0.2em] text-white/60 backdrop-blur-md">
+          <span class="pulse-dot" aria-hidden="true"></span> Valencia · Eventos a medida
+        </p>
+
+        <h1 class="reveal font-display text-[clamp(2.3rem,5.6vw,4.75rem)] font-800 leading-[1.02] tracking-[-0.02em]">
+          Despedidas que
+          <span class="text-gradient text-gradient--animated">desafían la norma.</span><br />
+          Eventos que hacen historia.
+        </h1>
+
+        <p class="reveal mt-6 max-w-xl text-base leading-relaxed text-white/65 md:text-lg">
+          Diseñamos despedidas de soltero/a y celebraciones sin plantillas: restaurantes,
+          experiencias, alojamientos y transporte, coordinado al detalle por un equipo local.
+        </p>
+
+        <div class="reveal mt-8 flex flex-wrap items-center gap-4">
+          <a href="#planner" data-magnetic class="btn-primary text-base">
+            <span>Crea tu experiencia</span>
+            <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+        </div>
+
+        <dl class="reveal mt-10 grid max-w-2xl grid-cols-3 gap-6 border-t border-white/10 pt-7">
+          <div>
+            <dt class="text-2xl font-700 text-white md:text-3xl"><span class="counter" data-to="2500" data-suffix="+">0</span></dt>
+            <dd class="mt-1 text-xs uppercase tracking-widest text-white/45">Despedidas creadas</dd>
+          </div>
+          <div>
+            <dt class="text-2xl font-700 text-white md:text-3xl">4.7<span class="text-neon-cyan">★</span></dt>
+            <dd class="mt-1 text-xs uppercase tracking-widest text-white/45">329 reseñas</dd>
+          </div>
+          <div>
+            <dt class="text-2xl font-700 text-white md:text-3xl"><span class="counter" data-to="18" data-suffix="">0</span></dt>
+            <dd class="mt-1 text-xs uppercase tracking-widest text-white/45">Experiencias únicas</dd>
+          </div>
+        </dl>
+
+        <p class="reveal mt-6 inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-600 backdrop-blur-md">
+          <span class="pulse-dot" aria-hidden="true"></span>
+          <span class="text-gradient font-display font-800 tracking-tight">Más de 10 años ofreciendo diversión</span>
+        </p>
+      </div>
+
+      <div class="scroll-cue" aria-hidden="true"><span></span></div>
+    </section>
+
+    <!-- ==================================== BENTO GRID SERVICIOS ==================================== -->
+    <section id="servicios" class="relative px-5 py-24 md:px-8 md:py-32">
+      <div class="mx-auto max-w-7xl">
+        <div class="reveal mb-14 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <div>
+            <h2 class="font-display text-[clamp(2rem,4.5vw,3.5rem)] font-800 leading-tight tracking-tight">
+              Todo el evento,<br /><span class="text-gradient">una sola cabeza pensante.</span>
+            </h2>
+          </div>
+          <p class="max-w-sm text-white/55">
+            Cuatro pilares que combinamos según tu grupo. Tú eliges el nivel; nosotros
+            resolvemos la logística.
+          </p>
+        </div>
+
+        <!-- Cuadrícula asimétrica -->
+        <div class="bento-grid">
+          <!-- Restaurante Propio -->
+          <article class="bento-tile g-border lg:col-span-2 lg:row-span-2" data-spotlight>
+            <a class="tile-cover" href="/restaurantes-despedidas-cumpleanos-valencia/" aria-label="Restaurante Propio"></a>
+            <div class="tile-media tile-media--destinos" aria-hidden="true"></div>
+            <span class="tile-badge">4.7★ · 329 reseñas reales</span>
+            <div class="tile-body">
+              <span class="tile-kicker">01 — Restaurante</span>
+              <h3 class="tile-title">Restaurante Propio</h3>
+              <p class="tile-text">
+                Disfrutarás de una experiencia y diversión sin precedentes, nada de postureo.
+                Gente llana con muchas ganas de pasarlo bien y de conocer a personas de toda
+                España.
+              </p>
+              <ul class="tile-tags">
+                <li>Cocina propia</li><li>Sin postureo</li><li>Ambiente llano</li><li>Grupos de toda España</li>
+              </ul>
+            </div>
+            <span class="tile-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </article>
+
+          <!-- Experiencias Top -->
+          <article class="bento-tile g-border lg:col-span-2" data-spotlight>
+            <a class="tile-cover" href="/experiencias-actividades-valencia/" aria-label="Experiencias y Actividades"></a>
+            <div class="tile-media tile-media--vip" aria-hidden="true"></div>
+            <div class="tile-body">
+              <span class="tile-kicker">02 — Actividades</span>
+              <h3 class="tile-title">Experiencias Top</h3>
+              <p class="tile-text">
+                Barco velero privado, motos de agua, rafting, humor amarillo, karting,
+                paintball, buceo y shows. De día y de noche.
+              </p>
+              <ul class="tile-tags">
+                <li>Barco velero</li><li>Motos de agua</li><li>Rafting</li><li>Humor amarillo</li>
+              </ul>
+            </div>
+            <span class="tile-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </article>
+
+          <!-- Alojamientos Exclusivos -->
+          <article class="bento-tile g-border lg:col-span-1 lg:row-span-1" data-spotlight>
+            <a class="tile-cover" href="/alojamientos-despedidas-valencia/" aria-label="Alojamientos Exclusivos"></a>
+            <div class="tile-media tile-media--stay" aria-hidden="true"></div>
+            <div class="tile-body">
+              <span class="tile-kicker">03 — Estancia</span>
+              <h3 class="tile-title">Alojamientos Exclusivos</h3>
+              <p class="tile-text">Apartamentos y hoteles en zona puerto principalmente según disponibilidad, listos para grupos grandes.</p>
+            </div>
+            <span class="tile-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </article>
+
+          <!-- Transporte de Lujo -->
+          <article class="bento-tile g-border lg:col-span-1 lg:row-span-1" data-spotlight>
+            <a class="tile-cover" href="/traslados-valencia/" aria-label="Traslados"></a>
+            <div class="tile-media tile-media--transport" aria-hidden="true"></div>
+            <div class="tile-body">
+              <span class="tile-kicker">04 — Traslados</span>
+              <h3 class="tile-title">Transporte de Lujo</h3>
+              <p class="tile-text">Limusinas, minibuses privados y traslados entre cada punto del día.</p>
+            </div>
+            <span class="tile-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================== FAST PLANNER ==================================== -->
+    <section id="planner" class="relative px-5 py-24 md:px-8 md:py-32">
+      <div class="mx-auto max-w-6xl">
+        <div class="reveal mb-12 text-center">
+          <span class="tile-kicker justify-center">Configurador rápido</span>
+          <h2 class="mx-auto mt-3 max-w-2xl font-display text-[clamp(2rem,4.5vw,3.5rem)] font-800 leading-tight tracking-tight">
+            Tu despedida, <span class="text-gradient">montada en 30 segundos.</span>
+          </h2>
+          <p class="mx-auto mt-4 max-w-lg text-white/55">
+            Elige un pack cerrado o móntalo a la carta con actividades y servicios
+            sueltos. Ves la estimación al instante y sin registros.
+          </p>
+        </div>
+
+        <form id="fast-planner" class="planner-card g-border" novalidate>
+          <div class="grid gap-10 lg:grid-cols-[1.15fr_0.85fr]">
+            <!-- Controles -->
+            <div class="space-y-9">
+              <!-- Paso 1: tipo de evento -->
+              <fieldset>
+                <legend class="planner-label"><span class="step">1</span> ¿Qué celebramos?</legend>
+                <div class="mt-4 grid grid-cols-2 gap-3" role="radiogroup" aria-label="Tipo de evento">
+                  <label class="choice">
+                    <input type="radio" name="event" value="despedida de soltera" checked />
+                    <span class="choice-face"><span class="choice-emoji">💃</span>Despedida soltera</span>
+                  </label>
+                  <label class="choice">
+                    <input type="radio" name="event" value="despedida de soltero" />
+                    <span class="choice-face"><span class="choice-emoji">🕺</span>Despedida soltero</span>
+                  </label>
+                  <label class="choice">
+                    <input type="radio" name="event" value="cumpleaños" />
+                    <span class="choice-face"><span class="choice-emoji">🎂</span>Cumpleaños</span>
+                  </label>
+                  <label class="choice">
+                    <input type="radio" name="event" value="evento de empresa" />
+                    <span class="choice-face"><span class="choice-emoji">🚀</span>Team building</span>
+                  </label>
+                </div>
+              </fieldset>
+
+              <!-- Paso 2: personas -->
+              <fieldset>
+                <legend class="planner-label"><span class="step">2</span> ¿Cuántos sois?</legend>
+                <div class="mt-5">
+                  <div class="flex items-baseline justify-between">
+                    <span class="text-sm text-white/50">Personas</span>
+                    <output id="people-out" for="people" class="font-display text-3xl font-800 text-white">12</output>
+                  </div>
+                  <input id="people" name="people" type="range" min="4" max="40" step="1" value="12" class="range mt-2" />
+                  <div class="range-scale"><span>4</span><span>40+</span></div>
+                </div>
+              </fieldset>
+
+              <!-- Paso 3: pack o a la carta -->
+              <fieldset>
+                <legend class="planner-label"><span class="step">3</span> ¿Cómo lo montamos?</legend>
+
+                <div class="seg mt-4" role="tablist" aria-label="Modo de configuración">
+                  <button type="button" class="seg-btn is-active" role="tab" aria-selected="true" data-mode="packs">
+                    Elige un pack
+                  </button>
+                  <button type="button" class="seg-btn" role="tab" aria-selected="false" data-mode="carta">
+                    A la carta
+                  </button>
+                </div>
+
+                <!-- Panel: packs -->
+                <div class="planner-pane mt-5" data-pane="packs">
+                  <div class="pack-list" role="radiogroup" aria-label="Packs disponibles">
+                    <label class="pack-opt pack-opt--offer">
+                      <input type="radio" name="pack" value="Pack Comida Charanga y Tardeo DJ" data-price="35" data-desc="Comida con charanga, tardeo y DJ hasta el atardecer." checked />
+                      <span class="pack-face">
+                        <span class="pack-top"><span class="pack-name">Pack Comida Charanga y Tardeo DJ <span class="pack-tag">Oferta</span></span><span class="pack-price"><s>39&nbsp;€</s>35&nbsp;€<small>/pers.</small></span></span>
+                        <span class="pack-desc">Comida con charanga, tardeo y DJ hasta el atardecer.</span>
+                      </span>
+                    </label>
+                    <label class="pack-opt pack-opt--offer">
+                      <input type="radio" name="pack" value="Pack Cena Espectáculo" data-price="39" data-desc="Cena, show y barra libre. Modo noche activado." />
+                      <span class="pack-face">
+                        <span class="pack-top"><span class="pack-name">Pack Cena Espectáculo <span class="pack-tag">Oferta</span></span><span class="pack-price"><s>45&nbsp;€</s>39&nbsp;€<small>/pers.</small></span></span>
+                        <span class="pack-desc">Cena, show y barra libre. Modo noche activado.</span>
+                      </span>
+                    </label>
+                    <label class="pack-opt">
+                      <input type="radio" name="pack" value="Pack Actividad + Comida y Tardeo" data-price="59" data-desc="Una actividad a elegir + comida y tardeo. Desde 59 € según la actividad." />
+                      <span class="pack-face">
+                        <span class="pack-top"><span class="pack-name">Pack Actividad + Comida y Tardeo</span><span class="pack-price"><span class="pack-from">Desde</span>59&nbsp;€<small>/pers.</small></span></span>
+                        <span class="pack-desc">Una actividad a elegir + comida y tardeo. Desde 59 € según la actividad.</span>
+                      </span>
+                    </label>
+                    <label class="pack-opt">
+                      <input type="radio" name="pack" value="Pack Actividad + Cena Espectáculo" data-price="64" data-desc="Una actividad a elegir + cena espectáculo. Desde 64 € según la actividad." />
+                      <span class="pack-face">
+                        <span class="pack-top"><span class="pack-name">Pack Actividad + Cena Espectáculo</span><span class="pack-price"><span class="pack-from">Desde</span>64&nbsp;€<small>/pers.</small></span></span>
+                        <span class="pack-desc">Una actividad a elegir + cena espectáculo. Desde 64 € según la actividad.</span>
+                      </span>
+                    </label>
+                    <label class="pack-opt pack-opt--top">
+                      <input type="radio" name="pack" value="Pack Total" data-price="99" data-desc="Una actividad a elegir + comida y tardeo + cena espectáculo. Desde 99 € según la actividad." />
+                      <span class="pack-face">
+                        <span class="pack-top"><span class="pack-name">Pack Total <span class="pack-tag pack-tag--top">Top</span></span><span class="pack-price"><span class="pack-from">Desde</span>99&nbsp;€<small>/pers.</small></span></span>
+                        <span class="pack-desc">Una actividad a elegir + comida y tardeo + cena espectáculo. Desde 99 € según la actividad.</span>
+                      </span>
+                    </label>
+                    <label class="pack-opt">
+                      <input type="radio" name="pack" value="Pack Fin de Semana" data-price="225" data-desc="Alojamiento 2 noches + actividad + comida y tardeo + cena espectáculo. Desde 225 € según la actividad." />
+                      <span class="pack-face">
+                        <span class="pack-top"><span class="pack-name">Pack Fin de Semana</span><span class="pack-price"><span class="pack-from">Desde</span>225&nbsp;€<small>/pers.</small></span></span>
+                        <span class="pack-desc">Alojamiento 2 noches + actividad + comida y tardeo + cena espectáculo. Desde 225 € según la actividad.</span>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Panel: a la carta -->
+                <div class="planner-pane is-hidden mt-5" data-pane="carta">
+                  <p class="mb-3 text-sm text-white/50">Marca lo que quieras. El precio se suma por persona.</p>
+                  <div class="carta-scroll">
+                    <div class="carta-group">
+                      <p class="carta-h">Actividades</p>
+                      <div class="chip-wrap">
+                        <label class="chip"><input type="checkbox" name="item" value="Fiesta privada en barco velero" data-price="32" data-cat="Actividad" /><span class="chip-face">Fiesta privada en barco velero <b>32&nbsp;€</b></span></label>
+                        <label class="chip"><input type="checkbox" name="item" value="Alquiler de barco con patrón" data-price="40" data-cat="Actividad" /><span class="chip-face">Alquiler de barco con patrón <b>40&nbsp;€</b></span></label>
+                        <label class="chip"><input type="checkbox" name="item" value="Motos de agua" data-price="45" data-cat="Actividad" /><span class="chip-face">Motos de agua <b>45&nbsp;€</b></span></label>
+                        <label class="chip"><input type="checkbox" name="item" value="Banana boat" data-price="30" data-cat="Actividad" /><span class="chip-face">Banana boat <b>30&nbsp;€</b></span></label>
+                        <label class="chip"><input type="checkbox" name="item" value="Humor Amarillo" data-price="25" data-cat="Actividad" /><span class="chip-face">Humor Amarillo <b>25&nbsp;€</b></span></label>
+                        <label class="chip"><input type="checkbox" name="item" value="Humor Amarillo Splash" data-price="29" data-cat="Actividad" /><span class="chip-face">Humor Amarillo Splash <b>29&nbsp;€</b></span></label>
+                        <label class="chip"><input type="checkbox" name="item" value="Kayak" data-price="25" data-cat="Actividad" /><span class="chip-face">Kayak <b>25&nbsp;€</b></span></label>
+                        <label class="chip"><input type="checkbox" name="item" value="Paddle surf" data-price="25" data-cat="Actividad" /><span class="chip-face">Paddle surf <b>25&nbsp;€</b></span></label>
+                        <label class="chip"><input type="checkbox" name="item" value="Mega Big Paddle" data-price="150" data-cat="Actividad" /><span class="chip-face">Mega Big Paddle <b>150&nbsp;€</b></span></label>
+                        <label class="chip"><input type="checkbox" name="item" value="Bautismo de buceo" data-price="85" data-cat="Actividad" /><span class="chip-face">Bautismo de buceo <b>85&nbsp;€</b></span></label>
+                        <label class="chip"><input type="checkbox" name="item" value="Bubbles (fútbol burbuja)" data-price="25" data-cat="Actividad" /><span class="chip-face">Bubbles (fútbol burbuja) <b>25&nbsp;€</b></span></label>
+                        <label class="chip"><input type="checkbox" name="item" value="Gymkana de cañas" data-price="25" data-cat="Actividad" /><span class="chip-face">Gymkana de cañas <b>25&nbsp;€</b></span></label>
+                        <label class="chip"><input type="checkbox" name="item" value="Gymkana de pruebas" data-price="25" data-cat="Actividad" /><span class="chip-face">Gymkana de pruebas <b>25&nbsp;€</b></span></label>
+                        <label class="chip"><input type="checkbox" name="item" value="Karting" data-price="38" data-cat="Actividad" /><span class="chip-face">Karting <b>38&nbsp;€</b></span></label>
+                        <label class="chip"><input type="checkbox" name="item" value="Paintball" data-price="225" data-cat="Actividad" /><span class="chip-face">Paintball <b>225&nbsp;€</b></span></label>
+                        <label class="chip"><input type="checkbox" name="item" value="Tiro con arco" data-price="25" data-cat="Actividad" /><span class="chip-face">Tiro con arco <b>25&nbsp;€</b></span></label>
+                        <label class="chip"><input type="checkbox" name="item" value="Escape room" data-price="25" data-cat="Actividad" /><span class="chip-face">Escape room <b>25&nbsp;€</b></span></label>
+                        <label class="chip"><input type="checkbox" name="item" value="Taller de flamenco" data-price="25" data-cat="Actividad" /><span class="chip-face">Taller de flamenco <b>25&nbsp;€</b></span></label>
+                        <label class="chip"><input type="checkbox" name="item" value="Rafting Río Túria" data-price="39" data-cat="Actividad" /><span class="chip-face">Rafting Río Túria <b>39&nbsp;€</b></span></label>
+                        <label class="chip"><input type="checkbox" name="item" value="Tubing" data-price="25" data-cat="Actividad" /><span class="chip-face">Tubing <b>25&nbsp;€</b></span></label>
+                        <label class="chip"><input type="checkbox" name="item" value="Descenso de barranco" data-price="40" data-cat="Actividad" /><span class="chip-face">Descenso de barranco <b>40&nbsp;€</b></span></label>
+                      </div>
+                    </div>
+                    <div class="carta-group">
+                      <p class="carta-h">Comida &amp; fiesta</p>
+                      <div class="chip-wrap">
+                        <label class="chip"><input type="checkbox" name="item" value="Comida con charanga" data-price="35" data-cat="Comida" /><span class="chip-face">Comida con charanga <b>35&nbsp;€</b></span></label>
+                        <label class="chip"><input type="checkbox" name="item" value="Cena espectáculo" data-price="39" data-cat="Comida" /><span class="chip-face">Cena espectáculo <b>39&nbsp;€</b></span></label>
+                      </div>
+                    </div>
+                    <div class="carta-group">
+                      <p class="carta-h">Alojamiento</p>
+                      <div class="chip-wrap">
+                        <label class="chip"><input type="checkbox" name="item" value="Apartamento (noche)" data-price="60" data-cat="Alojamiento" /><span class="chip-face">Apartamento desde <b>60&nbsp;€</b></span></label>
+                        <label class="chip"><input type="checkbox" name="item" value="Hotel 4★ (noche)" data-price="60" data-cat="Alojamiento" /><span class="chip-face">Hotel 4★ <b>60&nbsp;€</b></span></label>
+                      </div>
+                    </div>
+                    <div class="carta-group">
+                      <p class="carta-h">Transporte</p>
+                      <div class="chip-wrap">
+                        <label class="chip"><input type="checkbox" name="item" value="Traslados en minibús privado" data-price="15" data-cat="Transporte" /><span class="chip-face">Minibús privado <b>15&nbsp;€</b></span></label>
+                        <label class="chip"><input type="checkbox" name="item" value="Limusina" data-price="25" data-cat="Transporte" /><span class="chip-face">Limusina <b>25&nbsp;€</b></span></label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+
+            <!-- Resumen en vivo -->
+            <aside class="planner-summary" aria-live="polite">
+              <span class="tile-kicker">Tu configuración</span>
+              <p id="summary-title" class="mt-2 font-display text-2xl font-800 text-white">Pack Comida Charanga y Tardeo DJ</p>
+              <p id="summary-detail" class="mt-2 text-sm text-white/55">Comida con charanga, tardeo y DJ hasta el atardecer.</p>
+
+              <ul id="summary-list" class="summary-list"></ul>
+
+              <div class="my-6 h-px w-full bg-white/10"></div>
+
+              <div class="flex items-end justify-between gap-4">
+                <div>
+                  <span class="text-xs uppercase tracking-widest text-white/45">Precio / persona</span>
+                  <p class="font-display font-800 leading-none text-gradient">
+                    <span id="per-person-out" class="text-5xl">35</span><span class="text-2xl">&nbsp;€</span>
+                  </p>
+                </div>
+                <div class="pb-1 text-right">
+                  <span class="text-[0.65rem] uppercase tracking-widest text-white/40">Estimación total</span>
+                  <p class="font-display text-lg font-700 text-white/75"><span id="total-out">420</span>&nbsp;€</p>
+                </div>
+              </div>
+
+              <a id="planner-cta" data-magnetic href="#" target="_blank" rel="noopener" class="btn-primary mt-7 w-full justify-center text-base">
+                <span>Pedir presupuesto por WhatsApp</span>
+              </a>
+              <p class="mt-3 text-center text-xs text-white/40">
+                Estimación orientativa. El presupuesto final se cierra con tu asesor.
+              </p>
+            </aside>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- ==================================== VALIDACIÓN SOCIAL ==================================== -->
+    <section id="opiniones" class="relative overflow-hidden py-24 md:py-32">
+      <div class="mx-auto max-w-7xl px-5 md:px-8">
+        <div class="reveal mb-14 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <h2 class="font-display text-[clamp(2rem,4.5vw,3.5rem)] font-800 leading-tight tracking-tight">
+            No te lo contamos.<br /><span class="text-gradient">Te lo cuentan ellos.</span>
+          </h2>
+          <p class="max-w-xs text-white/55">Reseñas reales de grupos que ya vivieron su despedida con nosotros.</p>
+        </div>
+      </div>
+
+      <!-- Carrusel infinito -->
+      <div class="marquee" data-marquee>
+        <div class="marquee-track">
+          <!-- set A -->
+          <figure class="review-card g-border">
+            <div class="stars" aria-label="5 de 5">★★★★★</div>
+            <blockquote>Un sábado de despedida de solteros inolvidable. Muy bien todo.</blockquote>
+            <figcaption><span class="avatar" aria-hidden="true">A</span> Grupo de Álex · Valencia</figcaption>
+          </figure>
+          <figure class="review-card g-border">
+            <div class="stars" aria-label="5 de 5">★★★★★</div>
+            <blockquote>Buena comunicación en todo momento y muy atentos. Recomendado.</blockquote>
+            <figcaption><span class="avatar" aria-hidden="true">M</span> Grupo de María · Madrid</figcaption>
+          </figure>
+          <figure class="review-card g-border">
+            <div class="stars" aria-label="5 de 5">★★★★★</div>
+            <blockquote>Nos organizaron una actividad de Humor Amarillo estupenda.</blockquote>
+            <figcaption><span class="avatar" aria-hidden="true">S</span> Grupo de Sara · Alicante</figcaption>
+          </figure>
+          <figure class="review-card g-border">
+            <div class="stars" aria-label="4 de 5">★★★★<span class="star-dim">★</span></div>
+            <blockquote>Todo muy bien organizado y buen precio. Repetiremos seguro.</blockquote>
+            <figcaption><span class="avatar" aria-hidden="true">J</span> Grupo de Javi · Sevilla</figcaption>
+          </figure>
+          <figure class="review-card g-border">
+            <div class="stars" aria-label="5 de 5">★★★★★</div>
+            <blockquote>El barco velero fue el puntazo del finde. Atención de 10.</blockquote>
+            <figcaption><span class="avatar" aria-hidden="true">L</span> Grupo de Laura · Bilbao</figcaption>
+          </figure>
+        </div>
+        <div class="marquee-track" aria-hidden="true">
+          <figure class="review-card g-border">
+            <div class="stars">★★★★★</div>
+            <blockquote>Un sábado de despedida de solteros inolvidable. Muy bien todo.</blockquote>
+            <figcaption><span class="avatar">A</span> Grupo de Álex · Valencia</figcaption>
+          </figure>
+          <figure class="review-card g-border">
+            <div class="stars">★★★★★</div>
+            <blockquote>Buena comunicación en todo momento y muy atentos. Recomendado.</blockquote>
+            <figcaption><span class="avatar">M</span> Grupo de María · Madrid</figcaption>
+          </figure>
+          <figure class="review-card g-border">
+            <div class="stars">★★★★★</div>
+            <blockquote>Nos organizaron una actividad de Humor Amarillo estupenda.</blockquote>
+            <figcaption><span class="avatar">S</span> Grupo de Sara · Alicante</figcaption>
+          </figure>
+          <figure class="review-card g-border">
+            <div class="stars">★★★★<span class="star-dim">★</span></div>
+            <blockquote>Todo muy bien organizado y buen precio. Repetiremos seguro.</blockquote>
+            <figcaption><span class="avatar">J</span> Grupo de Javi · Sevilla</figcaption>
+          </figure>
+          <figure class="review-card g-border">
+            <div class="stars">★★★★★</div>
+            <blockquote>El barco velero fue el puntazo del finde. Atención de 10.</blockquote>
+            <figcaption><span class="avatar">L</span> Grupo de Laura · Bilbao</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <!-- Tira de actividades -->
+      <div class="marquee marquee--reverse mt-6" data-marquee>
+        <div class="marquee-track marquee-track--tags">
+          <span class="act-tag">Fiesta en barco velero</span><span class="act-tag">Motos de agua</span>
+          <span class="act-tag">Rafting Río Túria</span><span class="act-tag">Humor amarillo</span>
+          <span class="act-tag">Karting</span><span class="act-tag">Paintball</span>
+          <span class="act-tag">Bautismo de buceo</span><span class="act-tag">Descenso de barranco</span>
+          <span class="act-tag">Paddle surf</span><span class="act-tag">Limusinas</span>
+          <span class="act-tag">Gymkana de cañas</span><span class="act-tag">Laser game & VR</span>
+          <span class="act-tag">Tubing</span><span class="act-tag">Bubbles</span><span class="act-tag">Tiro con arco</span>
+        </div>
+        <div class="marquee-track marquee-track--tags" aria-hidden="true">
+          <span class="act-tag">Fiesta en barco velero</span><span class="act-tag">Motos de agua</span>
+          <span class="act-tag">Rafting Río Túria</span><span class="act-tag">Humor amarillo</span>
+          <span class="act-tag">Karting</span><span class="act-tag">Paintball</span>
+          <span class="act-tag">Bautismo de buceo</span><span class="act-tag">Descenso de barranco</span>
+          <span class="act-tag">Paddle surf</span><span class="act-tag">Limusinas</span>
+          <span class="act-tag">Gymkana de cañas</span><span class="act-tag">Laser game & VR</span>
+          <span class="act-tag">Tubing</span><span class="act-tag">Bubbles</span><span class="act-tag">Tiro con arco</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================== CTA FINAL ==================================== -->
+    <section class="relative px-5 py-20 md:px-8">
+      <div class="reveal mx-auto max-w-5xl overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] px-8 py-16 text-center backdrop-blur-xl md:py-20">
+        <div class="cta-glow" aria-hidden="true"></div>
+        <h2 class="relative font-display text-[clamp(1.8rem,4vw,3rem)] font-800 leading-tight tracking-tight">
+          ¿Lo montamos?
+        </h2>
+        <p class="relative mx-auto mt-4 max-w-md text-white/60">
+          Cuéntanos la fecha y el grupo. Te devolvemos una propuesta a medida en menos de 24&nbsp;h.
+        </p>
+        <div class="relative mt-8 flex flex-wrap justify-center gap-4">
+          <a href="https://wa.me/34644687001" target="_blank" rel="noopener" data-magnetic class="btn-primary text-base"><span>Hablar por WhatsApp</span></a>
+          <a href="tel:+34644687001" data-magnetic class="btn-glass text-base"><span>+34 644 687 001</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================================== FOOTER ==================================== -->
+  <footer id="contacto" class="relative border-t border-white/10 px-5 pb-10 pt-20 md:px-8">
+    <div class="mx-auto max-w-7xl">
+      <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
+        <div>
+          <a href="#inicio" class="brand brand--footer" aria-label="Crea Despedidas — Inicio">
+            <img src="assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+          </a>
+          <p class="mt-4 max-w-xs text-sm leading-relaxed text-white/50">
+            Despedidas de soltero/a y eventos privados en Valencia. La despedida que nunca
+            olvidaréis.
+          </p>
+          <div class="mt-6 flex gap-3">
+            <a href="#" class="social" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="#" class="social" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M15 4c.5 3 2.5 4.5 5 4.7V12c-2 0-3.7-.6-5-1.6V16a6 6 0 1 1-6-6c.3 0 .7 0 1 .1v3.2A3 3 0 1 0 12 16V4h3Z"/></svg>
+            </a>
+            <a href="https://wa.me/34644687001" target="_blank" rel="noopener" class="social" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 20l1.5-4.5A8 8 0 1 1 9 19L4 20Z"/><path d="M9 10c0 3 2.5 5.5 5.5 5.5M9 10c0-1 1-1.5 1.5-1l1 1.5-1 1M14.5 15.5c1 0 1.5-1 1-1.5L14 13l-1 1"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <nav aria-label="Servicios">
+          <h3 class="footer-h">Servicios</h3>
+          <ul class="footer-list">
+            <li><a href="/restaurantes-despedidas-cumpleanos-valencia/">Restaurante Propio</a></li>
+            <li><a href="/experiencias-actividades-valencia/">Experiencias &amp; Actividades</a></li>
+            <li><a href="/alojamientos-despedidas-valencia/">Alojamientos</a></li>
+            <li><a href="/traslados-valencia/">Traslados</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-label="Packs">
+          <h3 class="footer-h">Packs</h3>
+          <ul class="footer-list">
+            <li><a href="#planner">Pack Comida Charanga y Tardeo DJ</a></li>
+            <li><a href="#planner">Pack Cena Espectáculo</a></li>
+            <li><a href="#planner">Pack Actividad + Comida y Tardeo</a></li>
+            <li><a href="#planner">Pack Fin de Semana</a></li>
+          </ul>
+        </nav>
+
+        <div>
+          <h3 class="footer-h">Newsletter premium</h3>
+          <p class="mt-3 text-sm text-white/50">Ideas de despedidas y ofertas privadas. Sin spam.</p>
+          <form id="newsletter" class="newsletter mt-4" novalidate>
+            <div class="newsletter-field g-border">
+              <input type="email" name="email" required placeholder="tu@email.com" aria-label="Tu correo electrónico" />
+              <button type="submit" data-magnetic aria-label="Suscribirse">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+            <p id="newsletter-msg" class="newsletter-msg" role="status"></p>
+          </form>
+
+          <address class="mt-6 space-y-1 text-sm not-italic text-white/50">
+            <p>Av. de l'Enginyer Manuel Soto, 14 Bis · Valencia</p>
+            <p><a class="hover:text-white" href="mailto:info@creadespedidas.com">info@creadespedidas.com</a></p>
+            <p><a class="hover:text-white" href="tel:+34644687001">+34 644 687 001</a> · L–S 9:00–20:00</p>
+          </address>
+        </div>
+      </div>
+
+      <div class="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/40 md:flex-row">
+        <p>© <span id="year">2026</span> Crea Despedidas. Todos los derechos reservados.</p>
+        <ul class="flex gap-6">
+          <li><a href="#" class="hover:text-white">Privacidad</a></li>
+          <li><a href="#" class="hover:text-white">Cookies</a></li>
+          <li><a href="#" class="hover:text-white">Aviso legal</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Pez que nada tras el cursor (decorativo) -->
+  <img src="assets/fish.png" id="fish-cursor" alt="" aria-hidden="true" />
+
+  <!-- Botón flotante WhatsApp -->
+  <a href="https://wa.me/34644687001" target="_blank" rel="noopener" class="wa-float" aria-label="Escríbenos por WhatsApp">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.5-4.5A8 8 0 1 1 9 19L4 20Z"/><path d="M9 10c0 3 2.5 5.5 5.5 5.5M9 10c0-1 1-1.5 1.5-1l1 1.5-1 1M14.5 15.5c1 0 1.5-1 1-1.5L14 13l-1 1"/></svg>
+  </a>
+
+  <script src="js/main.js?v=23" defer></script>
+</body>
+</html>

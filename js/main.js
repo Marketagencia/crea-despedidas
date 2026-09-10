@@ -457,6 +457,47 @@
     requestAnimationFrame(loop);
   }
 
+  /* ------------------------------------------ tira de fotos de actividades */
+  function initPhotoStrip() {
+    const strip = document.querySelector('[data-photo-strip]');
+    if (!strip) return;
+
+    const PICS = [
+      ['velero', 'Grupo de fiesta en un barco velero al atardecer'],
+      ['motos-agua', 'Moto de agua en la costa de Valencia'],
+      ['banana-boat', 'Grupo en banana boat'],
+      ['paddle-surf', 'Grupo haciendo paddle surf al atardecer'],
+      ['mega-big-paddle', 'Grupo en una tabla de paddle gigante'],
+      ['humor-amarillo', 'Humor amarillo con trajes de sumo hinchables'],
+      ['persona-al-agua', 'Grupo en una actividad acuática de equipo'],
+    ];
+
+    // Barajado Fisher–Yates (orden aleatorio en cada carga)
+    const list = PICS.slice();
+    for (let i = list.length - 1; i > 0; i--) {
+      const j = (Math.random() * (i + 1)) | 0;
+      [list[i], list[j]] = [list[j], list[i]];
+    }
+
+    const REPEAT = 3; // repetir la secuencia para llenar pantallas anchas
+    const buildTrack = (decorative) => {
+      let out = '';
+      for (let r = 0; r < REPEAT; r++) {
+        for (const [name, alt] of list) {
+          out +=
+            '<img class="strip-photo" src="/assets/' + name + '.webp" ' +
+            (decorative ? 'alt="" aria-hidden="true"' : 'alt="' + alt + '"') +
+            ' loading="lazy" onerror="this.src=\'/assets/' + name + '.jpg\'">';
+        }
+      }
+      return out;
+    };
+
+    const tracks = strip.querySelectorAll('.marquee-track');
+    if (tracks[0]) tracks[0].innerHTML = buildTrack(false);
+    if (tracks[1]) tracks[1].innerHTML = buildTrack(true);
+  }
+
   /* -------------------------------------------------------------- init */
   function init() {
     initYear();
@@ -468,6 +509,7 @@
     initFastPlanner();
     initNewsletter();
     initFishCursor();
+    initPhotoStrip();
   }
 
   if (document.readyState === 'loading') {

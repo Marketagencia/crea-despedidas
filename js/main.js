@@ -347,15 +347,21 @@
     let ty = window.innerHeight * 0.5;
     let x = tx;
     let y = ty;
-    let vx = 0; // velocidad suavizada
-    let vy = 0;
     let dir = 1; // 1 mira a la derecha, -1 a la izquierda
-    let t = 0;
     let started = false;
     let nextBubble = 0;
     let ux = -1; // vector unitario pez -> ratón (para mantener la separación)
     let uy = 0;
     const GAP = 38; // ~1 cm: el pez nunca se acerca más que esto al cursor
+
+    // --- estado del nado: modelo de rumbo con inercia (nado realista) ---
+    let heading = Math.PI; // hacia dónde apunta y avanza el pez (rad)
+    let spd = 0; // velocidad de avance (px/frame), con inercia
+    let tail = 0; // fase del coletazo
+    let swim = Math.random() * Math.PI * 2; // ritmo "impulso y planeo"
+    let bank = 0; // alabeo suavizado al girar
+    let bend = 0; // curvatura del cuerpo en S (ondulación)
+    let hoverPhase = Math.random() * Math.PI * 2; // vaivén al ralentí
 
     // Elige un nuevo destino aleatorio dentro de la pantalla (modo "nada solo"),
     // procurando que el trayecto sea largo para que se vea como un glide suave.
@@ -416,6 +422,13 @@
     }
 
     const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
+    const TAU = Math.PI * 2;
+    const normAng = (a) => {
+      a %= TAU;
+      if (a > Math.PI) a -= TAU;
+      else if (a < -Math.PI) a += TAU;
+      return a;
+    };
 
     // Suelta una burbuja desde la boca del pez
     function spawnBubble(px, py) {
@@ -434,74 +447,103 @@
       setTimeout(kill, 2800);
     }
 
-    function loop(now) {
-      t += 0.08; // fase de coleteo/latido más lenta -> movimiento más calmado
+    const MAXSPD = () => (roam ? 2.3 : 6.4);
 
+    function loop(now) {
+      hoverPhase += 0.021;
+      swim += 0.024 + spd * 0.011; // el ritmo se acelera al nadar fuerte
+
+      // 1) Punto objetivo (destino aleatorio, o ~1 cm detrás del ratón)
       let gx, gy;
       if (roam) {
-        // Nada hacia un punto aleatorio; al llegar, elige otro
         gx = tx;
         gy = ty;
-        if (Math.hypot(tx - x, ty - y) < 44) newRoamTarget();
+        if (Math.hypot(tx - x, ty - y) < 42) newRoamTarget();
       } else {
-        // Mantén la unidad pez -> ratón mientras haya separación real
         const cdx = tx - x;
         const cdy = ty - y;
-        const cdist = Math.hypot(cdx, cdy);
+        const cdist = Math.hypot(cdx, cdy) || 1;
         if (cdist > 6) {
           ux = cdx / cdist;
           uy = cdy / cdist;
         }
-        // Objetivo: un punto a ~1 cm por detrás del ratón, para no taparlo
         gx = tx - ux * GAP;
         gy = ty - uy * GAP;
       }
 
       const dx = gx - x;
       const dy = gy - y;
+      const dist = Math.hypot(dx, dy);
 
-      // Nada hacia ese punto con retardo -> queda por detrás (estela)
-      // Mitad de velocidad que antes (0.09/0.045) para un glide más pausado.
-      const ease = roam ? 0.022 : 0.045;
-      x += dx * ease;
-      y += dy * ease;
+      // 2) Rumbo: el pez gira con radio, nunca de golpe (más margen a más velocidad)
+      const desired = Math.atan2(dy, dx);
+      const da = normAng(desired - heading);
+      const maxTurn = 0.017 + 0.05 * Math.min(spd / MAXSPD(), 1);
+      heading = normAng(heading + clamp(da * 0.14, -maxTurn, maxTurn));
 
-      // Velocidad suavizada para orientar el cuerpo (más baja -> giros suaves,
-      // sin tirones al cambiar de dirección)
-      vx += (dx - vx) * 0.06;
-      vy += (dy - vy) * 0.06;
+      // 3) Velocidad con "impulso y planeo" + inercia (acelera y luego se deja llevar)
+      const cruise = Math.min(MAXSPD(), dist * (roam ? 0.05 : 0.16));
+      const burst = 0.45 + 0.55 * Math.pow(0.5 + 0.5 * Math.sin(swim), 1.7);
+      const align = 0.35 + 0.65 * Math.max(0, Math.cos(da)); // frena si aún no encara
+      const targetSpd = cruise * burst * align;
+      spd += (targetSpd - spd) * (targetSpd > spd ? 0.035 : 0.05);
 
-      // Mira hacia donde nada; si casi no se mueve, conserva el último sentido
-      if (vx > 0.22) dir = 1;
-      else if (vx < -0.22) dir = -1;
+      // 4) Avance a lo largo del rumbo (+ micro-vaivén cuando casi está parado)
+      const hov = clamp(1 - spd / 0.6, 0, 1);
+      x += Math.cos(heading) * spd + Math.sin(hoverPhase) * 0.26 * hov;
+      y += Math.sin(heading) * spd + Math.sin(hoverPhase * 1.3) * 0.2 * hov;
 
-      // Inclinación del morro segun el componente vertical (limitada -> nunca boca abajo)
-      const tilt = clamp((Math.atan2(vy, Math.abs(vx) + 8) * 180) / Math.PI, -34, 34);
-      const wag = Math.sin(t) * 4; // coleteo
-      const pulse = 1 + Math.sin(t * 2) * 0.025;
+      // 5) Esfuerzo de nado -> gobierna coletazo, ondulación y burbujas
+      const effort = clamp(spd / MAXSPD(), 0, 1);
+      const turnEffort = Math.min(Math.abs(da) * 2.2, 1);
+      const drive = clamp(effort + turnEffort * 0.5, 0, 1.2);
 
-      // Desplaza el pez hacia la cola de la trayectoria SOLO cuando se mueve
-      // (en reposo el offset es 0, así se respeta el gap de ~1 cm con el cursor)
-      const speed = Math.hypot(vx, vy);
-      const trail = Math.min(speed * 2.4, 22);
-      const nvx = speed > 0.01 ? vx / speed : 0;
-      const nvy = speed > 0.01 ? vy / speed : 0;
-      const bx = x - nvx * trail;
-      const by = y - nvy * trail;
+      const beatFreq = 0.16 + 0.62 * effort + 0.1 * turnEffort;
+      tail += beatFreq;
+      const wagAmp = 2.4 + 11 * effort + 7 * turnEffort; // grados
+      const wag = Math.sin(tail) * wagAmp;
 
-      // rotate primero y scaleX despues => el morro siempre lidera y el pez
-      // queda siempre con la panza hacia abajo, mire donde mire.
+      // Curvatura del cuerpo (S), desfasada respecto a la cola -> aspecto ondulante
+      const bendTarget = Math.sin(tail - 0.7) * (5 + 9 * drive);
+      bend += (bendTarget - bend) * 0.25;
+
+      // Alabeo: se escora hacia el interior de la curva
+      const bankTarget = clamp(-da * 46, -16, 16);
+      bank += (bankTarget - bank) * 0.05;
+
+      // 6) Cabeceo a partir del avance real (limitado -> nunca boca abajo)
+      const vX = Math.cos(heading) * spd;
+      const vY = Math.sin(heading) * spd;
+      const pitch = clamp((Math.atan2(vY, Math.abs(vX) + 7) * 180) / Math.PI, -28, 28);
+
+      // 7) Sentido de mirada con histéresis
+      const face = Math.cos(heading);
+      if (face > 0.08) dir = 1;
+      else if (face < -0.08) dir = -1;
+
+      // 8) El cuerpo va un poco por detrás del punto de avance (estela)
+      const trail = Math.min(spd * 2.6, 20);
+      const bx = x - Math.cos(heading) * trail;
+      const by = y - Math.sin(heading) * trail;
+
+      const pulse = 1 + Math.sin(tail * 2) * 0.018 * (0.4 + drive);
+      const squash = 1 - Math.abs(bank) / 150;
+
       fish.style.transform =
-        `translate(${bx}px, ${by}px) translate(-50%, -50%) ` +
-        `rotate(${tilt + wag}deg) scaleX(${dir}) scale(${pulse})`;
+        `translate(${bx.toFixed(2)}px, ${by.toFixed(2)}px) translate(-50%, -50%) ` +
+        `rotate(${(pitch + wag * 0.55 + bank * 0.35).toFixed(2)}deg) ` +
+        `scaleX(${dir}) scale(${pulse.toFixed(3)}) scaleY(${squash.toFixed(3)}) ` +
+        `skewX(${(bend * dir).toFixed(2)}deg)`;
 
-      // Burbujas saliendo por la boca (parte delantera del pez)
+      // 9) Burbujas por la boca, al compás del coletazo y del esfuerzo
       if (started && fish.classList.contains('is-active') && now >= nextBubble) {
-        spawnBubble(bx + dir * 26, by + 5);
-        if (Math.random() < 0.3) {
-          spawnBubble(bx + dir * (18 + Math.random() * 12), by + 1);
+        const mouthX = bx + dir * 26;
+        const mouthY = by + 5;
+        spawnBubble(mouthX, mouthY);
+        if (Math.random() < 0.25 + 0.35 * drive) {
+          spawnBubble(mouthX + dir * (6 + Math.random() * 12), mouthY - 2);
         }
-        nextBubble = now + (speed > 3 ? 110 : 230) + Math.random() * 180;
+        nextBubble = now + (120 + (1 - Math.min(drive, 1)) * 260) + Math.random() * 160;
       }
 
       requestAnimationFrame(loop);

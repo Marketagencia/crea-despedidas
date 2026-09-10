@@ -22,7 +22,7 @@
       } },
     };
   </script>
-  <link rel="stylesheet" href="/css/styles.css?v=23" />
+  <link rel="stylesheet" href="/css/styles.css?v=24" />
 </head>
 
 <body class="bg-ink text-white font-sans antialiased overflow-x-hidden">
@@ -75,14 +75,39 @@
         </p>
       </section>
 
+      <!-- Tira de fotos de actividades -->
+      <div class="photo-strip marquee" data-marquee aria-label="Fotos de actividades">
+        <div class="marquee-track">
+          <img class="strip-photo" src="/assets/velero.webp" alt="Grupo de fiesta en un barco velero al atardecer" loading="lazy" onerror="this.src='/assets/velero.jpg'" />
+          <img class="strip-photo" src="/assets/motos-agua.webp" alt="Moto de agua en la costa de Valencia" loading="lazy" onerror="this.src='/assets/motos-agua.jpg'" />
+          <img class="strip-photo" src="/assets/banana-boat.webp" alt="Grupo en banana boat" loading="lazy" onerror="this.src='/assets/banana-boat.jpg'" />
+          <img class="strip-photo" src="/assets/paddle-surf.webp" alt="Grupo haciendo paddle surf al atardecer" loading="lazy" onerror="this.src='/assets/paddle-surf.jpg'" />
+          <img class="strip-photo" src="/assets/mega-big-paddle.webp" alt="Grupo en una tabla de paddle gigante" loading="lazy" onerror="this.src='/assets/mega-big-paddle.jpg'" />
+          <img class="strip-photo" src="/assets/velero.webp" alt="" aria-hidden="true" loading="lazy" />
+          <img class="strip-photo" src="/assets/motos-agua.webp" alt="" aria-hidden="true" loading="lazy" />
+          <img class="strip-photo" src="/assets/banana-boat.webp" alt="" aria-hidden="true" loading="lazy" />
+          <img class="strip-photo" src="/assets/paddle-surf.webp" alt="" aria-hidden="true" loading="lazy" />
+          <img class="strip-photo" src="/assets/mega-big-paddle.webp" alt="" aria-hidden="true" loading="lazy" />
+        </div>
+        <div class="marquee-track" aria-hidden="true">
+          <img class="strip-photo" src="/assets/velero.webp" alt="" loading="lazy" />
+          <img class="strip-photo" src="/assets/motos-agua.webp" alt="" loading="lazy" />
+          <img class="strip-photo" src="/assets/banana-boat.webp" alt="" loading="lazy" />
+          <img class="strip-photo" src="/assets/paddle-surf.webp" alt="" loading="lazy" />
+          <img class="strip-photo" src="/assets/mega-big-paddle.webp" alt="" loading="lazy" />
+          <img class="strip-photo" src="/assets/velero.webp" alt="" loading="lazy" />
+          <img class="strip-photo" src="/assets/motos-agua.webp" alt="" loading="lazy" />
+          <img class="strip-photo" src="/assets/banana-boat.webp" alt="" loading="lazy" />
+          <img class="strip-photo" src="/assets/paddle-surf.webp" alt="" loading="lazy" />
+          <img class="strip-photo" src="/assets/mega-big-paddle.webp" alt="" loading="lazy" />
+        </div>
+      </div>
+
       <section class="svc-section" aria-label="Listado de actividades">
         <div class="svc-grid">
 
-          <article class="svc-card svc-card--photo">
-            <img class="card-bg" src="/assets/velero.webp" alt="" aria-hidden="true" loading="lazy" width="760" height="760" onerror="this.src='/assets/velero.jpg'" />
-            <div class="flex flex-wrap items-baseline justify-between gap-2">
-              <h3>Fiesta privada en barco velero</h3><span class="price">Desde 32 €</span>
-            </div>
+          <article class="svc-card">
+            <h3>Fiesta privada en barco velero</h3>
             <p>Navegación privada por la costa de Valencia con parada de baño, música y ambiente de fiesta a bordo.</p>
             <ul class="meta"><li>1 h</li><li>Hasta 11 personas</li><li>Patrón + música</li></ul>
           </article>
@@ -93,15 +118,13 @@
             <ul class="meta"><li>2–4 h</li><li>Grupos reducidos</li><li>Patrón incluido</li></ul>
           </article>
 
-          <article class="svc-card svc-card--photo">
-            <img class="card-bg" src="/assets/motos-agua.webp" alt="" aria-hidden="true" loading="lazy" width="760" height="760" onerror="this.src='/assets/motos-agua.jpg'" />
+          <article class="svc-card">
             <h3>Motos de agua</h3>
             <p>Rutas guiadas por la bahía, individuales o por parejas, con briefing e instructor en el agua.</p>
             <ul class="meta"><li>20–40 min</li><li>Por turnos</li><li>Equipo + monitor</li></ul>
           </article>
 
-          <article class="svc-card svc-card--photo">
-            <img class="card-bg" src="/assets/banana-boat.webp" alt="" aria-hidden="true" loading="lazy" width="760" height="760" onerror="this.src='/assets/banana-boat.jpg'" />
+          <article class="svc-card">
             <h3>Banana boat</h3>
             <p>Arrastre en hinchable a toda velocidad para todo el grupo. Caídas al agua aseguradas.</p>
             <ul class="meta"><li>30 min</li><li>Hasta 10 pax por salida</li><li>Lancha + monitor</li></ul>
@@ -125,15 +148,13 @@
             <ul class="meta"><li>1–2 h</li><li>6–24 pax</li><li>Kayak + monitor</li></ul>
           </article>
 
-          <article class="svc-card svc-card--photo">
-            <img class="card-bg" src="/assets/paddle-surf.webp" alt="" aria-hidden="true" loading="lazy" width="760" height="760" onerror="this.src='/assets/paddle-surf.jpg'" />
+          <article class="svc-card">
             <h3>Paddle surf</h3>
             <p>Tabla individual para remar por la costa de Valencia y acabar dándote un baño.</p>
             <ul class="meta"><li>1–2 h</li><li>6–20 pax</li><li>Tabla + monitor</li></ul>
           </article>
 
-          <article class="svc-card svc-card--photo">
-            <img class="card-bg" src="/assets/mega-big-paddle.webp" alt="" aria-hidden="true" loading="lazy" width="760" height="760" onerror="this.src='/assets/mega-big-paddle.jpg'" />
+          <article class="svc-card">
             <h3>Mega Big Paddle</h3>
             <p>Tabla gigante para remar todo el grupo a la vez: coordinarse… o caer todos al agua.</p>
             <ul class="meta"><li>1–1,5 h</li><li>8–15 pax</li><li>Tabla XL + monitor</li></ul>
@@ -285,6 +306,6 @@
   <a href="https://wa.me/34644687001" target="_blank" rel="noopener" class="wa-float" aria-label="Escríbenos por WhatsApp">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.5-4.5A8 8 0 1 1 9 19L4 20Z"/><path d="M9 10c0 3 2.5 5.5 5.5 5.5M9 10c0-1 1-1.5 1.5-1l1 1.5-1 1M14.5 15.5c1 0 1.5-1 1-1.5L14 13l-1 1"/></svg>
   </a>
-  <script src="/js/main.js?v=23" defer></script>
+  <script src="/js/main.js?v=24" defer></script>
 </body>
 </html>

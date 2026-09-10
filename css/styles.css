@@ -224,7 +224,14 @@ body { margin: 0; min-height: 100vh; }
   }
 }
 
-@media (max-width: 640px), (prefers-reduced-motion: reduce), (pointer: coarse) {
+/* En móvil/tablet el pez nada solo por la pantalla (lo mueve el JS) */
+@media (max-width: 640px) {
+  #fish-cursor { width: 46px; }
+  #fish-cursor.is-active { opacity: 0.8; }
+}
+
+/* Solo se oculta del todo si el usuario pide movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
   #fish-cursor,
   .bubble { display: none; }
 }

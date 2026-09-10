@@ -333,12 +333,13 @@
     });
   }
 
-  /* --------------------------------------------------- pez tras el cursor */
+  /* ------------------------------------ pez tras el cursor / nadando solo */
   function initFishCursor() {
     const fish = document.getElementById('fish-cursor');
-    // El gate de puntero/móvil lo hace el CSS (display:none). Aquí solo saltamos
-    // la animación si el usuario pide movimiento reducido.
     if (!fish || prefersReducedMotion) return;
+
+    // En táctil (móvil / tablet) no hay cursor: el pez nada solo por la pantalla.
+    const roam = !window.matchMedia('(pointer: fine)').matches;
 
     let tx = window.innerWidth * 0.5;
     let ty = window.innerHeight * 0.5;
@@ -353,26 +354,50 @@
     let ux = -1; // vector unitario pez -> ratón (para mantener la separación)
     let uy = 0;
     const GAP = 38; // ~1 cm: el pez nunca se acerca más que esto al cursor
+    const EASE = roam ? 0.045 : 0.09; // más suave nadando solo
 
-    window.addEventListener(
-      'pointermove',
-      (e) => {
-        tx = e.clientX;
-        ty = e.clientY;
-        if (!started) {
-          started = true;
-          x = tx;
-          y = ty;
+    // Elige un nuevo destino aleatorio dentro de la pantalla (modo "nada solo"),
+    // procurando que el trayecto sea largo para que se vea como un glide suave.
+    function newRoamTarget() {
+      const m = 56;
+      const minLeg = Math.min(260, window.innerHeight * 0.45);
+      for (let i = 0; i < 8; i++) {
+        const nx = m + Math.random() * Math.max(1, window.innerWidth - 2 * m);
+        const ny = m + Math.random() * Math.max(1, window.innerHeight - 2 * m);
+        if (Math.hypot(nx - x, ny - y) > minLeg) {
+          tx = nx;
+          ty = ny;
+          return;
         }
-        fish.classList.add('is-active');
-      },
-      { passive: true }
-    );
+      }
+      tx = m + Math.random() * Math.max(1, window.innerWidth - 2 * m);
+      ty = m + Math.random() * Math.max(1, window.innerHeight - 2 * m);
+    }
 
-    // Se esconde al salir de la ventana
-    document.addEventListener('pointerout', (e) => {
-      if (!e.relatedTarget) fish.classList.remove('is-active');
-    });
+    if (roam) {
+      started = true;
+      fish.classList.add('is-active');
+      newRoamTarget();
+    } else {
+      window.addEventListener(
+        'pointermove',
+        (e) => {
+          tx = e.clientX;
+          ty = e.clientY;
+          if (!started) {
+            started = true;
+            x = tx;
+            y = ty;
+          }
+          fish.classList.add('is-active');
+        },
+        { passive: true }
+      );
+      // Se esconde al salir de la ventana
+      document.addEventListener('pointerout', (e) => {
+        if (!e.relatedTarget) fish.classList.remove('is-active');
+      });
+    }
 
     const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
 
@@ -396,24 +421,32 @@
     function loop(now) {
       t += 0.12;
 
-      // Mantén la unidad pez -> ratón mientras haya separación real
-      const cdx = tx - x;
-      const cdy = ty - y;
-      const cdist = Math.hypot(cdx, cdy);
-      if (cdist > 6) {
-        ux = cdx / cdist;
-        uy = cdy / cdist;
+      let gx, gy;
+      if (roam) {
+        // Nada hacia un punto aleatorio; al llegar, elige otro
+        gx = tx;
+        gy = ty;
+        if (Math.hypot(tx - x, ty - y) < 44) newRoamTarget();
+      } else {
+        // Mantén la unidad pez -> ratón mientras haya separación real
+        const cdx = tx - x;
+        const cdy = ty - y;
+        const cdist = Math.hypot(cdx, cdy);
+        if (cdist > 6) {
+          ux = cdx / cdist;
+          uy = cdy / cdist;
+        }
+        // Objetivo: un punto a ~1 cm por detrás del ratón, para no taparlo
+        gx = tx - ux * GAP;
+        gy = ty - uy * GAP;
       }
 
-      // Objetivo: un punto a ~1 cm por detrás del ratón, para no taparlo
-      const gx = tx - ux * GAP;
-      const gy = ty - uy * GAP;
       const dx = gx - x;
       const dy = gy - y;
 
       // Nada hacia ese punto con retardo -> queda por detrás (estela)
-      x += dx * 0.09;
-      y += dy * 0.09;
+      x += dx * EASE;
+      y += dy * EASE;
 
       // Velocidad suavizada para orientar el cuerpo
       vx += (dx - vx) * 0.12;

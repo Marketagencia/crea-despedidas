@@ -338,8 +338,10 @@
     const fish = document.getElementById('fish-cursor');
     if (!fish || prefersReducedMotion) return;
 
-    // En táctil (móvil / tablet) no hay cursor: el pez nada solo por la pantalla.
-    const roam = !window.matchMedia('(pointer: fine)').matches;
+    // Sin ratón preciso (móvil/tablet) o pantalla estrecha -> el pez nada solo.
+    let roam =
+      !window.matchMedia('(pointer: fine)').matches ||
+      window.innerWidth < 760;
 
     let tx = window.innerWidth * 0.5;
     let ty = window.innerHeight * 0.5;
@@ -354,7 +356,6 @@
     let ux = -1; // vector unitario pez -> ratón (para mantener la separación)
     let uy = 0;
     const GAP = 38; // ~1 cm: el pez nunca se acerca más que esto al cursor
-    const EASE = roam ? 0.045 : 0.09; // más suave nadando solo
 
     // Elige un nuevo destino aleatorio dentro de la pantalla (modo "nada solo"),
     // procurando que el trayecto sea largo para que se vea como un glide suave.
@@ -374,29 +375,44 @@
       ty = m + Math.random() * Math.max(1, window.innerHeight - 2 * m);
     }
 
-    if (roam) {
+    function enterRoam() {
+      roam = true;
       started = true;
       fish.classList.add('is-active');
       newRoamTarget();
+    }
+
+    let sawMouse = false;
+
+    // Un ratón de verdad (no un toque) manda: el pez pasa a seguir el cursor.
+    window.addEventListener(
+      'pointermove',
+      (e) => {
+        if (e.pointerType === 'touch') return;
+        sawMouse = true;
+        roam = false;
+        tx = e.clientX;
+        ty = e.clientY;
+        if (!started) {
+          started = true;
+          x = tx;
+          y = ty;
+        }
+        fish.classList.add('is-active');
+      },
+      { passive: true }
+    );
+    document.addEventListener('pointerout', (e) => {
+      if (!roam && !e.relatedTarget) fish.classList.remove('is-active');
+    });
+
+    if (roam) {
+      enterRoam();
     } else {
-      window.addEventListener(
-        'pointermove',
-        (e) => {
-          tx = e.clientX;
-          ty = e.clientY;
-          if (!started) {
-            started = true;
-            x = tx;
-            y = ty;
-          }
-          fish.classList.add('is-active');
-        },
-        { passive: true }
-      );
-      // Se esconde al salir de la ventana
-      document.addEventListener('pointerout', (e) => {
-        if (!e.relatedTarget) fish.classList.remove('is-active');
-      });
+      // Sin movimiento de ratón pronto (táctil, emulación...) -> a nadar solo.
+      setTimeout(() => {
+        if (!sawMouse) enterRoam();
+      }, 2500);
     }
 
     const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
@@ -445,8 +461,9 @@
       const dy = gy - y;
 
       // Nada hacia ese punto con retardo -> queda por detrás (estela)
-      x += dx * EASE;
-      y += dy * EASE;
+      const ease = roam ? 0.045 : 0.09; // más suave nadando solo
+      x += dx * ease;
+      y += dy * ease;
 
       // Velocidad suavizada para orientar el cuerpo
       vx += (dx - vx) * 0.12;

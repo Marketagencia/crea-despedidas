@@ -12,8 +12,6 @@ iMAGENES*
 
 # Docs
 README.md
+DEPLOY.md
 
-# El propio contexto de build
-Dockerfile
-.dockerignore
-nginx.conf
+# OJO: NO añadir aquí nginx.conf ni Dockerfile: el Dockerfile hace COPY nginx.conf

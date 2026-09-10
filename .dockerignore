@@ -1,0 +1,19 @@
+# Fuentes de imágenes originales (ya optimizadas en /assets)
+Logos
+iMAGENES*
+
+# Basura del sistema / editor
+.DS_Store
+**/.DS_Store
+.claude
+.git
+.gitignore
+.vscode
+
+# Docs
+README.md
+
+# El propio contexto de build
+Dockerfile
+.dockerignore
+nginx.conf

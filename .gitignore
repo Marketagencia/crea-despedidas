@@ -1,0 +1,8 @@
+.DS_Store
+**/.DS_Store
+.claude/
+node_modules/
+
+# Fuentes de imágenes originales (pesadas, no necesarias para el sitio)
+Logos/
+iMAGENES WEB HOME /

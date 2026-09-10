@@ -435,7 +435,7 @@
     }
 
     function loop(now) {
-      t += 0.12;
+      t += 0.08; // fase de coleteo/latido más lenta -> movimiento más calmado
 
       let gx, gy;
       if (roam) {
@@ -461,17 +461,19 @@
       const dy = gy - y;
 
       // Nada hacia ese punto con retardo -> queda por detrás (estela)
-      const ease = roam ? 0.045 : 0.09; // más suave nadando solo
+      // Mitad de velocidad que antes (0.09/0.045) para un glide más pausado.
+      const ease = roam ? 0.022 : 0.045;
       x += dx * ease;
       y += dy * ease;
 
-      // Velocidad suavizada para orientar el cuerpo
-      vx += (dx - vx) * 0.12;
-      vy += (dy - vy) * 0.12;
+      // Velocidad suavizada para orientar el cuerpo (más baja -> giros suaves,
+      // sin tirones al cambiar de dirección)
+      vx += (dx - vx) * 0.06;
+      vy += (dy - vy) * 0.06;
 
       // Mira hacia donde nada; si casi no se mueve, conserva el último sentido
-      if (vx > 0.4) dir = 1;
-      else if (vx < -0.4) dir = -1;
+      if (vx > 0.22) dir = 1;
+      else if (vx < -0.22) dir = -1;
 
       // Inclinación del morro segun el componente vertical (limitada -> nunca boca abajo)
       const tilt = clamp((Math.atan2(vy, Math.abs(vx) + 8) * 180) / Math.PI, -34, 34);
@@ -481,7 +483,7 @@
       // Desplaza el pez hacia la cola de la trayectoria SOLO cuando se mueve
       // (en reposo el offset es 0, así se respeta el gap de ~1 cm con el cursor)
       const speed = Math.hypot(vx, vy);
-      const trail = Math.min(speed * 1.6, 22);
+      const trail = Math.min(speed * 2.4, 22);
       const nvx = speed > 0.01 ? vx / speed : 0;
       const nvy = speed > 0.01 ? vy / speed : 0;
       const bx = x - nvx * trail;
@@ -499,7 +501,7 @@
         if (Math.random() < 0.3) {
           spawnBubble(bx + dir * (18 + Math.random() * 12), by + 1);
         }
-        nextBubble = now + (speed > 6 ? 90 : 200) + Math.random() * 160;
+        nextBubble = now + (speed > 3 ? 110 : 230) + Math.random() * 180;
       }
 
       requestAnimationFrame(loop);

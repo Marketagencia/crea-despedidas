@@ -10,6 +10,9 @@ iMAGENES*
 .gitignore
 .vscode
 
+# Scripts de mantenimiento (no forman parte del sitio servido)
+scripts
+
 # Docs
 README.md
 DEPLOY.md

@@ -1431,6 +1431,122 @@ body { margin: 0; min-height: 100vh; }
   align-items: end;
 }
 
+/* ============================================================================
+   14. Blog
+   ========================================================================== */
+.blog-grid {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+.blog-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.75rem;
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.35s var(--ease), background 0.35s var(--ease), border-color 0.35s var(--ease);
+}
+.blog-card:hover { transform: translateY(-4px); background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.22); }
+.blog-card .blog-date {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+}
+.blog-card h3 { font-family: "Syne", sans-serif; font-weight: 800; font-size: 1.12rem; line-height: 1.32; }
+.blog-card p { font-size: 0.88rem; line-height: 1.55; color: rgba(255, 255, 255, 0.58); }
+.blog-card .blog-more {
+  margin-top: auto;
+  padding-top: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: "Syne", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  background: var(--grad-tri);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Ficha de artículo */
+.post-date {
+  margin-top: 1.1rem;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+}
+.post-prose { max-width: 72ch; font-size: 1.02rem; line-height: 1.78; color: rgba(255, 255, 255, 0.68); }
+.post-prose h2 {
+  font-family: "Syne", sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.3rem, 2.6vw, 1.75rem);
+  color: #fff;
+  letter-spacing: -0.01em;
+  margin: 2.5rem 0 1rem;
+}
+.post-prose h3 {
+  font-family: "Syne", sans-serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: #fff;
+  margin: 1.85rem 0 0.75rem;
+}
+.post-prose p { margin: 0 0 1.15rem; }
+.post-prose ul, .post-prose ol { margin: 0 0 1.15rem; padding-left: 1.3rem; }
+.post-prose li { margin-bottom: 0.45rem; }
+.post-prose strong { color: rgba(255, 255, 255, 0.92); font-weight: 700; }
+.post-prose a { color: var(--c-cyan); text-decoration: underline; text-underline-offset: 2px; text-decoration-color: rgba(0, 242, 254, 0.4); }
+.post-prose a:hover { text-decoration-color: currentColor; }
+.post-prose blockquote {
+  margin: 1.6rem 0;
+  padding: 1rem 1.3rem;
+  border-left: 3px solid rgba(0, 242, 254, 0.5);
+  background: rgba(255, 255, 255, 0.035);
+  border-radius: 0 0.9rem 0.9rem 0;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.75);
+}
+.post-prose .key-takeaways,
+.post-prose .table-of-contents {
+  margin: 1.6rem 0 2.1rem;
+  padding: 1.5rem 1.6rem 1.3rem;
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.post-prose .key-takeaways h2,
+.post-prose .table-of-contents h2 { margin-top: 0; }
+.post-prose .table-of-contents ul { margin-bottom: 0; }
+.post-prose .table-of-contents a { text-decoration: none; color: rgba(255, 255, 255, 0.72); }
+.post-prose .table-of-contents a:hover { color: var(--c-cyan); }
+.post-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2.5rem; }
+.post-tag {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 0.32rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.6);
+}
+
 @media (max-width: 640px) {
   .subpage-main { padding-top: 80px; }
 }

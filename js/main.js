@@ -434,7 +434,7 @@
               guests: Number(sel.people) || 12,
               budget: Number(total) || 0,
               paid: 0,
-              status: "Pendiente",
+              status: "Nuevo",
               activities: actList,
               supplierServices: services,
               assignedTo: "pablo",

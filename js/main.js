@@ -158,9 +158,55 @@
     const summaryList = $('#summary-list', form);
     const totalOut = $('#total-out', form);
     const perPersonOut = $('#per-person-out', form);
-    const cta = $('#planner-cta', form);
+    const nameInput = $('#planner-name', form);
+    const phoneInput = $('#planner-phone', form);
+    const dateInput = $('#planner-date', form);
+    const submitBtn = $('#planner-submit', form);
+    const submitText = $('#planner-submit-text', form);
+    const feedback = $('#planner-feedback', form);
     const segButtons = $$('.seg-btn', form);
     const panes = $$('.planner-pane', form);
+
+    // Configuración de fecha mínima (mañana en adelante)
+    if (dateInput) {
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      dateInput.min = tomorrow.toISOString().split("T")[0];
+    }
+
+    // Limpiar alertas al escribir
+    [nameInput, phoneInput, dateInput].forEach((inp) => {
+      if (inp) {
+        inp.addEventListener('input', () => {
+          inp.style.borderColor = '';
+        });
+      }
+    });
+
+    // Conexión Supabase (misma base de datos que el CRM)
+    const SUPABASE_URL = "https://rpauoapxjuujzqzxgkci.supabase.co";
+    const SUPABASE_ANON_KEY = "sb_publishable_vpn5WvOo-TLrDBXkMNCD6g_nmA1_xGt";
+    let supabaseClient = null;
+    if (window.supabase && typeof window.supabase.createClient === "function") {
+      supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    }
+
+    function getDefaultActivityTime(name) {
+      if (!name) return "";
+      const n = name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+      if ((n.includes("comida") && n.includes("charanga")) || n.includes("comida de empresa")) return "14:00";
+      if ((n.includes("cena") && n.includes("espectaculo")) || n.includes("cena de empresa")) return "21:45";
+      return "";
+    }
+
+    function isUnitBasedActivity(name) {
+      if (!name) return false;
+      const n = name.toLowerCase();
+      return n.includes("big paddle") || n.includes("big paddel") || n.includes("big sup") ||
+             n.includes("paddle") || n.includes("paddel") || n.includes("sup") ||
+             n.includes("kayak") || n.includes("piragua") || 
+             n.includes("velero") || n.includes("barco");
+    }
 
     let mode = 'packs'; // 'packs' | 'carta'
 
@@ -247,7 +293,6 @@
 
     function update() {
       const sel = readSelection();
-      const eventType = (form.querySelector('input[name="event"]:checked') || {}).value || 'despedida';
       const total = sel.people * sel.perPerson;
 
       peopleOut.textContent = sel.people >= 40 ? '40+' : sel.people;
@@ -272,22 +317,174 @@
       }
 
       animateTotal(total);
+    }
 
-      // Mensaje de WhatsApp con el detalle real de la configuración
-      let body;
-      if (sel.kind === 'pack') {
-        body = `Me interesa el ${sel.title} (${nf.format(sel.perPerson)} €/persona aprox.).`;
-      } else if (sel.items.length) {
-        body = `Quiero montarlo a la carta con: ${sel.items.map((i) => i.label).join(', ')}.`;
-      } else {
-        body = 'Quiero que me asesoréis para montar el plan.';
+    // Envío y creación automática del Lead y Propuesta en el CRM
+    async function handleProposalSubmit() {
+      if (!form) return;
+      const sel = readSelection();
+      const eventType = (form.querySelector('input[name="event"]:checked') || {}).value || 'despedida';
+      const total = sel.people * sel.perPerson;
+
+      const nameVal = (nameInput ? nameInput.value : '').trim();
+      const phoneVal = (phoneInput ? phoneInput.value : '').trim();
+      const dateVal = (dateInput ? dateInput.value : '').trim();
+
+      // Validación de campos requeridos
+      if (!nameVal) {
+        if (nameInput) {
+          nameInput.style.borderColor = 'var(--c-pink)';
+          nameInput.focus();
+        }
+        if (feedback) {
+          feedback.textContent = 'Por favor, indícanos tu nombre o el del grupo.';
+          feedback.style.color = 'var(--c-pink)';
+        }
+        return;
       }
-      const msg =
-        `¡Hola Crea Despedidas! Somos ${sel.people} personas para una ${eventType}. ` +
-        body +
-        (total ? ` Estimación aproximada: ${nf.format(total)} € en total.` : '') +
-        ' ¿Me pasáis propuesta?';
-      cta.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+
+      if (!phoneVal || phoneVal.replace(/\D/g, '').length < 8) {
+        if (phoneInput) {
+          phoneInput.style.borderColor = 'var(--c-pink)';
+          phoneInput.focus();
+        }
+        if (feedback) {
+          feedback.textContent = 'Por favor, introduce un número de teléfono o WhatsApp válido.';
+          feedback.style.color = 'var(--c-pink)';
+        }
+        return;
+      }
+
+      if (!dateVal) {
+        if (dateInput) {
+          dateInput.style.borderColor = 'var(--c-pink)';
+          dateInput.focus();
+        }
+        if (feedback) {
+          feedback.textContent = 'Por favor, indica la fecha aproximada en la que queréis realizar el evento.';
+          feedback.style.color = 'var(--c-pink)';
+        }
+        return;
+      }
+
+      // Preparar actividades y desglose de servicios
+      let actList = [];
+      let services = [];
+
+      if (sel.kind === 'pack') {
+        actList = [sel.title];
+        services = [{
+          name: sel.title,
+          type: "pax",
+          price: sel.perPerson,
+          guests: sel.people,
+          cost: 0,
+          date: dateVal,
+          time: getDefaultActivityTime(sel.title),
+          notes: sel.detail || "Configuración desde el configurador web (Pack cerrado)"
+        }];
+      } else {
+        actList = sel.items.map((i) => i.label);
+        services = sel.items.map((i) => {
+          const isUnit = isUnitBasedActivity(i.label);
+          return {
+            name: i.label,
+            type: isUnit ? "flat" : "pax",
+            price: i.price,
+            guests: isUnit ? 1 : sel.people,
+            units: isUnit ? 1 : undefined,
+            isUnits: isUnit,
+            cost: 0,
+            date: dateVal,
+            time: getDefaultActivityTime(i.label),
+            notes: `Servicio a la carta (Categoría: ${i.cat || 'General'})`
+          };
+        });
+      }
+
+      // Generar ID único del grupo para propuesta
+      const randomId = `G-${Math.floor(1000 + Math.random() * 9000)}`;
+
+      // Feedback visual de carga
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.style.opacity = '0.7';
+      }
+      if (submitText) submitText.textContent = 'Generando propuesta...';
+      if (feedback) {
+        feedback.textContent = 'Guardando tus preferencias y generando propuesta...';
+        feedback.style.color = 'var(--c-cyan)';
+      }
+
+      // Sincronizar Supabase
+      if (!supabaseClient && window.supabase && typeof window.supabase.createClient === "function") {
+        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      }
+
+      if (supabaseClient) {
+        try {
+          const { error } = await supabaseClient
+            .from('groups')
+            .insert({
+              id: randomId,
+              organizer: `${nameVal} (Web)`,
+              phone: phoneVal,
+              date: dateVal,
+              dateTo: dateVal,
+              guests: Number(sel.people) || 12,
+              budget: Number(total) || 0,
+              paid: 0,
+              status: "Pendiente",
+              activities: actList,
+              supplierServices: services,
+              assignedTo: "pablo",
+              statusChangedAt: new Date().toISOString(),
+              created_at: new Date().toISOString(),
+              reminderDays: 3
+            });
+
+          if (error) {
+            console.error("Error al registrar lead en Supabase:", error);
+          }
+        } catch (e) {
+          console.error("Excepción al guardar lead en Supabase:", e);
+        }
+      }
+
+      const proposalUrl = `https://crm.creadespedidas.com/p/${randomId}`;
+      const parts = dateVal.split('-');
+      const dateFriendly = parts.length === 3 ? `${parts[2]}/${parts[1]}/${parts[0]}` : dateVal;
+
+      const waMsg =
+        `¡Hola Crea Despedidas! Soy ${nameVal}. Hemos configurado nuestro evento (${eventType}) para ${sel.people} personas el ${dateFriendly}.\n` +
+        (sel.kind === 'pack' ? `Pack: ${sel.title} (${nf.format(sel.perPerson)} €/pax)\n` : `Servicios: ${actList.join(', ')}\n`) +
+        `Presupuesto estimado: ${nf.format(total)} €.\n\n` +
+        `📋 Podéis ver nuestra propuesta aquí:\n${proposalUrl}\n\n` +
+        `¿Podéis confirmarme disponibilidad?`;
+
+      const waUrl = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(waMsg)}`;
+
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = '1';
+      }
+      if (submitText) submitText.textContent = 'Abrir WhatsApp de nuevo';
+      if (feedback) {
+        feedback.innerHTML =
+          `¡Propuesta lista! Enlace de tu propuesta: <a href="${proposalUrl}" target="_blank" style="color: var(--c-cyan); text-decoration: underline; font-weight: bold;">Ver propuesta</a> ` +
+          `| <a href="${waUrl}" target="_blank" style="color: var(--c-pink); text-decoration: underline; font-weight: bold;">Abrir WhatsApp</a>`;
+        feedback.style.color = '#ffffff';
+      }
+
+      // Abrir WhatsApp automáticamente
+      const opened = window.open(waUrl, '_blank');
+      if (!opened) {
+        window.location.href = waUrl;
+      }
+    }
+
+    if (submitBtn) {
+      submitBtn.addEventListener('click', handleProposalSubmit);
     }
 
     // Cambio de modo pack / a la carta

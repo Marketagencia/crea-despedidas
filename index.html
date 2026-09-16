@@ -466,6 +466,46 @@
                   </div>
                 </div>
               </fieldset>
+
+              <!-- Paso 4: contacto para la propuesta -->
+              <fieldset>
+                <legend class="planner-label"><span class="step">4</span> ¿A quién enviamos la propuesta?</legend>
+                <div class="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  <div>
+                    <label for="planner-name" class="block text-xs font-semibold uppercase tracking-wider text-white/50 mb-1.5">Tu nombre o grupo *</label>
+                    <input 
+                      id="planner-name" 
+                      name="organizer" 
+                      type="text" 
+                      required 
+                      placeholder="Ej: Marta o Despedida Carlos" 
+                      class="w-full rounded-xl border border-white/15 bg-white/[0.05] px-3.5 py-2.5 text-sm text-white placeholder-white/30 outline-none transition focus:border-neon-cyan focus:bg-white/[0.08]" 
+                    />
+                  </div>
+                  <div>
+                    <label for="planner-phone" class="block text-xs font-semibold uppercase tracking-wider text-white/50 mb-1.5">Teléfono / WhatsApp *</label>
+                    <input 
+                      id="planner-phone" 
+                      name="phone" 
+                      type="tel" 
+                      required 
+                      placeholder="Ej: 612 345 678" 
+                      class="w-full rounded-xl border border-white/15 bg-white/[0.05] px-3.5 py-2.5 text-sm text-white placeholder-white/30 outline-none transition focus:border-neon-cyan focus:bg-white/[0.08]" 
+                    />
+                  </div>
+                  <div class="sm:col-span-2">
+                    <label for="planner-date" class="block text-xs font-semibold uppercase tracking-wider text-white/50 mb-1.5">Fecha del evento *</label>
+                    <input 
+                      id="planner-date" 
+                      name="date" 
+                      type="date" 
+                      required 
+                      style="color-scheme: dark;" 
+                      class="w-full rounded-xl border border-white/15 bg-white/[0.05] px-3.5 py-2.5 text-sm text-white placeholder-white/30 outline-none transition focus:border-neon-cyan focus:bg-white/[0.08]" 
+                    />
+                  </div>
+                </div>
+              </fieldset>
             </div>
 
             <!-- Resumen en vivo -->
@@ -491,12 +531,12 @@
                 </div>
               </div>
 
-              <a id="planner-cta" data-magnetic href="#" target="_blank" rel="noopener" class="btn-primary mt-7 w-full justify-center text-base">
-                <span>Pedir presupuesto por WhatsApp</span>
-              </a>
-              <p class="mt-3 text-center text-xs text-white/40">
-                Estimación orientativa. El presupuesto final se cierra con tu asesor.
-              </p>
+              <button id="planner-submit" type="button" data-magnetic class="btn-primary mt-7 w-full justify-center text-base cursor-pointer">
+                <span id="planner-submit-text">🚀 Recibir propuesta por WhatsApp</span>
+              </button>
+              <div id="planner-feedback" class="mt-3 text-center text-xs text-white/50 min-h-[22px]" role="status">
+                Al enviar, se creará tu propuesta personalizada y se abrirá por WhatsApp.
+              </div>
             </aside>
           </div>
         </form>
@@ -700,6 +740,8 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.5-4.5A8 8 0 1 1 9 19L4 20Z"/><path d="M9 10c0 3 2.5 5.5 5.5 5.5M9 10c0-1 1-1.5 1.5-1l1 1.5-1 1M14.5 15.5c1 0 1.5-1 1-1.5L14 13l-1 1"/></svg>
   </a>
 
-  <script src="js/main.js?v=31" defer></script>
+  <!-- Supabase CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/main.js?v=32" defer></script>
 </body>
 </html>

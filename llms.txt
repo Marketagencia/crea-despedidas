@@ -1,0 +1,26 @@
+# Crea Despedidas
+
+> Organización de despedidas de soltero/a, cumpleaños y eventos privados en Valencia (España), con restaurante propio en La Marina de Valencia. Coordinamos restaurante, experiencias/actividades, alojamiento y transporte como un único proveedor local.
+
+Crea Despedidas diseña despedidas de soltero/a y celebraciones a medida en Valencia: restaurante propio con packs de comida/cena y espectáculo, más de 20 experiencias y actividades (náuticas, adrenalina, culturales), alojamientos para grupos grandes y traslados privados (limusinas, minibús, furgonetas). Más de 2.500 despedidas organizadas, valoración 4.7/5 sobre 329 reseñas.
+
+## Servicios
+
+- [Restaurante propio](https://creadespedidas.com/restaurantes-despedidas-cumpleanos-valencia/): packs de comida con charanga y tardeo DJ, y cena con espectáculo, en sala propia para grupos de hasta 180-200 personas.
+- [Experiencias y actividades](https://creadespedidas.com/experiencias-actividades-valencia/): barco velero, motos de agua, banana boat, humor amarillo, kayak, paddle surf, buceo, karting, paintball, tiro con arco/hachas, escape room, taller de flamenco, rafting, tubing, descenso de barranco, cata de cervezas, limusina, entre otras.
+- [Alojamientos](https://creadespedidas.com/alojamientos-despedidas-valencia/): apartamentos y hoteles cerca del puerto para grupos grandes, con buscador de reservas integrado.
+- [Traslados](https://creadespedidas.com/traslados-valencia/): limusinas, autobús/microbús privado, furgonetas y taxis/VTC.
+- [Configurador rápido](https://creadespedidas.com/#planner): elige un pack cerrado o monta tu plan a la carta (actividades + comida + alojamiento + transporte) y recibe una estimación al instante.
+- [Blog](https://creadespedidas.com/blog/): guías e ideas para organizar despedidas y eventos en Valencia.
+
+## Contacto
+
+- Dirección: Av. de l'Enginyer Manuel Soto, 14 Bis, Valencia, España (La Marina de Valencia)
+- Teléfono / WhatsApp: +34 644 687 001
+- Email: info@creadespedidas.com
+
+## Notas para agentes y crawlers
+
+- Sitio en español (es-ES), orientado a usuarios en Valencia y visitantes que planean despedidas de soltero/a, cumpleaños y eventos de grupo.
+- Los precios mostrados en la web son estimaciones por persona; el presupuesto final depende del número de personas, fecha y servicios elegidos.
+- Sitemap: https://creadespedidas.com/sitemap.xml

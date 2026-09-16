@@ -50,10 +50,11 @@ def fetch_json(url):
 
 
 def fetch_posts(limit, slugs):
+    fields = "slug,date,modified,title,content,excerpt,aioseo_head_json"
     if slugs:
         posts = []
         for slug in slugs:
-            url = f"{API}?slug={slug}&_fields=slug,date,title,content,excerpt,aioseo_head_json"
+            url = f"{API}?slug={slug}&_fields={fields}"
             data = fetch_json(url)
             posts.extend(data)
         return posts
@@ -64,7 +65,7 @@ def fetch_posts(limit, slugs):
     while limit is None or len(posts) < limit:
         url = (
             f"{API}?per_page={per_page}&page={page}&orderby=date&order=desc"
-            "&_fields=slug,date,title,content,excerpt,aioseo_head_json"
+            f"&_fields={fields}"
         )
         try:
             data = fetch_json(url)
@@ -245,26 +246,49 @@ def build_article_page(post):
     title = strip_tags(post["title"]["rendered"])
     date_iso = post["date"]
     date_es = fmt_date_es(date_iso)
+    modified_iso = post.get("modified") or date_iso
     excerpt_plain = truncate(strip_tags(post.get("excerpt", {}).get("rendered", "")), 200)
     aioseo = post.get("aioseo_head_json") or {}
     description = truncate(strip_tags(aioseo.get("description") or excerpt_plain), 160)
     content_html = post["content"]["rendered"]
     canonical = f"/blog/{slug}/"
+    canonical_abs = f"https://creadespedidas.com{canonical}"
 
     schema = {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "headline": title,
-        "description": description,
-        "datePublished": date_iso,
-        "author": {"@type": "Organization", "name": "Crea Despedidas"},
-        "publisher": {"@type": "Organization", "name": "Crea Despedidas"},
-        "mainEntityOfPage": {"@type": "WebPage", "@id": canonical},
+        "@graph": [
+            {
+                "@type": "BlogPosting",
+                "headline": title,
+                "description": description,
+                "datePublished": date_iso,
+                "dateModified": modified_iso,
+                "inLanguage": "es-ES",
+                "author": {"@type": "Organization", "name": "Crea Despedidas"},
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Crea Despedidas",
+                    "logo": {"@type": "ImageObject", "url": "https://creadespedidas.com/assets/logo.png"},
+                },
+                "mainEntityOfPage": {"@type": "WebPage", "@id": canonical_abs},
+            },
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://creadespedidas.com/"},
+                    {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://creadespedidas.com/blog/"},
+                    {"@type": "ListItem", "position": 3, "name": title, "item": canonical_abs},
+                ],
+            },
+        ],
     }
     extra_head = (
         '  <meta property="og:type" content="article" />\n'
         f'  <meta property="og:title" content="{esc_attr(title)}" />\n'
         f'  <meta property="og:description" content="{esc_attr(description)}" />\n'
+        f'  <meta property="og:url" content="{canonical_abs}" />\n'
+        '  <meta property="og:locale" content="es_ES" />\n'
+        '  <meta property="og:site_name" content="Crea Despedidas" />\n'
         '  <script type="application/ld+json">\n'
         f"  {json.dumps(schema, ensure_ascii=False)}\n"
         "  </script>"
@@ -335,13 +359,30 @@ def build_index_page(entries):
 
 {ARTICLE_CTA}"""
 
-    extra_head = ""
+    description_text = (
+        "Ideas, guías y trucos para organizar la despedida perfecta en Valencia: actividades, "
+        "restaurantes, packs y consejos prácticos, directo desde el equipo de Crea Despedidas."
+    )
+    schema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://creadespedidas.com/"},
+            {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://creadespedidas.com/blog/"},
+        ],
+    }
+    extra_head = (
+        '  <meta property="og:type" content="website" />\n'
+        '  <meta property="og:url" content="https://creadespedidas.com/blog/" />\n'
+        '  <meta property="og:locale" content="es_ES" />\n'
+        '  <meta property="og:site_name" content="Crea Despedidas" />\n'
+        '  <script type="application/ld+json">\n'
+        f"  {json.dumps(schema, ensure_ascii=False)}\n"
+        "  </script>"
+    )
     page = PAGE_TMPL.format(
         title_tag=esc_attr("Blog · Ideas y guías para tu despedida en Valencia · Crea Despedidas"),
-        description=esc_attr(
-            "Ideas, guías y trucos para organizar la despedida perfecta en Valencia: actividades, "
-            "restaurantes, packs y consejos prácticos, directo desde el equipo de Crea Despedidas."
-        ),
+        description=esc_attr(description_text),
         canonical="/blog/",
         extra_head=extra_head,
         root="/",

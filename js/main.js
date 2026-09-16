@@ -451,7 +451,25 @@
         }
       }
 
-      const proposalUrl = `https://crea-despedidas-crmdespe.fptzxz.easypanel.host/p/${randomId}`;
+      // Obtener el dominio público activo del CRM (por defecto crm.creaevents.es)
+      let baseCrmDomain = "https://crm.creaevents.es";
+      if (supabaseClient) {
+        try {
+          const { data: setRow } = await supabaseClient
+            .from('settings')
+            .select('value')
+            .eq('key', 'crm_settings')
+            .single();
+          if (setRow && setRow.value && setRow.value.customPublicDomain) {
+            const d = setRow.value.customPublicDomain.trim().replace(/\/+$/, '');
+            if (d && !d.includes("creadespedidas.com")) {
+              baseCrmDomain = d;
+            }
+          }
+        } catch(e) {}
+      }
+
+      const proposalUrl = `${baseCrmDomain}/p/${randomId}`;
       const parts = dateVal.split('-');
       const dateFriendly = parts.length === 3 ? `${parts[2]}/${parts[1]}/${parts[0]}` : dateVal;
 

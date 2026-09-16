@@ -451,7 +451,7 @@
         }
       }
 
-      const proposalUrl = `https://crm.creadespedidas.com/p/${randomId}`;
+      const proposalUrl = `https://crea-despedidas-crmdespe.fptzxz.easypanel.host/p/${randomId}`;
       const parts = dateVal.split('-');
       const dateFriendly = parts.length === 3 ? `${parts[2]}/${parts[1]}/${parts[0]}` : dateVal;
 

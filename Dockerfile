@@ -3,7 +3,7 @@ FROM nginx:1.27-alpine
 
 # Configuración de Nginx (URLs limpias, gzip, cache, cabeceras)
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY redirects.conf /etc/nginx/conf.d/redirects.conf
+COPY redirects.conf /etc/nginx/redirects.conf
 
 # Archivos del sitio
 COPY . /usr/share/nginx/html

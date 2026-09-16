@@ -3,6 +3,7 @@ FROM nginx:1.27-alpine
 
 # Configuración de Nginx (URLs limpias, gzip, cache, cabeceras)
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY redirects.conf /etc/nginx/conf.d/redirects.conf
 
 # Archivos del sitio
 COPY . /usr/share/nginx/html
@@ -10,6 +11,7 @@ COPY . /usr/share/nginx/html
 # Quitar del contenedor lo que no es web
 RUN rm -f /usr/share/nginx/html/Dockerfile \
           /usr/share/nginx/html/nginx.conf \
+          /usr/share/nginx/html/redirects.conf \
           /usr/share/nginx/html/.dockerignore \
           /usr/share/nginx/html/.gitignore \
           /usr/share/nginx/html/README.md \

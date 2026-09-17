@@ -821,7 +821,7 @@
 
     // Packs en los que aplica el premio grande (protagonista + organizador/a gratis)
     const TARGET_PACKS = ['Pack Comida Charanga y Tardeo DJ', 'Pack Cena Espectáculo'];
-    const MIN_PEOPLE = 8;
+    const MIN_PEOPLE = 10;
 
     // 8 quesitos, en el mismo orden que los <path> del SVG (empezando arriba, sentido horario)
     const SEGMENTS = [

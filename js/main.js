@@ -922,11 +922,22 @@
       pointer.classList.add('is-ticking');
     }
 
+    // A la carta: si marcan a la vez comida con charanga Y cena espectáculo,
+    // también se activa la ruleta (equivale a llevarse los dos packs)
+    const TARGET_ITEMS_CARTA = ['Comida con charanga', 'Cena espectáculo'];
+
     function isEligiblePack() {
-      const pane = form.querySelector('.planner-pane[data-pane="packs"]');
-      if (!pane || pane.classList.contains('is-hidden')) return false;
-      const checked = form.querySelector('input[name="pack"]:checked');
-      return !!checked && TARGET_PACKS.includes(checked.value);
+      const packsPane = form.querySelector('.planner-pane[data-pane="packs"]');
+      if (packsPane && !packsPane.classList.contains('is-hidden')) {
+        const checked = form.querySelector('input[name="pack"]:checked');
+        return !!checked && TARGET_PACKS.includes(checked.value);
+      }
+      const cartaPane = form.querySelector('.planner-pane[data-pane="carta"]');
+      if (cartaPane && !cartaPane.classList.contains('is-hidden')) {
+        const checkedItems = $$('input[name="item"]:checked', form).map((i) => i.value);
+        return TARGET_ITEMS_CARTA.every((v) => checkedItems.includes(v));
+      }
+      return false;
     }
 
     function refreshVisibility() {

@@ -100,7 +100,7 @@
     };
   </script>
 
-  <link rel="stylesheet" href="css/styles.css?v=35" />
+  <link rel="stylesheet" href="css/styles.css?v=36" />
 </head>
 
 <body class="bg-ink text-white font-sans antialiased selection:bg-neon-cyan/30 selection:text-white overflow-x-hidden">
@@ -531,6 +531,12 @@
                 </div>
               </div>
 
+              <div id="wheel-trigger" class="wheel-trigger is-hidden">
+                <button type="button" id="wheel-open-btn" class="wheel-open-btn">
+                  🎡 <span>Gira la ruleta y descubre tu premio</span>
+                </button>
+              </div>
+
               <button id="planner-submit" type="button" data-magnetic class="btn-primary mt-7 w-full justify-center text-base cursor-pointer">
                 <span id="planner-submit-text">🚀 Recibir propuesta por WhatsApp</span>
               </button>
@@ -732,6 +738,59 @@
     </div>
   </footer>
 
+  <!-- Ruleta de la suerte -->
+  <div id="wheel-modal" class="wheel-modal is-hidden" role="dialog" aria-modal="true" aria-label="Ruleta de la suerte">
+    <div class="wheel-modal__backdrop" data-wheel-close></div>
+    <div class="wheel-modal__panel">
+      <button type="button" class="wheel-modal__close" data-wheel-close aria-label="Cerrar">✕</button>
+      <span class="tile-kicker">🎉 Ruleta de la suerte</span>
+      <h3 class="wheel-modal__title">¡Gira y descubre tu premio!</h3>
+      <div class="wheel-wrap">
+        <div class="wheel-pointer" aria-hidden="true"></div>
+        <div class="wheel-dial" id="wheel-dial">
+          <svg viewBox="0 0 300 300" width="100%" height="100%" aria-hidden="true">
+            <defs>
+              <linearGradient id="wheelGradGrande" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#00F2FE" />
+                <stop offset="55%" stop-color="#4FACFE" />
+                <stop offset="100%" stop-color="#FF2FB9" />
+              </linearGradient>
+              <linearGradient id="wheelGradA" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#0d1524" />
+                <stop offset="100%" stop-color="#161f33" />
+              </linearGradient>
+              <linearGradient id="wheelGradB" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#171225" />
+                <stop offset="100%" stop-color="#20182f" />
+              </linearGradient>
+            </defs>
+            <circle cx="150" cy="150" r="148" class="wheel-ring" />
+            <path d="M150,150 L150,10 A140,140 0 0,1 249,51 Z" fill="url(#wheelGradGrande)" />
+            <path d="M150,150 L249,51 A140,140 0 0,1 290,150 Z" fill="url(#wheelGradA)" />
+            <path d="M150,150 L290,150 A140,140 0 0,1 249,249 Z" fill="url(#wheelGradB)" />
+            <path d="M150,150 L249,249 A140,140 0 0,1 150,290 Z" fill="url(#wheelGradA)" />
+            <path d="M150,150 L150,290 A140,140 0 0,1 51,249 Z" fill="url(#wheelGradB)" />
+            <path d="M150,150 L51,249 A140,140 0 0,1 10,150 Z" fill="url(#wheelGradA)" />
+            <path d="M150,150 L10,150 A140,140 0 0,1 51,51 Z" fill="url(#wheelGradB)" />
+            <path d="M150,150 L51,51 A140,140 0 0,1 150,10 Z" fill="url(#wheelGradA)" />
+            <text x="186.4" y="62.2" class="wheel-emoji" text-anchor="middle" dominant-baseline="middle">👑</text>
+            <text x="237.8" y="113.6" class="wheel-emoji" text-anchor="middle" dominant-baseline="middle">🥃</text>
+            <text x="237.8" y="186.4" class="wheel-emoji" text-anchor="middle" dominant-baseline="middle">🪭</text>
+            <text x="186.4" y="237.8" class="wheel-emoji" text-anchor="middle" dominant-baseline="middle">📸</text>
+            <text x="113.6" y="237.8" class="wheel-emoji" text-anchor="middle" dominant-baseline="middle">🥂</text>
+            <text x="62.2" y="186.4" class="wheel-emoji" text-anchor="middle" dominant-baseline="middle">🥃</text>
+            <text x="62.2" y="113.6" class="wheel-emoji" text-anchor="middle" dominant-baseline="middle">🪭</text>
+            <text x="113.6" y="62.2" class="wheel-emoji" text-anchor="middle" dominant-baseline="middle">📸</text>
+          </svg>
+        </div>
+      </div>
+      <button type="button" id="wheel-spin-btn" class="btn-primary wheel-spin-btn" data-magnetic>
+        <span>🎡 Girar la ruleta</span>
+      </button>
+      <div id="wheel-result" class="wheel-result" aria-live="polite"></div>
+    </div>
+  </div>
+
   <!-- Pez que nada tras el cursor (decorativo) -->
   <img src="assets/fish.png" id="fish-cursor" alt="" aria-hidden="true" />
 
@@ -742,6 +801,6 @@
 
   <!-- Supabase CDN -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="js/main.js?v=34" defer></script>
+  <script src="js/main.js?v=36" defer></script>
 </body>
 </html>

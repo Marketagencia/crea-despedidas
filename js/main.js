@@ -807,6 +807,116 @@
     if (tracks[1]) tracks[1].innerHTML = buildTrack(true);
   }
 
+  /* --------------------------------------------- ruleta de la suerte */
+  function initWheelOffer() {
+    const form = $('#fast-planner');
+    const trigger = $('#wheel-trigger');
+    const openBtn = $('#wheel-open-btn');
+    const modal = $('#wheel-modal');
+    const dial = $('#wheel-dial');
+    const spinBtn = $('#wheel-spin-btn');
+    const resultEl = $('#wheel-result');
+    const peopleInput = $('#people');
+    if (!form || !trigger || !openBtn || !modal || !dial || !spinBtn || !resultEl) return;
+
+    // Packs en los que aplica el premio grande (protagonista + organizador/a gratis)
+    const TARGET_PACKS = ['Pack Comida Charanga y Tardeo DJ', 'Pack Cena Espectáculo'];
+    const MIN_PEOPLE = 8;
+
+    // 8 quesitos, en el mismo orden que los <path> del SVG (empezando arriba, sentido horario)
+    const SEGMENTS = [
+      { text: '👑 ¡Premio grande! La pareja protagonista y quien organiza coméis GRATIS 🎉' },
+      { text: '🥃 ¡Chupito de regalo para todo el grupo!' },
+      { text: '🪭 ¡Abanicos y pañuelos de regalo para la fiesta!' },
+      { text: '📸 ¡Photocall de bienvenida para el recuerdo!' },
+      { text: '🥂 ¡Descuento en el bono de copas!' },
+      { text: '🥃 ¡Chupito de regalo para todo el grupo!' },
+      { text: '🪭 ¡Abanicos y pañuelos de regalo para la fiesta!' },
+      { text: '📸 ¡Photocall de bienvenida para el recuerdo!' },
+    ];
+    const GRANDE_INDEX = 0;
+    const CONSOLATION_INDEXES = [1, 2, 3, 4, 5, 6, 7];
+
+    let spun = false;
+    let rotation = 0;
+
+    function isEligiblePack() {
+      const pane = form.querySelector('.planner-pane[data-pane="packs"]');
+      if (!pane || pane.classList.contains('is-hidden')) return false;
+      const checked = form.querySelector('input[name="pack"]:checked');
+      return !!checked && TARGET_PACKS.includes(checked.value);
+    }
+
+    function refreshVisibility() {
+      trigger.classList.toggle('is-hidden', !isEligiblePack());
+    }
+    form.addEventListener('change', refreshVisibility);
+    form.addEventListener('click', (e) => {
+      if (e.target.closest('.seg-btn')) setTimeout(refreshVisibility, 0);
+    });
+    refreshVisibility();
+
+    function openModal() {
+      modal.classList.remove('is-hidden');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+      modal.classList.add('is-hidden');
+      document.body.style.overflow = '';
+    }
+    openBtn.addEventListener('click', openModal);
+    $$('[data-wheel-close]', modal).forEach((el) => el.addEventListener('click', closeModal));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modal.classList.contains('is-hidden')) closeModal();
+    });
+
+    function spawnConfetti() {
+      const panel = modal.querySelector('.wheel-modal__panel');
+      if (!panel) return;
+      const colors = ['#00F2FE', '#4FACFE', '#FF2FB9', '#FF7A18', '#ffffff'];
+      for (let i = 0; i < 44; i++) {
+        const p = document.createElement('div');
+        p.className = 'confetti-piece';
+        p.style.left = (38 + Math.random() * 24) + '%';
+        p.style.setProperty('--dx', ((Math.random() * 2 - 1) * 150).toFixed(0) + 'px');
+        p.style.setProperty('--rot', (Math.random() * 720 - 360).toFixed(0) + 'deg');
+        p.style.setProperty('--dur', (1.5 + Math.random() * 1.1).toFixed(2) + 's');
+        p.style.background = colors[Math.floor(Math.random() * colors.length)];
+        panel.appendChild(p);
+        const kill = () => p.remove();
+        p.addEventListener('animationend', kill);
+        setTimeout(kill, 3200);
+      }
+    }
+
+    spinBtn.addEventListener('click', () => {
+      if (spun) return;
+      spun = true;
+      spinBtn.disabled = true;
+      spinBtn.style.opacity = '0.6';
+      resultEl.classList.remove('is-visible');
+      resultEl.textContent = '';
+
+      const people = Number(peopleInput && peopleInput.value) || 0;
+      const pool = people >= MIN_PEOPLE ? [GRANDE_INDEX] : CONSOLATION_INDEXES;
+      const targetIndex = pool[Math.floor(Math.random() * pool.length)];
+
+      const segAngle = 45;
+      const segMid = -90 + targetIndex * segAngle + segAngle / 2;
+      const jitter = (Math.random() * 2 - 1) * (segAngle / 2 - 6);
+      const targetAngle = segMid + jitter;
+      const need = ((-90 - targetAngle) % 360 + 360) % 360;
+      rotation += 360 * 5 + need;
+      dial.style.transform = `rotate(${rotation}deg)`;
+
+      setTimeout(() => {
+        resultEl.textContent = SEGMENTS[targetIndex].text;
+        resultEl.classList.add('is-visible');
+        spawnConfetti();
+      }, 4300);
+    });
+  }
+
   /* -------------------------------------------------------------- init */
   function init() {
     initYear();
@@ -819,6 +929,7 @@
     initNewsletter();
     initFishCursor();
     initPhotoStrip();
+    initWheelOffer();
   }
 
   if (document.readyState === 'loading') {

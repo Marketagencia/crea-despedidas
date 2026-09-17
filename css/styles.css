@@ -1584,6 +1584,146 @@ body { margin: 0; min-height: 100vh; }
   color: rgba(255, 255, 255, 0.6);
 }
 
+/* ============================================================================
+   15. Ruleta de la suerte (configurador)
+   ========================================================================== */
+.wheel-trigger { margin-top: 1.1rem; }
+.wheel-trigger.is-hidden { display: none; }
+.wheel-open-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.2rem;
+  border-radius: 999px;
+  font-family: "Syne", sans-serif;
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: #fff;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1.5px dashed rgba(255, 255, 255, 0.28);
+  transition: transform 0.2s var(--ease), border-color 0.2s var(--ease), background 0.2s var(--ease);
+}
+.wheel-open-btn:hover { transform: translateY(-2px); border-color: rgba(0, 242, 254, 0.6); background: rgba(0, 242, 254, 0.08); }
+
+.wheel-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+}
+.wheel-modal.is-hidden { display: none; }
+.wheel-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 6, 10, 0.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.wheel-modal__panel {
+  position: relative;
+  width: min(420px, 100%);
+  max-height: 92vh;
+  overflow-y: auto;
+  padding: 2rem 1.75rem 2.25rem;
+  border-radius: 1.75rem;
+  text-align: center;
+  background: linear-gradient(180deg, #14141b, #0b0b0f);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 40px 90px -20px rgba(0, 0, 0, 0.7);
+}
+.wheel-modal__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2rem;
+  height: 2rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+}
+.wheel-modal__close:hover { color: #fff; border-color: rgba(255, 255, 255, 0.3); }
+.wheel-modal__title {
+  margin-top: 0.5rem;
+  font-family: "Syne", sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.3rem, 4vw, 1.6rem);
+}
+
+.wheel-wrap {
+  position: relative;
+  width: min(260px, 72vw);
+  margin: 1.75rem auto 1.5rem;
+}
+.wheel-pointer {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 20px solid var(--c-cyan);
+  filter: drop-shadow(0 2px 6px rgba(0, 242, 254, 0.5));
+  z-index: 2;
+}
+.wheel-dial {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  transform: rotate(0deg);
+  transition: transform 4.2s cubic-bezier(0.13, 0.72, 0.14, 1);
+  filter: drop-shadow(0 18px 40px rgba(0, 0, 0, 0.55));
+}
+.wheel-ring { fill: none; stroke: rgba(255, 255, 255, 0.18); stroke-width: 3; }
+.wheel-emoji { font-size: 26px; }
+
+.wheel-spin-btn { width: 100%; justify-content: center; }
+.wheel-result {
+  margin-top: 1.1rem;
+  min-height: 1.4rem;
+  font-family: "Syne", sans-serif;
+  font-weight: 700;
+  font-size: 0.98rem;
+  line-height: 1.4;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
+}
+.wheel-result.is-visible { opacity: 1; transform: translateY(0); }
+
+/* Confeti */
+.confetti-piece {
+  position: absolute;
+  top: 10%;
+  width: 8px;
+  height: 14px;
+  border-radius: 2px;
+  opacity: 0.95;
+  animation: confetti-fall var(--dur, 1.8s) cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  pointer-events: none;
+}
+@keyframes confetti-fall {
+  to {
+    transform: translate(var(--dx, 0), 320px) rotate(var(--rot, 360deg));
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wheel-dial { transition: none; }
+  .confetti-piece { display: none; }
+}
+
 @media (max-width: 640px) {
   .subpage-main { padding-top: 80px; }
 }

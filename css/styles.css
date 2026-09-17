@@ -1587,26 +1587,46 @@ body { margin: 0; min-height: 100vh; }
 /* ============================================================================
    15. Ruleta de la suerte (configurador)
    ========================================================================== */
-.wheel-trigger { margin-top: 1.1rem; }
+.wheel-trigger { margin-top: 1.25rem; }
 .wheel-trigger.is-hidden { display: none; }
 .wheel-open-btn {
+  position: relative;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  padding: 0.85rem 1.2rem;
+  gap: 0.6rem;
+  padding: 1.05rem 1.3rem;
   border-radius: 999px;
   font-family: "Syne", sans-serif;
-  font-weight: 700;
-  font-size: 0.92rem;
-  color: #fff;
+  font-weight: 800;
+  font-size: 1.02rem;
+  letter-spacing: -0.01em;
+  color: #05060a;
   cursor: pointer;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1.5px dashed rgba(255, 255, 255, 0.28);
-  transition: transform 0.2s var(--ease), border-color 0.2s var(--ease), background 0.2s var(--ease);
+  border: 2px solid rgba(255, 255, 255, 0.55);
+  background: linear-gradient(120deg, #FFE27A, #FF7A18 45%, #FF2FB9 90%);
+  background-size: 220% 220%;
+  box-shadow: 0 10px 28px -8px rgba(255, 122, 24, 0.65), 0 0 0 4px rgba(255, 122, 24, 0.12);
+  animation: wheel-btn-pulse 1.7s ease-in-out infinite, wheel-btn-sheen 3.2s linear infinite;
+  transition: transform 0.2s var(--ease);
 }
-.wheel-open-btn:hover { transform: translateY(-2px); border-color: rgba(0, 242, 254, 0.6); background: rgba(0, 242, 254, 0.08); }
+.wheel-open-btn:hover { transform: translateY(-3px) scale(1.02); }
+.wheel-open-btn .wheel-open-icon { font-size: 1.25rem; display: inline-block; animation: wheel-icon-spin 2.6s ease-in-out infinite; }
+@keyframes wheel-btn-pulse {
+  0%, 100% { box-shadow: 0 10px 28px -8px rgba(255, 122, 24, 0.65), 0 0 0 4px rgba(255, 122, 24, 0.12); }
+  50% { box-shadow: 0 14px 36px -6px rgba(255, 47, 185, 0.75), 0 0 0 9px rgba(255, 47, 185, 0.16); }
+}
+@keyframes wheel-btn-sheen { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
+@keyframes wheel-icon-spin {
+  0%, 70%, 100% { transform: rotate(0deg); }
+  80% { transform: rotate(-18deg); }
+  90% { transform: rotate(14deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wheel-open-btn { animation: none; }
+  .wheel-open-btn .wheel-open-icon { animation: none; }
+}
 
 .wheel-modal {
   position: fixed;

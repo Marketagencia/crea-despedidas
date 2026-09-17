@@ -402,6 +402,24 @@
         });
       }
 
+      // Premio conseguido en la ruleta de la suerte (si giró antes de enviar)
+      const wheelPrize = (form.dataset.wheelPrize || '').trim();
+      const activitiesForCrm = wheelPrize ? [...actList, `🎡 Premio: ${wheelPrize}`] : actList;
+      if (wheelPrize) {
+        services.push({
+          name: `Premio de la ruleta: ${wheelPrize}`,
+          type: "flat",
+          price: 0,
+          guests: 1,
+          units: 1,
+          isUnits: true,
+          cost: 0,
+          date: dateVal,
+          time: "",
+          notes: "Premio conseguido en la ruleta de la suerte del configurador web (no afecta al presupuesto)"
+        });
+      }
+
       // Generar ID único del grupo para propuesta
       const randomId = `G-${Math.floor(1000 + Math.random() * 9000)}`;
 
@@ -825,7 +843,7 @@
 
     // 8 quesitos, en el mismo orden que los <path> del SVG (empezando arriba, sentido horario)
     const SEGMENTS = [
-      { text: '👑 ¡Premio grande! La pareja protagonista y quien organiza coméis GRATIS 🎉' },
+      { text: '👑 ¡Premio grande! La novia/o (o el/la homenajeado/a) y quien organiza coméis GRATIS 🎉' },
       { text: '🥃 ¡Chupito de regalo para todo el grupo!' },
       { text: '🪭 ¡Abanicos y pañuelos de regalo para la fiesta!' },
       { text: '📸 ¡Photocall de bienvenida para el recuerdo!' },
@@ -913,6 +931,9 @@
         resultEl.textContent = SEGMENTS[targetIndex].text;
         resultEl.classList.add('is-visible');
         spawnConfetti();
+        // Guardamos el premio en el propio formulario para que el envío de la
+        // propuesta (WhatsApp + Supabase) lo recoja al enviar
+        form.setAttribute('data-wheel-prize', SEGMENTS[targetIndex].text);
       }, 4300);
     });
   }

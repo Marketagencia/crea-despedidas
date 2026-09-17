@@ -100,7 +100,7 @@
     };
   </script>
 
-  <link rel="stylesheet" href="css/styles.css?v=36" />
+  <link rel="stylesheet" href="css/styles.css?v=43" />
 </head>
 
 <body class="bg-ink text-white font-sans antialiased selection:bg-neon-cyan/30 selection:text-white overflow-x-hidden">
@@ -751,36 +751,58 @@
           <svg viewBox="0 0 300 300" width="100%" height="100%" aria-hidden="true">
             <defs>
               <linearGradient id="wheelGradGrande" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#00F2FE" />
-                <stop offset="55%" stop-color="#4FACFE" />
-                <stop offset="100%" stop-color="#FF2FB9" />
+                <stop offset="0%" stop-color="#FFE27A" />
+                <stop offset="55%" stop-color="#FFC93C" />
+                <stop offset="100%" stop-color="#FF7A18" />
               </linearGradient>
-              <linearGradient id="wheelGradA" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#0d1524" />
-                <stop offset="100%" stop-color="#161f33" />
+              <linearGradient id="wheelGoldRing" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FFE9A8" />
+                <stop offset="50%" stop-color="#E8A93C" />
+                <stop offset="100%" stop-color="#FFE9A8" />
               </linearGradient>
-              <linearGradient id="wheelGradB" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#171225" />
-                <stop offset="100%" stop-color="#20182f" />
-              </linearGradient>
+              <radialGradient id="wheelHub" cx="35%" cy="35%" r="75%">
+                <stop offset="0%" stop-color="#4FACFE" />
+                <stop offset="60%" stop-color="#00A8E8" />
+                <stop offset="100%" stop-color="#046B9E" />
+              </radialGradient>
             </defs>
-            <circle cx="150" cy="150" r="148" class="wheel-ring" />
-            <path d="M150,150 L150,10 A140,140 0 0,1 249,51 Z" fill="url(#wheelGradGrande)" />
-            <path d="M150,150 L249,51 A140,140 0 0,1 290,150 Z" fill="url(#wheelGradA)" />
-            <path d="M150,150 L290,150 A140,140 0 0,1 249,249 Z" fill="url(#wheelGradB)" />
-            <path d="M150,150 L249,249 A140,140 0 0,1 150,290 Z" fill="url(#wheelGradA)" />
-            <path d="M150,150 L150,290 A140,140 0 0,1 51,249 Z" fill="url(#wheelGradB)" />
-            <path d="M150,150 L51,249 A140,140 0 0,1 10,150 Z" fill="url(#wheelGradA)" />
-            <path d="M150,150 L10,150 A140,140 0 0,1 51,51 Z" fill="url(#wheelGradB)" />
-            <path d="M150,150 L51,51 A140,140 0 0,1 150,10 Z" fill="url(#wheelGradA)" />
-            <text x="186.4" y="62.2" class="wheel-emoji" text-anchor="middle" dominant-baseline="middle">👑</text>
-            <text x="237.8" y="113.6" class="wheel-emoji" text-anchor="middle" dominant-baseline="middle">🥃</text>
-            <text x="237.8" y="186.4" class="wheel-emoji" text-anchor="middle" dominant-baseline="middle">🪭</text>
-            <text x="186.4" y="237.8" class="wheel-emoji" text-anchor="middle" dominant-baseline="middle">📸</text>
-            <text x="113.6" y="237.8" class="wheel-emoji" text-anchor="middle" dominant-baseline="middle">🥂</text>
-            <text x="62.2" y="186.4" class="wheel-emoji" text-anchor="middle" dominant-baseline="middle">🥃</text>
-            <text x="62.2" y="113.6" class="wheel-emoji" text-anchor="middle" dominant-baseline="middle">🪭</text>
-            <text x="113.6" y="62.2" class="wheel-emoji" text-anchor="middle" dominant-baseline="middle">📸</text>
+            <circle cx="150" cy="150" r="147" class="wheel-ring" />
+            <path d="M150,150 L150,10 A140,140 0 0,1 249,51 Z" fill="url(#wheelGradGrande)" class="wheel-seg-grande" />
+            <path d="M150,150 L249,51 A140,140 0 0,1 290,150 Z" fill="#00D6F2" />
+            <path d="M150,150 L290,150 A140,140 0 0,1 249,249 Z" fill="#FF2FB9" />
+            <path d="M150,150 L249,249 A140,140 0 0,1 150,290 Z" fill="#4FACFE" />
+            <path d="M150,150 L150,290 A140,140 0 0,1 51,249 Z" fill="#FF7A18" />
+            <path d="M150,150 L51,249 A140,140 0 0,1 10,150 Z" fill="#12B6D4" />
+            <path d="M150,150 L10,150 A140,140 0 0,1 51,51 Z" fill="#E0189E" />
+            <path d="M150,150 L51,51 A140,140 0 0,1 150,10 Z" fill="#2E86F5" />
+            <text x="177" y="44" class="wheel-crown" text-anchor="middle" dominant-baseline="middle">👑</text>
+            <text x="177" y="63" class="wheel-label wheel-label--grande" text-anchor="middle" dominant-baseline="middle"><tspan x="177" dy="-0.3em">PREMIO</tspan><tspan x="177" dy="1.1em">GRATIS</tspan></text>
+            <text x="242.4" y="111.7" class="wheel-label" text-anchor="middle" dominant-baseline="middle">Chupito</text>
+            <text x="242.4" y="188.3" class="wheel-label" text-anchor="middle" dominant-baseline="middle">Abanicos</text>
+            <text x="188.3" y="242.4" class="wheel-label" text-anchor="middle" dominant-baseline="middle">Photocall</text>
+            <text x="111.7" y="242.4" class="wheel-label" text-anchor="middle" dominant-baseline="middle">Descuento</text>
+            <text x="57.6" y="188.3" class="wheel-label" text-anchor="middle" dominant-baseline="middle">Chupito</text>
+            <text x="57.6" y="111.7" class="wheel-label" text-anchor="middle" dominant-baseline="middle">Abanicos</text>
+            <text x="111.7" y="57.6" class="wheel-label" text-anchor="middle" dominant-baseline="middle">Photocall</text>
+            <circle cx="150" cy="150" r="160" class="wheel-outer-ring" />
+            <circle cx="150.0" cy="6.0" r="4" class="wheel-bulb" />
+            <circle cx="205.1" cy="17.0" r="4" class="wheel-bulb" />
+            <circle cx="251.8" cy="48.2" r="4" class="wheel-bulb" />
+            <circle cx="283.0" cy="94.9" r="4" class="wheel-bulb" />
+            <circle cx="294.0" cy="150.0" r="4" class="wheel-bulb" />
+            <circle cx="283.0" cy="205.1" r="4" class="wheel-bulb" />
+            <circle cx="251.8" cy="251.8" r="4" class="wheel-bulb" />
+            <circle cx="205.1" cy="283.0" r="4" class="wheel-bulb" />
+            <circle cx="150.0" cy="294.0" r="4" class="wheel-bulb" />
+            <circle cx="94.9" cy="283.0" r="4" class="wheel-bulb" />
+            <circle cx="48.2" cy="251.8" r="4" class="wheel-bulb" />
+            <circle cx="17.0" cy="205.1" r="4" class="wheel-bulb" />
+            <circle cx="6.0" cy="150.0" r="4" class="wheel-bulb" />
+            <circle cx="17.0" cy="94.9" r="4" class="wheel-bulb" />
+            <circle cx="48.2" cy="48.2" r="4" class="wheel-bulb" />
+            <circle cx="94.9" cy="17.0" r="4" class="wheel-bulb" />
+            <circle cx="150" cy="150" r="32" fill="url(#wheelHub)" stroke="url(#wheelGoldRing)" stroke-width="4" />
+            <circle cx="150" cy="150" r="21" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.5" stroke-dasharray="2 5" />
           </svg>
         </div>
       </div>
@@ -801,6 +823,6 @@
 
   <!-- Supabase CDN -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="js/main.js?v=37" defer></script>
+  <script src="js/main.js?v=41" defer></script>
 </body>
 </html>

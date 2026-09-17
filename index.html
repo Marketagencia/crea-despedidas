@@ -100,7 +100,7 @@
     };
   </script>
 
-  <link rel="stylesheet" href="css/styles.css?v=43" />
+  <link rel="stylesheet" href="css/styles.css?v=45" />
 </head>
 
 <body class="bg-ink text-white font-sans antialiased selection:bg-neon-cyan/30 selection:text-white overflow-x-hidden">
@@ -746,7 +746,8 @@
       <span class="tile-kicker">🎉 Ruleta de la suerte</span>
       <h3 class="wheel-modal__title">¡Gira y descubre tu premio!</h3>
       <div class="wheel-wrap">
-        <div class="wheel-pointer" aria-hidden="true"></div>
+        <div class="wheel-pointer-mount" aria-hidden="true"></div>
+        <div class="wheel-pointer" id="wheel-pointer" aria-hidden="true"></div>
         <div class="wheel-dial" id="wheel-dial">
           <svg viewBox="0 0 300 300" width="100%" height="100%" aria-hidden="true">
             <defs>
@@ -765,6 +766,7 @@
                 <stop offset="60%" stop-color="#00A8E8" />
                 <stop offset="100%" stop-color="#046B9E" />
               </radialGradient>
+              <clipPath id="wheelHubClip"><circle cx="150" cy="150" r="28" /></clipPath>
             </defs>
             <circle cx="150" cy="150" r="147" class="wheel-ring" />
             <path d="M150,150 L150,10 A140,140 0 0,1 249,51 Z" fill="url(#wheelGradGrande)" class="wheel-seg-grande" />
@@ -775,15 +777,14 @@
             <path d="M150,150 L51,249 A140,140 0 0,1 10,150 Z" fill="#12B6D4" />
             <path d="M150,150 L10,150 A140,140 0 0,1 51,51 Z" fill="#E0189E" />
             <path d="M150,150 L51,51 A140,140 0 0,1 150,10 Z" fill="#2E86F5" />
-            <text x="177" y="44" class="wheel-crown" text-anchor="middle" dominant-baseline="middle">👑</text>
-            <text x="177" y="63" class="wheel-label wheel-label--grande" text-anchor="middle" dominant-baseline="middle"><tspan x="177" dy="-0.3em">PREMIO</tspan><tspan x="177" dy="1.1em">GRATIS</tspan></text>
-            <text x="242.4" y="111.7" class="wheel-label" text-anchor="middle" dominant-baseline="middle">Chupito</text>
-            <text x="242.4" y="188.3" class="wheel-label" text-anchor="middle" dominant-baseline="middle">Abanicos</text>
-            <text x="188.3" y="242.4" class="wheel-label" text-anchor="middle" dominant-baseline="middle">Photocall</text>
-            <text x="111.7" y="242.4" class="wheel-label" text-anchor="middle" dominant-baseline="middle">Descuento</text>
-            <text x="57.6" y="188.3" class="wheel-label" text-anchor="middle" dominant-baseline="middle">Chupito</text>
-            <text x="57.6" y="111.7" class="wheel-label" text-anchor="middle" dominant-baseline="middle">Abanicos</text>
-            <text x="111.7" y="57.6" class="wheel-label" text-anchor="middle" dominant-baseline="middle">Photocall</text>
+            <text x="191.3" y="50.2" class="wheel-label wheel-label--grande" text-anchor="middle" dominant-baseline="middle" transform="rotate(22.5 191.3 50.2)"><tspan x="191.3" dy="-1.15em" class="wheel-crown-tspan">👑</tspan><tspan x="191.3" dy="1.1em">PREMIO</tspan><tspan x="191.3" dy="0.95em">GORDO</tspan></text>
+            <text x="249.8" y="108.7" class="wheel-label" text-anchor="middle" dominant-baseline="middle" transform="rotate(67.5 249.8 108.7)">Chupito</text>
+            <text x="249.8" y="191.3" class="wheel-label" text-anchor="middle" dominant-baseline="middle" transform="rotate(112.5 249.8 191.3)">Abanicos</text>
+            <text x="191.3" y="249.8" class="wheel-label" text-anchor="middle" dominant-baseline="middle" transform="rotate(157.5 191.3 249.8)">Photocall</text>
+            <text x="108.7" y="249.8" class="wheel-label" text-anchor="middle" dominant-baseline="middle" transform="rotate(202.5 108.7 249.8)">Descuento</text>
+            <text x="50.2" y="191.3" class="wheel-label" text-anchor="middle" dominant-baseline="middle" transform="rotate(247.5 50.2 191.3)">Chupito</text>
+            <text x="50.2" y="108.7" class="wheel-label" text-anchor="middle" dominant-baseline="middle" transform="rotate(292.5 50.2 108.7)">Abanicos</text>
+            <text x="108.7" y="50.2" class="wheel-label" text-anchor="middle" dominant-baseline="middle" transform="rotate(337.5 108.7 50.2)">Photocall</text>
             <circle cx="150" cy="150" r="160" class="wheel-outer-ring" />
             <circle cx="150.0" cy="6.0" r="4" class="wheel-bulb" />
             <circle cx="205.1" cy="17.0" r="4" class="wheel-bulb" />
@@ -801,8 +802,9 @@
             <circle cx="17.0" cy="94.9" r="4" class="wheel-bulb" />
             <circle cx="48.2" cy="48.2" r="4" class="wheel-bulb" />
             <circle cx="94.9" cy="17.0" r="4" class="wheel-bulb" />
-            <circle cx="150" cy="150" r="32" fill="url(#wheelHub)" stroke="url(#wheelGoldRing)" stroke-width="4" />
-            <circle cx="150" cy="150" r="21" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.5" stroke-dasharray="2 5" />
+            <circle cx="150" cy="150" r="32" fill="url(#wheelHub)" />
+            <image href="assets/fish.png" x="112" y="112" width="76" height="76" clip-path="url(#wheelHubClip)" preserveAspectRatio="xMidYMid slice" />
+            <circle cx="150" cy="150" r="32" fill="none" stroke="url(#wheelGoldRing)" stroke-width="4" />
           </svg>
         </div>
       </div>
@@ -823,6 +825,6 @@
 
   <!-- Supabase CDN -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="js/main.js?v=41" defer></script>
+  <script src="js/main.js?v=42" defer></script>
 </body>
 </html>

@@ -1664,38 +1664,46 @@ body { margin: 0; min-height: 100vh; }
   margin: 1.75rem auto 1.5rem;
 }
 .wheel-wrap { padding-top: 0.6rem; }
-.wheel-pointer {
+.wheel-pointer-mount {
   position: absolute;
-  top: 4px;
+  top: -4px;
   left: 50%;
   transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #FFE9A8, #E8A93C);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  z-index: 3;
+}
+.wheel-pointer {
+  position: absolute;
+  top: 3px;
+  left: 50%;
   width: 0;
   height: 0;
-  border-left: 13px solid transparent;
-  border-right: 13px solid transparent;
-  border-top: 22px solid #FF2FB9;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 6px rgba(255, 201, 60, 0.7));
+  transform-origin: 50% 0%;
+  transform: translateX(-50%) rotate(0deg);
+  border-left: 11px solid transparent;
+  border-right: 11px solid transparent;
+  border-top: 24px solid #FF2FB9;
+  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.55));
   z-index: 2;
 }
-.wheel-pointer::after {
-  content: "";
-  position: absolute;
-  top: -22px;
-  left: -13px;
-  width: 26px;
-  height: 22px;
-  border-left: 13px solid transparent;
-  border-right: 13px solid transparent;
-  border-top: 22px solid transparent;
-  border-image: linear-gradient(180deg, #FFE9A8, #E8A93C) 1;
-  box-sizing: border-box;
+.wheel-pointer.is-ticking { animation: wheel-tick 0.12s ease-out; }
+@keyframes wheel-tick {
+  0% { transform: translateX(-50%) rotate(0deg); }
+  40% { transform: translateX(-50%) rotate(16deg); }
+  100% { transform: translateX(-50%) rotate(0deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wheel-pointer.is-ticking { animation: none; }
 }
 .wheel-dial {
   width: 100%;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   transform: rotate(0deg);
-  transition: transform 4.2s cubic-bezier(0.13, 0.72, 0.14, 1);
   filter: drop-shadow(0 18px 40px rgba(0, 0, 0, 0.55));
 }
 .wheel-ring { fill: none; stroke: url(#wheelGoldRing); stroke-width: 7; }
@@ -1717,7 +1725,7 @@ body { margin: 0; min-height: 100vh; }
   paint-order: stroke fill;
 }
 .wheel-label--grande { font-size: 12px; }
-.wheel-crown { font-size: 20px; }
+.wheel-crown-tspan { font-size: 15px; }
 
 /* El quesito del premio grande respira/brilla para llamar la atención antes de girar */
 .wheel-seg-grande {

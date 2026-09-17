@@ -832,18 +832,19 @@
     const openBtn = $('#wheel-open-btn');
     const modal = $('#wheel-modal');
     const dial = $('#wheel-dial');
+    const pointer = $('#wheel-pointer');
     const spinBtn = $('#wheel-spin-btn');
     const resultEl = $('#wheel-result');
     const peopleInput = $('#people');
     if (!form || !trigger || !openBtn || !modal || !dial || !spinBtn || !resultEl) return;
 
-    // Packs en los que aplica el premio grande (protagonista + organizador/a gratis)
+    // Packs en los que aplica el Premio Gordo (novia/o u homenajeado/a + organizador/a gratis)
     const TARGET_PACKS = ['Pack Comida Charanga y Tardeo DJ', 'Pack Cena Espectáculo'];
     const MIN_PEOPLE = 10;
 
     // 8 quesitos, en el mismo orden que los <path> del SVG (empezando arriba, sentido horario)
     const SEGMENTS = [
-      { text: '👑 ¡Premio grande! La novia/o (o el/la homenajeado/a) y quien organiza coméis GRATIS 🎉' },
+      { text: '👑 ¡Premio Gordo! La novia/o (o el/la homenajeado/a) y quien organiza coméis GRATIS 🎉' },
       { text: '🥃 ¡Chupito de regalo para todo el grupo!' },
       { text: '🪭 ¡Abanicos y pañuelos de regalo para la fiesta!' },
       { text: '📸 ¡Photocall de bienvenida para el recuerdo!' },
@@ -854,9 +855,72 @@
     ];
     const GRANDE_INDEX = 0;
     const CONSOLATION_INDEXES = [1, 2, 3, 4, 5, 6, 7];
+    const SEG_ANGLE = 45;
 
     let spun = false;
     let rotation = 0;
+
+    /* ---- sonido (sintetizado, sin ficheros externos) ---- */
+    let audioCtx = null;
+    function getAudioCtx() {
+      if (!audioCtx) {
+        const Ctx = window.AudioContext || window.webkitAudioContext;
+        if (Ctx) {
+          try { audioCtx = new Ctx(); } catch (e) { audioCtx = null; }
+        }
+      }
+      if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+      return audioCtx;
+    }
+    // "Clic" de la lengüeta al chocar contra cada quesito
+    function playTick(strength) {
+      const ctx = getAudioCtx();
+      if (!ctx) return;
+      const now = ctx.currentTime;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'square';
+      osc.frequency.setValueAtTime(900 + Math.random() * 260, now);
+      gain.gain.setValueAtTime(0.0001, now);
+      gain.gain.linearRampToValueAtTime(0.22 * (strength || 1), now + 0.003);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.05);
+      osc.connect(gain).connect(ctx.destination);
+      osc.start(now);
+      osc.stop(now + 0.06);
+    }
+    // Soplido de fondo mientras gira, apagándose hacia el final
+    function playWhoosh(durationMs) {
+      const ctx = getAudioCtx();
+      if (!ctx) return;
+      const now = ctx.currentTime;
+      const dur = durationMs / 1000;
+      const bufferSize = Math.max(1, Math.floor(ctx.sampleRate * dur));
+      const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
+      const noise = ctx.createBufferSource();
+      noise.buffer = buffer;
+      const filter = ctx.createBiquadFilter();
+      filter.type = 'bandpass';
+      filter.Q.value = 0.8;
+      filter.frequency.setValueAtTime(1100, now);
+      filter.frequency.linearRampToValueAtTime(220, now + dur);
+      const gain = ctx.createGain();
+      gain.gain.setValueAtTime(0, now);
+      gain.gain.linearRampToValueAtTime(0.05, now + 0.2);
+      gain.gain.setValueAtTime(0.05, Math.max(now + 0.2, now + dur - 0.35));
+      gain.gain.linearRampToValueAtTime(0, now + dur);
+      noise.connect(filter).connect(gain).connect(ctx.destination);
+      noise.start(now);
+      noise.stop(now + dur + 0.05);
+    }
+    function tickPointer() {
+      if (!pointer) return;
+      pointer.classList.remove('is-ticking');
+      // fuerza el reflow para poder reiniciar la animación en cada golpe
+      void pointer.offsetWidth;
+      pointer.classList.add('is-ticking');
+    }
 
     function isEligiblePack() {
       const pane = form.querySelector('.planner-pane[data-pane="packs"]');
@@ -907,6 +971,10 @@
       }
     }
 
+    function easeOutQuart(t) {
+      return 1 - Math.pow(1 - t, 4);
+    }
+
     spinBtn.addEventListener('click', () => {
       if (spun) return;
       spun = true;
@@ -919,22 +987,46 @@
       const pool = people >= MIN_PEOPLE ? [GRANDE_INDEX] : CONSOLATION_INDEXES;
       const targetIndex = pool[Math.floor(Math.random() * pool.length)];
 
-      const segAngle = 45;
-      const segMid = -90 + targetIndex * segAngle + segAngle / 2;
-      const jitter = (Math.random() * 2 - 1) * (segAngle / 2 - 6);
+      const segMid = -90 + targetIndex * SEG_ANGLE + SEG_ANGLE / 2;
+      const jitter = (Math.random() * 2 - 1) * (SEG_ANGLE / 2 - 6);
       const targetAngle = segMid + jitter;
       const need = ((-90 - targetAngle) % 360 + 360) % 360;
-      rotation += 360 * 5 + need;
-      dial.style.transform = `rotate(${rotation}deg)`;
 
-      setTimeout(() => {
+      const startRotation = rotation;
+      const endRotation = startRotation + 360 * 5 + need;
+      const duration = 4500;
+      const startTime = performance.now();
+      let lastSeg = Math.floor(startRotation / SEG_ANGLE);
+
+      playWhoosh(duration);
+
+      function frame(now) {
+        const t = Math.min((now - startTime) / duration, 1);
+        const current = startRotation + (endRotation - startRotation) * easeOutQuart(t);
+        dial.style.transform = `rotate(${current}deg)`;
+
+        const seg = Math.floor(current / SEG_ANGLE);
+        if (seg !== lastSeg) {
+          const crossed = seg - lastSeg;
+          for (let i = 0; i < crossed; i++) playTick(0.55 + 0.45 * (1 - t));
+          lastSeg = seg;
+          tickPointer();
+        }
+
+        if (t < 1) {
+          requestAnimationFrame(frame);
+          return;
+        }
+
+        rotation = endRotation;
         resultEl.textContent = SEGMENTS[targetIndex].text;
         resultEl.classList.add('is-visible');
         spawnConfetti();
         // Guardamos el premio en el propio formulario para que el envío de la
         // propuesta (WhatsApp + Supabase) lo recoja al enviar
         form.setAttribute('data-wheel-prize', SEGMENTS[targetIndex].text);
-      }, 4300);
+      }
+      requestAnimationFrame(frame);
     });
   }
 

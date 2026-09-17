@@ -839,7 +839,11 @@
     if (!form || !trigger || !openBtn || !modal || !dial || !spinBtn || !resultEl) return;
 
     // Packs en los que aplica el Premio Gordo (novia/o u homenajeado/a + organizador/a gratis)
-    const TARGET_PACKS = ['Pack Comida Charanga y Tardeo DJ', 'Pack Cena Espectáculo'];
+    const TARGET_PACKS = [
+      'Pack Comida con Charanga + Tardeo DJ',
+      'Pack Comida Charanga y Tardeo DJ',
+      'Pack Cena Espectáculo'
+    ];
     const MIN_PEOPLE = 10;
 
     // 8 quesitos, en el mismo orden que los <path> del SVG (empezando arriba, sentido horario)
@@ -934,8 +938,10 @@
       }
       const cartaPane = form.querySelector('.planner-pane[data-pane="carta"]');
       if (cartaPane && !cartaPane.classList.contains('is-hidden')) {
-        const checkedItems = $$('input[name="item"]:checked', form).map((i) => i.value);
-        return TARGET_ITEMS_CARTA.every((v) => checkedItems.includes(v));
+        const checkedItems = $$('input[name="item"]:checked', form).map((i) => i.value.toLowerCase());
+        const hasComidaCharanga = checkedItems.some((v) => v.includes('charanga'));
+        const hasCena = checkedItems.some((v) => v.includes('cena espect'));
+        return hasComidaCharanga && hasCena;
       }
       return false;
     }

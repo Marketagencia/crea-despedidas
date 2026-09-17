@@ -838,12 +838,6 @@
     const peopleInput = $('#people');
     if (!form || !trigger || !openBtn || !modal || !dial || !spinBtn || !resultEl) return;
 
-    // Packs en los que aplica el Premio Gordo (novia/o u homenajeado/a + organizador/a gratis)
-    const TARGET_PACKS = [
-      'Pack Comida con Charanga + Tardeo DJ',
-      'Pack Comida Charanga y Tardeo DJ',
-      'Pack Cena Espectáculo'
-    ];
     const MIN_PEOPLE = 10;
 
     // 8 quesitos, en el mismo orden que los <path> del SVG (empezando arriba, sentido horario)
@@ -926,22 +920,22 @@
       pointer.classList.add('is-ticking');
     }
 
-    // A la carta: si marcan a la vez comida con charanga Y cena espectáculo,
-    // también se activa la ruleta (equivale a llevarse los dos packs)
-    const TARGET_ITEMS_CARTA = ['Comida con charanga', 'Cena espectáculo'];
-
+    // Elegible si hay comida, cena, o las dos: cualquier pack que las incluya,
+    // o en "a la carta" con marcar solo una de las dos, la otra, o ambas
     function isEligiblePack() {
       const packsPane = form.querySelector('.planner-pane[data-pane="packs"]');
       if (packsPane && !packsPane.classList.contains('is-hidden')) {
         const checked = form.querySelector('input[name="pack"]:checked');
-        return !!checked && TARGET_PACKS.includes(checked.value);
+        if (!checked) return false;
+        const v = (checked.value + ' ' + (checked.dataset.desc || '')).toLowerCase();
+        return v.includes('comida') || v.includes('cena');
       }
       const cartaPane = form.querySelector('.planner-pane[data-pane="carta"]');
       if (cartaPane && !cartaPane.classList.contains('is-hidden')) {
         const checkedItems = $$('input[name="item"]:checked', form).map((i) => i.value.toLowerCase());
-        const hasComidaCharanga = checkedItems.some((v) => v.includes('charanga'));
-        const hasCena = checkedItems.some((v) => v.includes('cena espect'));
-        return hasComidaCharanga && hasCena;
+        const hasComida = checkedItems.some((v) => v.includes('comida'));
+        const hasCena = checkedItems.some((v) => v.includes('cena'));
+        return hasComida || hasCena;
       }
       return false;
     }

@@ -1822,7 +1822,8 @@ body { margin: 0; min-height: 100vh; }
   height: 100%;
   animation: promo-badge-spin 14s linear infinite;
 }
-.promo-badge__inner { fill: rgba(5, 6, 10, 0.92); }
+.promo-badge__burst { fill: #FFC93C; filter: drop-shadow(0 0 3px rgba(255, 122, 24, 0.65)); }
+.promo-badge__inner { fill: rgba(5, 6, 10, 0.94); }
 .promo-badge__text {
   font-family: "Syne", sans-serif;
   font-weight: 700;
@@ -1834,14 +1835,16 @@ body { margin: 0; min-height: 100vh; }
 .promo-badge__center {
   position: relative;
   z-index: 1;
+  width: 50%;
   font-family: "Syne", sans-serif;
   font-weight: 800;
-  font-size: 0.72rem;
-  line-height: 1.15;
-  letter-spacing: 0.02em;
+  font-size: 0.5rem;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
   color: #ffe9a8;
   text-align: center;
 }
+.promo-badge__center:first-line { font-size: 0.85rem; }
 .promo-badge:hover { transform: scale(1.06); }
 .promo-badge:hover .promo-badge__ring { animation-play-state: running; }
 @keyframes promo-badge-spin {
@@ -1854,7 +1857,8 @@ body { margin: 0; min-height: 100vh; }
 @media (max-width: 900px) {
   .promo-badge { top: 78px; right: 12px; width: 84px; height: 84px; }
   .promo-badge__text { font-size: 8.6px; }
-  .promo-badge__center { font-size: 0.6rem; }
+  .promo-badge__center { font-size: 0.42rem; }
+  .promo-badge__center:first-line { font-size: 0.7rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   .promo-badge { animation: none; }

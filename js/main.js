@@ -798,9 +798,9 @@
       ['mega-big-paddle', 'Grupo en una tabla de paddle gigante'],
       ['humor-amarillo', 'Humor amarillo con trajes de sumo hinchables'],
       ['persona-al-agua', 'Grupo en una actividad acuática de equipo'],
-      ['comida-charanga-interior', 'Comida con charanga en salón interior'],
-      ['comida-charanga-terraza', 'Comida con charanga en terraza'],
-      ['humor-amarillo-despedidas', 'Despedida de soltera con humor amarillo'],
+      ['comida-charanga-interior', 'Comida con charanga en salón interior', true],
+      ['comida-charanga-terraza', 'Comida con charanga en terraza', true],
+      ['humor-amarillo-despedidas', 'Despedida de soltera con humor amarillo', true],
     ];
 
     // Barajado Fisher–Yates (orden aleatorio en cada carga)
@@ -814,11 +814,14 @@
     const buildTrack = (decorative) => {
       let out = '';
       for (let r = 0; r < REPEAT; r++) {
-        for (const [name, alt] of list) {
+        for (const [name, alt, jpgOnly] of list) {
+          const src = '/assets/' + name + (jpgOnly ? '.jpg' : '.webp');
           out +=
-            '<img class="strip-photo" src="/assets/' + name + '.webp" ' +
+            '<img class="strip-photo" src="' + src + '" ' +
             (decorative ? 'alt="" aria-hidden="true"' : 'alt="' + alt + '"') +
-            ' loading="lazy" onerror="this.src=\'/assets/' + name + '.jpg\'">';
+            ' loading="lazy"' +
+            (jpgOnly ? '' : ' onerror="this.src=\'/assets/' + name + '.jpg\'"') +
+            '>';
         }
       }
       return out;

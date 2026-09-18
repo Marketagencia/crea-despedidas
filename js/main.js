@@ -843,16 +843,16 @@
     // 8 quesitos, en el mismo orden que los <path> del SVG (empezando arriba, sentido horario)
     const SEGMENTS = [
       { text: '👑 ¡Premio Gordo! La novia/o (o el/la homenajeado/a) y quien organiza coméis GRATIS 🎉' },
-      { text: '🥃 ¡Chupito de regalo para todo el grupo!' },
-      { text: '🪭 ¡Abanicos y pañuelos de regalo para la fiesta!' },
-      { text: '📸 ¡Photocall de bienvenida para el recuerdo!' },
-      { text: '🥂 ¡Descuento en el bono de copas!' },
-      { text: '🥃 ¡Chupito de regalo para todo el grupo!' },
-      { text: '🪭 ¡Abanicos y pañuelos de regalo para la fiesta!' },
-      { text: '📸 ¡Photocall de bienvenida para el recuerdo!' },
+      { text: '🥃 ¡Ronda de chupitos de regalo para todo el grupo!' },
+      { text: '🪭 ¡Abanicos de regalo para la fiesta!' },
+      { text: '👕 ¡Camiseta de pruebas de regalo para la novia/o!', despedidaOnly: true },
+      { text: '🥂 ¡Descuento en la 1ª ronda de copas!' },
+      { text: '👕 ¡50% de descuento en las camisetas de despedida!', despedidaOnly: true },
+      { text: '🧣 ¡Pañuelos de regalo para la fiesta!' },
+      { text: '🥂 ¡Descuento en la 1ª ronda de copas!' },
     ];
     const GRANDE_INDEX = 0;
-    const CONSOLATION_INDEXES = [1, 2, 3, 4, 5, 6, 7];
+    const ALL_CONSOLATION_INDEXES = [1, 2, 3, 4, 5, 6, 7];
     const SEG_ANGLE = 45;
 
     let spun = false;
@@ -995,7 +995,11 @@
       resultEl.textContent = '';
 
       const people = Number(peopleInput && peopleInput.value) || 0;
-      const pool = people >= MIN_PEOPLE ? [GRANDE_INDEX] : CONSOLATION_INDEXES;
+      const eventInput = form.querySelector('input[name="event"]:checked');
+      const isDespedida = !!eventInput && eventInput.value.toLowerCase().includes('despedida');
+      const pool = people >= MIN_PEOPLE
+        ? [GRANDE_INDEX]
+        : ALL_CONSOLATION_INDEXES.filter((i) => isDespedida || !SEGMENTS[i].despedidaOnly);
       const targetIndex = pool[Math.floor(Math.random() * pool.length)];
 
       const segMid = -90 + targetIndex * SEG_ANGLE + SEG_ANGLE / 2;

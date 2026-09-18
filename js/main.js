@@ -453,7 +453,7 @@
               budget: Number(total) || 0,
               paid: 0,
               status: "Nuevo",
-              activities: actList,
+              activities: activitiesForCrm,
               supplierServices: services,
               assignedTo: "pablo",
               statusChangedAt: new Date().toISOString(),
@@ -494,6 +494,7 @@
       const waMsg =
         `¡Hola Crea Despedidas! Soy ${nameVal}. Hemos configurado nuestro evento (${eventType}) para ${sel.people} personas el ${dateFriendly}.\n` +
         (sel.kind === 'pack' ? `Pack: ${sel.title} (${nf.format(sel.perPerson)} €/pax)\n` : `Servicios: ${actList.join(', ')}\n`) +
+        (wheelPrize ? `🎁 Premio ruleta ganado: ${wheelPrize}\n` : '') +
         `Presupuesto estimado: ${nf.format(total)} €.\n\n` +
         `📋 Podéis ver nuestra propuesta aquí:\n${proposalUrl}\n\n` +
         `¿Podéis confirmarme disponibilidad?`;

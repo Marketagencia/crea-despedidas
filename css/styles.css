@@ -557,7 +557,7 @@ body { margin: 0; min-height: 100vh; }
 }
 .tile-title {
   margin: 0.45rem 0 0;
-  font-family: "Syne", sans-serif;
+  font-family: "Sora", sans-serif;
   font-weight: 800;
   font-size: clamp(1.25rem, 2.1vw, 1.9rem);
   line-height: 1.2;
@@ -626,7 +626,7 @@ body { margin: 0; min-height: 100vh; }
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  font-family: "Syne", sans-serif;
+  font-family: "Sora", sans-serif;
   font-weight: 700;
   font-size: 1.05rem;
 }
@@ -836,10 +836,10 @@ body { margin: 0; min-height: 100vh; }
   justify-content: space-between;
   gap: 1rem;
 }
-.pack-name { font-family: "Syne", sans-serif; font-weight: 700; font-size: 0.98rem; }
+.pack-name { font-family: "Sora", sans-serif; font-weight: 700; font-size: 0.98rem; }
 .pack-price {
   flex-shrink: 0;
-  font-family: "Syne", sans-serif;
+  font-family: "Sora", sans-serif;
   font-weight: 800;
   font-size: 0.95rem;
   background: var(--grad-tri);
@@ -1249,7 +1249,7 @@ body { margin: 0; min-height: 100vh; }
   padding: 3.5rem 0 2.5rem;
 }
 .subhero h1 {
-  font-family: "Syne", sans-serif;
+  font-family: "Sora", sans-serif;
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.01em;
@@ -1266,7 +1266,7 @@ body { margin: 0; min-height: 100vh; }
 
 .svc-section { padding: 2.5rem 0; }
 .svc-section > h2 {
-  font-family: "Syne", sans-serif;
+  font-family: "Sora", sans-serif;
   font-weight: 800;
   font-size: clamp(1.6rem, 3.4vw, 2.5rem);
   line-height: 1.15;
@@ -1324,12 +1324,12 @@ body { margin: 0; min-height: 100vh; }
 }
 
 .svc-card h3 {
-  font-family: "Syne", sans-serif;
+  font-family: "Sora", sans-serif;
   font-weight: 800;
   font-size: 1.15rem;
 }
 .svc-card .price {
-  font-family: "Syne", sans-serif;
+  font-family: "Sora", sans-serif;
   font-weight: 800;
   font-size: 0.95rem;
   background: var(--grad-tri);
@@ -1368,7 +1368,7 @@ body { margin: 0; min-height: 100vh; }
 }
 .svc-feature + .svc-feature { margin-top: 1rem; }
 .svc-feature h3 {
-  font-family: "Syne", sans-serif;
+  font-family: "Sora", sans-serif;
   font-weight: 800;
   font-size: clamp(1.3rem, 2.6vw, 1.9rem);
 }
@@ -1501,7 +1501,7 @@ body { margin: 0; min-height: 100vh; }
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.4);
 }
-.blog-card h3 { font-family: "Syne", sans-serif; font-weight: 800; font-size: 1.12rem; line-height: 1.32; }
+.blog-card h3 { font-family: "Sora", sans-serif; font-weight: 800; font-size: 1.12rem; line-height: 1.32; }
 .blog-card p { font-size: 0.88rem; line-height: 1.55; color: rgba(255, 255, 255, 0.58); }
 .blog-card .blog-more {
   margin-top: auto;
@@ -1509,7 +1509,7 @@ body { margin: 0; min-height: 100vh; }
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
-  font-family: "Syne", sans-serif;
+  font-family: "Sora", sans-serif;
   font-size: 0.82rem;
   font-weight: 700;
   background: var(--grad-tri);
@@ -1530,7 +1530,7 @@ body { margin: 0; min-height: 100vh; }
 }
 .post-prose { max-width: 72ch; font-size: 1.02rem; line-height: 1.78; color: rgba(255, 255, 255, 0.68); }
 .post-prose h2 {
-  font-family: "Syne", sans-serif;
+  font-family: "Sora", sans-serif;
   font-weight: 800;
   font-size: clamp(1.3rem, 2.6vw, 1.75rem);
   color: #fff;
@@ -1539,7 +1539,7 @@ body { margin: 0; min-height: 100vh; }
   margin: 2.5rem 0 1rem;
 }
 .post-prose h3 {
-  font-family: "Syne", sans-serif;
+  font-family: "Sora", sans-serif;
   font-weight: 700;
   font-size: 1.15rem;
   color: #fff;
@@ -1600,7 +1600,7 @@ body { margin: 0; min-height: 100vh; }
   gap: 0.6rem;
   padding: 1.05rem 1.3rem;
   border-radius: 999px;
-  font-family: "Syne", sans-serif;
+  font-family: "Sora", sans-serif;
   font-weight: 800;
   font-size: 1.02rem;
   letter-spacing: 0;
@@ -1675,7 +1675,7 @@ body { margin: 0; min-height: 100vh; }
 .wheel-modal__close:hover { color: #fff; border-color: rgba(255, 255, 255, 0.3); }
 .wheel-modal__title {
   margin-top: 0.5rem;
-  font-family: "Syne", sans-serif;
+  font-family: "Sora", sans-serif;
   font-weight: 800;
   font-size: clamp(1.3rem, 4vw, 1.6rem);
 }
@@ -1737,7 +1737,7 @@ body { margin: 0; min-height: 100vh; }
   filter: drop-shadow(0 0 3px rgba(255, 201, 60, 0.9));
 }
 .wheel-label {
-  font-family: "Syne", sans-serif;
+  font-family: "Sora", sans-serif;
   font-weight: 700;
   font-size: 12px;
   letter-spacing: 0.015em;
@@ -1767,7 +1767,7 @@ body { margin: 0; min-height: 100vh; }
 .wheel-result {
   margin-top: 1.1rem;
   min-height: 1.4rem;
-  font-family: "Syne", sans-serif;
+  font-family: "Sora", sans-serif;
   font-weight: 700;
   font-size: 0.98rem;
   line-height: 1.4;
@@ -1825,7 +1825,7 @@ body { margin: 0; min-height: 100vh; }
 .promo-badge__burst { fill: #FFC93C; filter: drop-shadow(0 0 3px rgba(255, 122, 24, 0.65)); }
 .promo-badge__inner { fill: rgba(5, 6, 10, 0.94); }
 .promo-badge__text {
-  font-family: "Syne", sans-serif;
+  font-family: "Sora", sans-serif;
   font-weight: 700;
   font-size: 10.5px;
   letter-spacing: 0.03em;
@@ -1836,7 +1836,7 @@ body { margin: 0; min-height: 100vh; }
   position: relative;
   z-index: 1;
   width: 50%;
-  font-family: "Syne", sans-serif;
+  font-family: "Sora", sans-serif;
   font-weight: 800;
   font-size: 0.38rem;
   line-height: 1.2;

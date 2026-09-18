@@ -798,6 +798,9 @@
       ['mega-big-paddle', 'Grupo en una tabla de paddle gigante'],
       ['humor-amarillo', 'Humor amarillo con trajes de sumo hinchables'],
       ['persona-al-agua', 'Grupo en una actividad acuática de equipo'],
+      ['comida-charanga-interior', 'Comida con charanga en salón interior'],
+      ['comida-charanga-terraza', 'Comida con charanga en terraza'],
+      ['humor-amarillo-despedidas', 'Despedida de soltera con humor amarillo'],
     ];
 
     // Barajado Fisher–Yates (orden aleatorio en cada carga)

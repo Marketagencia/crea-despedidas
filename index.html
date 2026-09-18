@@ -100,7 +100,7 @@
     };
   </script>
 
-  <link rel="stylesheet" href="css/styles.css?v=53" />
+  <link rel="stylesheet" href="css/styles.css?v=54" />
 </head>
 
 <body class="bg-ink text-white font-sans antialiased selection:bg-neon-cyan/30 selection:text-white overflow-x-hidden">
@@ -222,6 +222,36 @@
           <span class="pulse-dot" aria-hidden="true"></span>
           <span class="text-gradient font-display font-800 tracking-normal">Más de 10 años ofreciendo diversión</span>
         </p>
+      </div>
+
+      <!-- Tira de fotos de actividades, difuminada en los bordes para integrarse en el hero (el orden lo baraja el JS en cada carga) -->
+      <div class="hero-marquee" aria-hidden="true">
+        <div class="photo-strip marquee" data-photo-strip>
+          <div class="marquee-track">
+            <img class="strip-photo" src="/assets/humor-amarillo.webp" alt="" loading="lazy" onerror="this.src='/assets/humor-amarillo.jpg'" />
+            <img class="strip-photo" src="/assets/velero.webp" alt="" loading="lazy" onerror="this.src='/assets/velero.jpg'" />
+            <img class="strip-photo" src="/assets/persona-al-agua.webp" alt="" loading="lazy" onerror="this.src='/assets/persona-al-agua.jpg'" />
+            <img class="strip-photo" src="/assets/motos-agua.webp" alt="" loading="lazy" onerror="this.src='/assets/motos-agua.jpg'" />
+            <img class="strip-photo" src="/assets/banana-boat.webp" alt="" loading="lazy" onerror="this.src='/assets/banana-boat.jpg'" />
+            <img class="strip-photo" src="/assets/paddle-surf.webp" alt="" loading="lazy" onerror="this.src='/assets/paddle-surf.jpg'" />
+            <img class="strip-photo" src="/assets/mega-big-paddle.webp" alt="" loading="lazy" onerror="this.src='/assets/mega-big-paddle.jpg'" />
+            <img class="strip-photo" src="/assets/comida-charanga-interior.jpg" alt="" loading="lazy" />
+            <img class="strip-photo" src="/assets/comida-charanga-terraza.jpg" alt="" loading="lazy" />
+            <img class="strip-photo" src="/assets/humor-amarillo-despedidas.jpg" alt="" loading="lazy" />
+          </div>
+          <div class="marquee-track" aria-hidden="true">
+            <img class="strip-photo" src="/assets/humor-amarillo.webp" alt="" loading="lazy" onerror="this.src='/assets/humor-amarillo.jpg'" />
+            <img class="strip-photo" src="/assets/velero.webp" alt="" loading="lazy" onerror="this.src='/assets/velero.jpg'" />
+            <img class="strip-photo" src="/assets/persona-al-agua.webp" alt="" loading="lazy" onerror="this.src='/assets/persona-al-agua.jpg'" />
+            <img class="strip-photo" src="/assets/motos-agua.webp" alt="" loading="lazy" onerror="this.src='/assets/motos-agua.jpg'" />
+            <img class="strip-photo" src="/assets/banana-boat.webp" alt="" loading="lazy" onerror="this.src='/assets/banana-boat.jpg'" />
+            <img class="strip-photo" src="/assets/paddle-surf.webp" alt="" loading="lazy" onerror="this.src='/assets/paddle-surf.jpg'" />
+            <img class="strip-photo" src="/assets/mega-big-paddle.webp" alt="" loading="lazy" onerror="this.src='/assets/mega-big-paddle.jpg'" />
+            <img class="strip-photo" src="/assets/comida-charanga-interior.jpg" alt="" loading="lazy" />
+            <img class="strip-photo" src="/assets/comida-charanga-terraza.jpg" alt="" loading="lazy" />
+            <img class="strip-photo" src="/assets/humor-amarillo-despedidas.jpg" alt="" loading="lazy" />
+          </div>
+        </div>
       </div>
 
       <div class="scroll-cue" aria-hidden="true"><span></span></div>
@@ -845,6 +875,6 @@
 
   <!-- Supabase CDN -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="js/main.js?v=47" defer></script>
+  <script src="js/main.js?v=48" defer></script>
 </body>
 </html>

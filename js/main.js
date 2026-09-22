@@ -404,6 +404,32 @@
 
       // Premio conseguido en la ruleta de la suerte (si giró antes de enviar)
       const wheelPrize = (form.dataset.wheelPrize || '').trim();
+      const wheelPrizeLower = wheelPrize.toLowerCase();
+      const isPremioGordo = wheelPrizeLower.includes('premio gordo') || wheelPrizeLower.includes('coméis gratis') || wheelPrizeLower.includes('comeis gratis');
+
+      let premioGordoDiscount = 0;
+      if (isPremioGordo) {
+        // Encontrar el servicio de comida / cena o pack para aplicar los 2 comensales gratis
+        let mealService = null;
+        if (sel.kind === 'pack') {
+          mealService = services[0];
+        } else {
+          mealService = services.find((s) => {
+            const n = s.name.toLowerCase();
+            return n.includes('comida') || n.includes('cena') || n.includes('charanga') ||
+                   n.includes('espectaculo') || n.includes('espectáculo') || n.includes('paella') ||
+                   n.includes('menú') || n.includes('menu');
+          }) || services.find((s) => s.type === 'pax' && s.price > 0) || services[0];
+        }
+
+        if (mealService) {
+          const freeGuests = Math.min(2, sel.people);
+          mealService.freeGuests = freeGuests;
+          premioGordoDiscount = freeGuests * (mealService.price || 0);
+        }
+      }
+
+      const finalBudget = Math.max(0, total - premioGordoDiscount);
       const activitiesForCrm = wheelPrize ? [...actList, `🎡 Premio: ${wheelPrize}`] : actList;
       if (wheelPrize) {
         services.push({
@@ -416,7 +442,9 @@
           cost: 0,
           date: dateVal,
           time: "",
-          notes: "Premio conseguido en la ruleta de la suerte del configurador web (no afecta al presupuesto)"
+          notes: isPremioGordo
+            ? `👑 Premio Gordo aplicado: 2 comensales comen GRATIS (-${premioGordoDiscount} € aplicados al presupuesto)`
+            : "Premio conseguido en la ruleta de la suerte del configurador web (no afecta al presupuesto)"
         });
       }
 
@@ -450,7 +478,7 @@
               date: dateVal,
               dateTo: dateVal,
               guests: Number(sel.people) || 12,
-              budget: Number(total) || 0,
+              budget: Number(finalBudget) || 0,
               paid: 0,
               status: "Nuevo",
               activities: activitiesForCrm,
@@ -495,7 +523,9 @@
         `¡Hola Crea Despedidas! Soy ${nameVal}. Hemos configurado nuestro evento (${eventType}) para ${sel.people} personas el ${dateFriendly}.\n` +
         (sel.kind === 'pack' ? `Pack: ${sel.title} (${nf.format(sel.perPerson)} €/pax)\n` : `Servicios: ${actList.join(', ')}\n`) +
         (wheelPrize ? `🎁 Premio ruleta ganado: ${wheelPrize}\n` : '') +
-        `Presupuesto estimado: ${nf.format(total)} €.\n\n` +
+        (isPremioGordo && premioGordoDiscount > 0
+          ? `Presupuesto estimado: ${nf.format(finalBudget)} € (👑 ¡Premio Gordo aplicado! 2 comen GRATIS: -${nf.format(premioGordoDiscount)} €).\n\n`
+          : `Presupuesto estimado: ${nf.format(total)} €.\n\n`) +
         `📋 Podéis ver nuestra propuesta aquí:\n${proposalUrl}\n\n` +
         `¿Podéis confirmarme disponibilidad?`;
 

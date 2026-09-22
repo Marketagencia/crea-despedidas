@@ -387,17 +387,24 @@
         actList = sel.items.map((i) => i.label);
         services = sel.items.map((i) => {
           const isUnit = isUnitBasedActivity(i.label);
+          const isAcc = (i.cat && i.cat.toLowerCase().includes('alojamiento')) || i.label.toLowerCase().includes('alojamiento') || i.label.toLowerCase().includes('hotel');
+          const isTwoNights = i.label.includes('2 noche') || i.label.includes('2 noches');
+          const isOneNight = i.label.includes('1 noche');
+          const accPrice = isTwoNights ? 140 : (isOneNight ? 90 : (i.price || 90));
+          const finalPrice = isAcc ? accPrice : i.price;
           return {
             name: i.label,
-            type: isUnit ? "flat" : "pax",
-            price: i.price,
+            type: isAcc ? "accommodation" : (isUnit ? "flat" : "pax"),
+            price: finalPrice,
             guests: isUnit ? 1 : sel.people,
             units: isUnit ? 1 : undefined,
             isUnits: isUnit,
             cost: 0,
             date: dateVal,
             time: getDefaultActivityTime(i.label),
-            notes: `Servicio a la carta (Categoría: ${i.cat || 'General'})`
+            notes: isAcc
+              ? `Alojamiento seleccionado en web (${isTwoNights ? '2 noches' : '1 noche'} - ${accPrice} €/persona)`
+              : `Servicio a la carta (Categoría: ${i.cat || 'General'})`
           };
         });
       }
@@ -409,23 +416,33 @@
 
       let premioGordoDiscount = 0;
       if (isPremioGordo) {
-        // Encontrar el servicio de comida / cena o pack para aplicar los 2 comensales gratis
+        // Encontrar el servicio de comida / cena o pack para aplicar los 2 comensales gratis (NUNCA ALOJAMIENTO)
         let mealService = null;
         if (sel.kind === 'pack') {
           mealService = services[0];
         } else {
           mealService = services.find((s) => {
             const n = s.name.toLowerCase();
+            if (n.includes('alojamiento') || n.includes('hotel') || n.includes('hostal') || s.type === 'accommodation') return false;
             return n.includes('comida') || n.includes('cena') || n.includes('charanga') ||
                    n.includes('espectaculo') || n.includes('espectáculo') || n.includes('paella') ||
                    n.includes('menú') || n.includes('menu');
-          }) || services.find((s) => s.type === 'pax' && s.price > 0) || services[0];
+          });
+          if (!mealService) {
+            mealService = services.find((s) => {
+              const n = s.name.toLowerCase();
+              if (n.includes('alojamiento') || n.includes('hotel') || n.includes('hostal') || s.type === 'accommodation') return false;
+              return s.type === 'pax' && s.price > 0 && !n.includes('premio') && !n.includes('ruleta');
+            });
+          }
         }
 
         if (mealService) {
           const freeGuests = Math.min(2, sel.people);
           mealService.freeGuests = freeGuests;
-          premioGordoDiscount = freeGuests * (mealService.price || 0);
+          let mealPrice = mealService.price || 0;
+          if (mealPrice > 50) mealPrice = 39; // Cena o comida estándar si es un pack
+          premioGordoDiscount = freeGuests * mealPrice;
         }
       }
 
@@ -467,6 +484,19 @@
         supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
       }
 
+      let dateToVal = dateVal;
+      const hasAccTwo = sel.items && sel.items.some(i => i.label.includes('2 noche') || i.label.includes('2 noches'));
+      const hasAccOne = sel.items && sel.items.some(i => i.label.includes('1 noche'));
+      if (hasAccTwo) {
+        const d = new Date(dateVal);
+        d.setDate(d.getDate() + 2);
+        dateToVal = d.toISOString().split('T')[0];
+      } else if (hasAccOne) {
+        const d = new Date(dateVal);
+        d.setDate(d.getDate() + 1);
+        dateToVal = d.toISOString().split('T')[0];
+      }
+
       if (supabaseClient) {
         try {
           const { error } = await supabaseClient
@@ -476,7 +506,7 @@
               organizer: `${nameVal} (Web)`,
               phone: phoneVal,
               date: dateVal,
-              dateTo: dateVal,
+              dateTo: dateToVal,
               guests: Number(sel.people) || 12,
               budget: Number(finalBudget) || 0,
               paid: 0,

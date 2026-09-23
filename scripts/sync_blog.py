@@ -162,7 +162,7 @@ PAGE_TMPL = """<!DOCTYPE html>
         <li><a class="nav-link" href="/#contacto">Contacto</a></li>
       </ul>
       <div class="flex items-center gap-3">
-        <a href="https://wa.me/34644687001" target="_blank" rel="noopener" class="hidden rounded-full border border-white/15 px-4 py-2 text-sm text-white/80 backdrop-blur-md transition hover:border-white/30 hover:text-white sm:inline-flex">WhatsApp</a>
+        <a href="https://wa.me/34644552951" target="_blank" rel="noopener" class="hidden rounded-full border border-white/15 px-4 py-2 text-sm text-white/80 backdrop-blur-md transition hover:border-white/30 hover:text-white sm:inline-flex">WhatsApp</a>
         <a href="/#planner" data-magnetic class="btn-primary text-sm"><span>Crea tu experiencia</span></a>
       </div>
     </nav>
@@ -207,7 +207,7 @@ PAGE_TMPL = """<!DOCTYPE html>
           <address class="mt-3 space-y-1 text-sm not-italic text-white/50">
             <p>Av. de l'Enginyer Manuel Soto, 14 Bis · Valencia</p>
             <p><a class="hover:text-white" href="mailto:info@creadespedidas.com">info@creadespedidas.com</a></p>
-            <p><a class="hover:text-white" href="tel:+34644687001">+34 644 687 001</a> · L–S 9:00–20:00</p>
+            <p><a class="hover:text-white" href="tel:+34644552951">+34 644 552 951</a> · L–S 9:00–20:00</p>
           </address>
         </div>
       </div>
@@ -234,7 +234,7 @@ ARTICLE_CTA = """      <section class="svc-section">
           <p class="relative mx-auto mt-3 max-w-md text-white/60">Cuéntanos grupo, fecha y estilo. Te preparamos una propuesta a medida en menos de 24&nbsp;h.</p>
           <div class="relative mt-7 flex flex-wrap justify-center gap-4">
             <a href="/#planner" data-magnetic class="btn-primary text-base"><span>Crea tu experiencia</span></a>
-            <a href="https://wa.me/34644687001" target="_blank" rel="noopener" data-magnetic class="btn-glass text-base"><span>Hablar por WhatsApp</span></a>
+            <a href="https://wa.me/34644552951" target="_blank" rel="noopener" data-magnetic class="btn-glass text-base"><span>Hablar por WhatsApp</span></a>
           </div>
         </div>
       </section>

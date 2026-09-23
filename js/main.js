@@ -1112,6 +1112,17 @@
     });
   }
 
+  /* ---------------------------------------- conversión Google Ads (WhatsApp) */
+  function initWhatsAppConversion() {
+    document.addEventListener('click', (e) => {
+      const link = e.target.closest('a[href*="wa.me"], .wa-float');
+      if (!link) return;
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'conversion', { send_to: 'AW-10805472079/NzdnCIzKuKAbEM_WuaAo' });
+      }
+    });
+  }
+
   /* -------------------------------------------------------------- init */
   function init() {
     initYear();
@@ -1125,6 +1136,7 @@
     initFishCursor();
     initPhotoStrip();
     initWheelOffer();
+    initWhatsAppConversion();
   }
 
   if (document.readyState === 'loading') {

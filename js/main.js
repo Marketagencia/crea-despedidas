@@ -598,6 +598,18 @@
       });
     });
 
+    // Alojamiento a la carta: 1 noche y 2 noches son excluyentes (nunca las dos a la vez)
+    const accItems = $$('input[name="item"][data-cat="Alojamiento"]', form);
+    accItems.forEach((box) => {
+      box.addEventListener('change', () => {
+        if (box.checked) {
+          accItems.forEach((other) => {
+            if (other !== box) other.checked = false;
+          });
+        }
+      });
+    });
+
     form.addEventListener('input', update);
     form.addEventListener('change', update);
     update();
@@ -646,7 +658,7 @@
     let nextBubble = 0;
     let ux = -1; // vector unitario pez -> ratón (para mantener la separación)
     let uy = 0;
-    const GAP = 38; // ~1 cm: el pez nunca se acerca más que esto al cursor
+    const GAP = 114; // ~3 cm: distancia de reposo del pez respecto al cursor (para no molestar al pararse)
 
     // --- estado del nado: modelo de rumbo con inercia (nado realista) ---
     let heading = Math.PI; // hacia dónde apunta y avanza el pez (rad)
@@ -747,7 +759,7 @@
       hoverPhase += 0.021;
       swim += 0.024 + spd * 0.011; // el ritmo se acelera al nadar fuerte
 
-      // 1) Punto objetivo (destino aleatorio, o ~1 cm detrás del ratón)
+      // 1) Punto objetivo (destino aleatorio, o ~3 cm detrás del ratón)
       let gx, gy;
       if (roam) {
         gx = tx;

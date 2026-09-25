@@ -204,8 +204,26 @@
       const n = name.toLowerCase();
       return n.includes("big paddle") || n.includes("big paddel") || n.includes("big sup") ||
              n.includes("paddle") || n.includes("paddel") || n.includes("sup") ||
-             n.includes("kayak") || n.includes("piragua") || 
+             n.includes("kayak") || n.includes("piragua") ||
              n.includes("velero") || n.includes("barco");
+    }
+
+    // Actividades que se cobran por unidad/capacidad (barco, motos de agua),
+    // no por persona: el precio total depende de cuántas unidades hacen falta
+    // para el grupo, no de multiplicar el precio por cada persona.
+    function groupUnitPricing(name) {
+      const n = (name || '').toLowerCase();
+      if (n.includes('velero')) return { unitPrice: 450, capacity: 11, singular: 'barco', plural: 'barcos' };
+      if (n.includes('moto') && n.includes('agua')) return { unitPrice: 90, capacity: 2, singular: 'moto de agua', plural: 'motos de agua' };
+      return null;
+    }
+
+    // Precio de GRUPO (ya calculado para el nº de personas) de un ítem a la carta.
+    function groupItemTotal(name, price, people) {
+      const gu = groupUnitPricing(name);
+      if (!gu) return price * Math.max(0, people);
+      const units = Math.max(1, Math.ceil(Math.max(1, people) / gu.capacity));
+      return units * gu.unitPrice;
     }
 
     let mode = 'packs'; // 'packs' | 'carta'
@@ -229,12 +247,13 @@
       if (mode === 'packs') {
         const r = form.querySelector('input[name="pack"]:checked');
         if (!r) {
-          return { people, perPerson: 0, items: [], kind: 'packs', title: 'Elige tu pack', detail: 'Selecciona uno de los packs para ver la estimación.' };
+          return { people, perPerson: 0, groupTotal: 0, items: [], kind: 'packs', title: 'Elige tu pack', detail: 'Selecciona uno de los packs para ver la estimación.' };
         }
         const price = parseFloat(r.dataset.price) || 0;
         return {
           people,
           perPerson: price,
+          groupTotal: people * price,
           items: [{ label: r.value, price }],
           kind: 'pack',
           title: r.value,
@@ -249,10 +268,12 @@
         price: parseFloat(c.dataset.price) || 0,
         cat: c.dataset.cat || '',
       }));
-      const perPerson = items.reduce((sum, i) => sum + i.price, 0);
+      const groupTotal = items.reduce((sum, i) => sum + groupItemTotal(i.label, i.price, people), 0);
+      const perPerson = people ? groupTotal / people : 0;
       return {
         people,
         perPerson,
+        groupTotal,
         items,
         kind: 'carta',
         title: items.length
@@ -293,7 +314,7 @@
 
     function update() {
       const sel = readSelection();
-      const total = sel.people * sel.perPerson;
+      const total = sel.groupTotal;
 
       peopleOut.textContent = sel.people >= 40 ? '40+' : sel.people;
       setRangeFill(peopleInput);
@@ -310,7 +331,14 @@
           const name = document.createElement('span');
           name.textContent = i.label;
           const price = document.createElement('span');
-          price.textContent = nf.format(i.price) + ' € × ' + sel.people + ' pax';
+          const gu = groupUnitPricing(i.label);
+          if (gu) {
+            const units = Math.max(1, Math.ceil(Math.max(1, sel.people) / gu.capacity));
+            const noun = units > 1 ? gu.plural : gu.singular;
+            price.textContent = `${units} ${noun} × ${nf.format(gu.unitPrice)} € = ${nf.format(units * gu.unitPrice)} €`;
+          } else {
+            price.textContent = nf.format(i.price) + ' € × ' + sel.people + ' pax = ' + nf.format(i.price * sel.people) + ' €';
+          }
           li.append(name, price);
           summaryList.appendChild(li);
         });
@@ -324,7 +352,7 @@
       if (!form) return;
       const sel = readSelection();
       const eventType = (form.querySelector('input[name="event"]:checked') || {}).value || 'despedida';
-      const total = sel.people * sel.perPerson;
+      const total = sel.groupTotal;
 
       const nameVal = (nameInput ? nameInput.value : '').trim();
       const phoneVal = (phoneInput ? phoneInput.value : '').trim();
@@ -387,28 +415,38 @@
         }];
       } else {
         actList = sel.items.map((i) => i.label);
-        waActList = sel.items.map((i) =>
-          `${i.label} (${nf.format(i.price)}€ x ${sel.people} = ${nf.format(i.price * sel.people)}€)`
-        );
+        waActList = sel.items.map((i) => {
+          const gu = groupUnitPricing(i.label);
+          if (gu) {
+            const units = Math.max(1, Math.ceil(Math.max(1, sel.people) / gu.capacity));
+            const noun = units > 1 ? gu.plural : gu.singular;
+            return `${i.label} (${units} ${noun} x ${nf.format(gu.unitPrice)}€ = ${nf.format(units * gu.unitPrice)}€)`;
+          }
+          return `${i.label} (${nf.format(i.price)}€ x ${sel.people} = ${nf.format(i.price * sel.people)}€)`;
+        });
         services = sel.items.map((i) => {
           const isUnit = isUnitBasedActivity(i.label);
           const isAcc = (i.cat && i.cat.toLowerCase().includes('alojamiento')) || i.label.toLowerCase().includes('alojamiento') || i.label.toLowerCase().includes('hotel');
           const isTwoNights = i.label.includes('2 noche') || i.label.includes('2 noches');
           const isOneNight = i.label.includes('1 noche');
           const accPrice = isTwoNights ? 140 : (isOneNight ? 90 : (i.price || 90));
-          const finalPrice = isAcc ? accPrice : i.price;
+          const gu = groupUnitPricing(i.label);
+          const groupUnits = gu ? Math.max(1, Math.ceil(Math.max(1, sel.people) / gu.capacity)) : null;
+          const finalPrice = isAcc ? accPrice : (gu ? gu.unitPrice : i.price);
           return {
             name: i.label,
             type: isAcc ? "accommodation" : (isUnit ? "flat" : "pax"),
             price: finalPrice,
             guests: isUnit ? 1 : sel.people,
-            units: isUnit ? 1 : undefined,
+            units: gu ? groupUnits : (isUnit ? 1 : undefined),
             isUnits: isUnit,
             cost: 0,
             date: dateVal,
             time: getDefaultActivityTime(i.label),
             notes: isAcc
               ? `Alojamiento seleccionado en web (${isTwoNights ? '2 noches' : '1 noche'} - ${accPrice} €/persona)`
+              : gu
+              ? `Servicio a la carta por capacidad: ${groupUnits} ${groupUnits > 1 ? gu.plural : gu.singular} × ${gu.unitPrice} € (grupo de ${sel.people} pax)`
               : `Servicio a la carta (Categoría: ${i.cat || 'General'})`
           };
         });

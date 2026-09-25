@@ -310,7 +310,7 @@
           const name = document.createElement('span');
           name.textContent = i.label;
           const price = document.createElement('span');
-          price.textContent = nf.format(i.price) + ' €';
+          price.textContent = nf.format(i.price) + ' € × ' + sel.people + ' pax';
           li.append(name, price);
           summaryList.appendChild(li);
         });
@@ -369,10 +369,12 @@
 
       // Preparar actividades y desglose de servicios
       let actList = [];
+      let waActList = []; // igual que actList, pero con el precio x pax para el mensaje de WhatsApp
       let services = [];
 
       if (sel.kind === 'pack') {
         actList = [sel.title];
+        waActList = actList;
         services = [{
           name: sel.title,
           type: "pax",
@@ -385,6 +387,9 @@
         }];
       } else {
         actList = sel.items.map((i) => i.label);
+        waActList = sel.items.map((i) =>
+          `${i.label} (${nf.format(i.price)}€ x ${sel.people} = ${nf.format(i.price * sel.people)}€)`
+        );
         services = sel.items.map((i) => {
           const isUnit = isUnitBasedActivity(i.label);
           const isAcc = (i.cat && i.cat.toLowerCase().includes('alojamiento')) || i.label.toLowerCase().includes('alojamiento') || i.label.toLowerCase().includes('hotel');
@@ -551,7 +556,7 @@
 
       const waMsg =
         `¡Hola Crea Despedidas! Soy ${nameVal}. Hemos configurado nuestro evento (${eventType}) para ${sel.people} personas el ${dateFriendly}.\n` +
-        (sel.kind === 'pack' ? `Pack: ${sel.title} (${nf.format(sel.perPerson)} €/pax)\n` : `Servicios: ${actList.join(', ')}\n`) +
+        (sel.kind === 'pack' ? `Pack: ${sel.title} (${nf.format(sel.perPerson)} €/pax)\n` : `Servicios: ${waActList.join(', ')}\n`) +
         (wheelPrize ? `🎁 Premio ruleta ganado: ${wheelPrize}\n` : '') +
         (isPremioGordo && premioGordoDiscount > 0
           ? `Presupuesto estimado: ${nf.format(finalBudget)} € (👑 ¡Premio Gordo aplicado! 2 comen GRATIS: -${nf.format(premioGordoDiscount)} €).\n\n`

@@ -215,6 +215,9 @@
       const n = (name || '').toLowerCase();
       if (n.includes('velero')) return { unitPrice: 450, capacity: 11, singular: 'barco', plural: 'barcos' };
       if (n.includes('moto') && n.includes('agua')) return { unitPrice: 90, capacity: 2, singular: 'moto de agua', plural: 'motos de agua' };
+      if (n.includes('hummer')) return { unitPrice: 295, capacity: 12, singular: 'Hummer', plural: 'Hummers' };
+      if (n.includes('limusina')) return { unitPrice: 195, capacity: 8, singular: 'limusina', plural: 'limusinas' };
+      if (n.includes('traslado')) return { unitPrice: 120, capacity: 8, singular: 'furgoneta', plural: 'furgonetas' };
       return null;
     }
 
@@ -432,14 +435,15 @@
           const accPrice = isTwoNights ? 140 : (isOneNight ? 90 : (i.price || 90));
           const gu = groupUnitPricing(i.label);
           const groupUnits = gu ? Math.max(1, Math.ceil(Math.max(1, sel.people) / gu.capacity)) : null;
+          const effectiveUnit = isUnit || !!gu;
           const finalPrice = isAcc ? accPrice : (gu ? gu.unitPrice : i.price);
           return {
             name: i.label,
-            type: isAcc ? "accommodation" : (isUnit ? "flat" : "pax"),
+            type: isAcc ? "accommodation" : (effectiveUnit ? "flat" : "pax"),
             price: finalPrice,
-            guests: isUnit ? 1 : sel.people,
+            guests: effectiveUnit ? 1 : sel.people,
             units: gu ? groupUnits : (isUnit ? 1 : undefined),
-            isUnits: isUnit,
+            isUnits: effectiveUnit,
             cost: 0,
             date: dateVal,
             time: getDefaultActivityTime(i.label),

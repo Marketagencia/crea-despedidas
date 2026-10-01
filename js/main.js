@@ -230,11 +230,30 @@
     }
 
     // Precio de GRUPO (ya calculado para el nº de personas) de un ítem a la carta.
+    // Actividades con mínimo de facturación: si el grupo es más pequeño, se
+    // cobra igualmente como si fueran ese número mínimo de personas.
+    function minGroupSize(name) {
+      const n = (name || '').toLowerCase();
+      if (n.includes('humor amarillo')) return 8; // incluye "Humor Amarillo Splash"
+      if (n.includes('paintball')) return 8;
+      if (n.includes('bubbles')) return 8;
+      if (n.includes('tiro con arco')) return 8;
+      return null;
+    }
+
+    // Nº de personas que realmente se facturan para un ítem (aplica el mínimo).
+    function billedPeopleFor(name, people) {
+      const min = minGroupSize(name);
+      return min ? Math.max(Math.max(0, people), min) : Math.max(0, people);
+    }
+
     function groupItemTotal(name, price, people) {
       const gu = groupUnitPricing(name);
-      if (!gu) return price * Math.max(0, people);
-      const units = groupUnitsFor(gu, people);
-      return units * gu.unitPrice;
+      if (gu) {
+        const units = groupUnitsFor(gu, people);
+        return units * gu.unitPrice;
+      }
+      return price * billedPeopleFor(name, people);
     }
 
     let mode = 'packs'; // 'packs' | 'carta'
@@ -364,7 +383,9 @@
             const noun = units > 1 ? gu.plural : gu.singular;
             price.textContent = `${units} ${noun} × ${nf.format(gu.unitPrice)} € = ${nf.format(units * gu.unitPrice)} €`;
           } else {
-            price.textContent = nf.format(i.price) + ' € × ' + sel.people + ' pax = ' + nf.format(i.price * sel.people) + ' €';
+            const billed = billedPeopleFor(i.label, sel.people);
+            const minNote = billed > sel.people ? ' pax (mínimo)' : ' pax';
+            price.textContent = nf.format(i.price) + ' € × ' + billed + minNote + ' = ' + nf.format(i.price * billed) + ' €';
           }
           li.append(name, price);
           summaryList.appendChild(li);
@@ -449,7 +470,9 @@
             const noun = units > 1 ? gu.plural : gu.singular;
             return `${i.label} (${units} ${noun} x ${nf.format(gu.unitPrice)}€ = ${nf.format(units * gu.unitPrice)}€)`;
           }
-          return `${i.label} (${nf.format(i.price)}€ x ${sel.people} = ${nf.format(i.price * sel.people)}€)`;
+          const billed = billedPeopleFor(i.label, sel.people);
+          const minTag = billed > sel.people ? ' mínimo' : '';
+          return `${i.label} (${nf.format(i.price)}€ x ${billed}${minTag} = ${nf.format(i.price * billed)}€)`;
         });
         services = sel.items.map((i) => {
           const isUnit = isUnitBasedActivity(i.label);
@@ -461,11 +484,13 @@
           const groupUnits = gu ? groupUnitsFor(gu, sel.people) : null;
           const effectiveUnit = isUnit || !!gu;
           const finalPrice = isAcc ? accPrice : (gu ? gu.unitPrice : i.price);
+          const billedGuests = billedPeopleFor(i.label, sel.people);
+          const minApplied = !gu && billedGuests > sel.people;
           return {
             name: i.label,
             type: isAcc ? "accommodation" : (effectiveUnit ? "flat" : "pax"),
             price: finalPrice,
-            guests: effectiveUnit ? 1 : sel.people,
+            guests: effectiveUnit ? 1 : billedGuests,
             units: gu ? groupUnits : (isUnit ? 1 : undefined),
             isUnits: effectiveUnit,
             cost: 0,
@@ -475,6 +500,8 @@
               ? `Alojamiento seleccionado en web (${isTwoNights ? '2 noches' : '1 noche'} - ${accPrice} €/persona)`
               : gu
               ? `Servicio a la carta por capacidad: ${groupUnits} ${groupUnits > 1 ? gu.plural : gu.singular} × ${gu.unitPrice} € (grupo de ${sel.people} pax)`
+              : minApplied
+              ? `Servicio a la carta (Categoría: ${i.cat || 'General'}) - mínimo ${billedGuests} pax facturados (grupo real: ${sel.people})`
               : `Servicio a la carta (Categoría: ${i.cat || 'General'})`
           };
         });

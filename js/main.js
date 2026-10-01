@@ -221,6 +221,7 @@
       if (n.includes('hummer')) return { unitPrice: 295, capacity: 12, scalable: true, singular: 'Hummer', plural: 'Hummers' };
       if (n.includes('limusina')) return { unitPrice: 195, capacity: 8, scalable: true, singular: 'limusina', plural: 'limusinas' };
       if (n.includes('traslado')) return { unitPrice: 120, capacity: 8, scalable: true, singular: 'furgoneta', plural: 'furgonetas' };
+      if (n.includes('big paddle') || n.includes('big paddel') || (n.includes('mega') && n.includes('paddle'))) return { unitPrice: 120, capacity: 8, scalable: true, singular: 'tabla', plural: 'tablas' };
       return null;
     }
 

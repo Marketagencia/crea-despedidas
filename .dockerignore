@@ -13,6 +13,9 @@ iMAGENES*
 # Scripts de mantenimiento (no forman parte del sitio servido)
 scripts
 
+# Propuestas de publicaciones para redes sociales (uso interno del equipo)
+social
+
 # Docs
 README.md
 DEPLOY.md

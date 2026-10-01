@@ -213,19 +213,27 @@
     // para el grupo, no de multiplicar el precio por cada persona.
     function groupUnitPricing(name) {
       const n = (name || '').toLowerCase();
-      if (n.includes('velero')) return { unitPrice: 450, capacity: 11, singular: 'barco', plural: 'barcos' };
-      if (n.includes('moto') && n.includes('agua')) return { unitPrice: 90, capacity: 2, singular: 'moto de agua', plural: 'motos de agua' };
-      if (n.includes('hummer')) return { unitPrice: 295, capacity: 12, singular: 'Hummer', plural: 'Hummers' };
-      if (n.includes('limusina')) return { unitPrice: 195, capacity: 8, singular: 'limusina', plural: 'limusinas' };
-      if (n.includes('traslado')) return { unitPrice: 120, capacity: 8, singular: 'furgoneta', plural: 'furgonetas' };
+      // scalable:false -> capacidad MÁXIMA (un único barco, sin añadir más); la
+      // casilla se desactiva en vez de escalar el precio si se supera el aforo.
+      if (n.includes('velero')) return { unitPrice: 450, capacity: 11, scalable: false, singular: 'barco', plural: 'barcos' };
+      if (n.includes('barco') && n.includes('patr')) return { unitPrice: 450, capacity: 11, scalable: false, singular: 'barco', plural: 'barcos' };
+      if (n.includes('moto') && n.includes('agua')) return { unitPrice: 90, capacity: 2, scalable: true, singular: 'moto de agua', plural: 'motos de agua' };
+      if (n.includes('hummer')) return { unitPrice: 295, capacity: 12, scalable: true, singular: 'Hummer', plural: 'Hummers' };
+      if (n.includes('limusina')) return { unitPrice: 195, capacity: 8, scalable: true, singular: 'limusina', plural: 'limusinas' };
+      if (n.includes('traslado')) return { unitPrice: 120, capacity: 8, scalable: true, singular: 'furgoneta', plural: 'furgonetas' };
       return null;
+    }
+
+    function groupUnitsFor(gu, people) {
+      if (gu.scalable === false) return 1;
+      return Math.max(1, Math.ceil(Math.max(1, people) / gu.capacity));
     }
 
     // Precio de GRUPO (ya calculado para el nº de personas) de un ítem a la carta.
     function groupItemTotal(name, price, people) {
       const gu = groupUnitPricing(name);
       if (!gu) return price * Math.max(0, people);
-      const units = Math.max(1, Math.ceil(Math.max(1, people) / gu.capacity));
+      const units = groupUnitsFor(gu, people);
       return units * gu.unitPrice;
     }
 
@@ -315,7 +323,23 @@
       };
     })();
 
+    // Desactiva las actividades de aforo fijo (scalable:false) cuando el grupo
+    // supera su capacidad máxima, desmarcándolas si estaban seleccionadas.
+    function refreshCapacityLimits() {
+      const people = parseInt(peopleInput.value, 10) || 0;
+      $$('input[name="item"]', form).forEach((box) => {
+        const gu = groupUnitPricing(box.value);
+        if (!gu || gu.scalable !== false) return;
+        const over = people > gu.capacity;
+        box.disabled = over;
+        const chip = box.closest('.chip');
+        if (chip) chip.classList.toggle('is-disabled', over);
+        if (over && box.checked) box.checked = false;
+      });
+    }
+
     function update() {
+      refreshCapacityLimits();
       const sel = readSelection();
       const total = sel.groupTotal;
 
@@ -336,7 +360,7 @@
           const price = document.createElement('span');
           const gu = groupUnitPricing(i.label);
           if (gu) {
-            const units = Math.max(1, Math.ceil(Math.max(1, sel.people) / gu.capacity));
+            const units = groupUnitsFor(gu, sel.people);
             const noun = units > 1 ? gu.plural : gu.singular;
             price.textContent = `${units} ${noun} × ${nf.format(gu.unitPrice)} € = ${nf.format(units * gu.unitPrice)} €`;
           } else {
@@ -421,7 +445,7 @@
         waActList = sel.items.map((i) => {
           const gu = groupUnitPricing(i.label);
           if (gu) {
-            const units = Math.max(1, Math.ceil(Math.max(1, sel.people) / gu.capacity));
+            const units = groupUnitsFor(gu, sel.people);
             const noun = units > 1 ? gu.plural : gu.singular;
             return `${i.label} (${units} ${noun} x ${nf.format(gu.unitPrice)}€ = ${nf.format(units * gu.unitPrice)}€)`;
           }
@@ -434,7 +458,7 @@
           const isOneNight = i.label.includes('1 noche');
           const accPrice = isTwoNights ? 140 : (isOneNight ? 90 : (i.price || 90));
           const gu = groupUnitPricing(i.label);
-          const groupUnits = gu ? Math.max(1, Math.ceil(Math.max(1, sel.people) / gu.capacity)) : null;
+          const groupUnits = gu ? groupUnitsFor(gu, sel.people) : null;
           const effectiveUnit = isUnit || !!gu;
           const finalPrice = isAcc ? accPrice : (gu ? gu.unitPrice : i.price);
           return {

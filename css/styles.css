@@ -995,6 +995,7 @@ body { margin: 0; min-height: 100vh; }
   transition: transform 0.18s var(--ease), border-color 0.18s var(--ease), background 0.18s var(--ease), color 0.18s var(--ease);
 }
 .chip-face b { font-weight: 700; color: rgba(255, 255, 255, 0.5); }
+.chip-face small { font-size: 0.72em; color: rgba(255, 255, 255, 0.4); }
 .chip:hover .chip-face { transform: translateY(-2px); border-color: rgba(255, 255, 255, 0.28); }
 .chip input:checked + .chip-face {
   color: #05060a;
@@ -1004,6 +1005,10 @@ body { margin: 0; min-height: 100vh; }
 }
 .chip input:checked + .chip-face b { color: rgba(5, 6, 10, 0.65); }
 .chip input:focus-visible + .chip-face { outline: 2px solid var(--c-cyan); outline-offset: 2px; }
+.chip.is-disabled { cursor: not-allowed; }
+.chip.is-disabled .chip-face { opacity: 0.4; }
+.chip.is-disabled:hover .chip-face { transform: none; border-color: rgba(255, 255, 255, 0.1); }
+.chip input:disabled { cursor: not-allowed; }
 
 .planner-summary {
   align-self: start;

@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10805472079"></script>
+  <meta charset="UTF-8" />
+  <!-- Google tag (gtag.js) · carga diferida: primera interacción o 5 s tras el load -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'AW-10805472079');
+    (function () {
+      var done = 0;
+      function load() {
+        if (done) return; done = 1;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-10805472079';
+        document.head.appendChild(s);
+      }
+      ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (e) {
+        addEventListener(e, load, { once: true, passive: true });
+      });
+      addEventListener('load', function () { setTimeout(load, 5000); });
+    })();
   </script>
 
-  <meta charset="UTF-8" />
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0B0B0F" />
   <script>document.documentElement.classList.add('js');</script>
@@ -36,21 +49,14 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Cuándo llamar al 112 en España?","acceptedAnswer":{"@type":"Answer","text":"Llamad al 112 ante cualquiera de estas señales, si la persona empeora o si no estáis seguros de que se encuentre a salvo. No os frenéis por presión del grupo ni por miedo a interrumpir el plan: ahora la prioridad es que reciba ayuda. Mientras una persona llama, otra puede quedarse pendiente de la afectada y observar si responde y cómo respira. Explicad con calma qué ha ocurrido, qué pudo haber consumido y qué síntomas veis. No inventéis datos si no los sabéis. Seguid las indicaciones del operador y no colguéis hasta que os lo diga. Ante la duda, llamad: es mejor consultar a emergencias que esperar a que la situación se complique. En cuanto sospechéis que la situación puede ser grave, repartid tareas. Los nervios bajan cuando cada persona sabe qué hacer. La regla es sencilla: pedid ayuda y vigilad continuamente la respiración y la respuesta de la persona. La guía de Mayo Clinic sobre los síntomas de la intoxicación por alcohol también recomienda no dejar sola a la persona mientras llega ayuda. Si os preguntáis qué hacer si alguien del grupo se emborracha demasiado, seguid estos pasos sin perder tiempo en discutir si “está tan mal”:"}},{"@type":"Question","name":"¿Cómo sé si alguien se ha emborrachado demasiado?","acceptedAnswer":{"@type":"Answer","text":"Fíjate en si cuesta despertarle, está muy confuso, convulsiona, vomita repetidamente o respira de forma lenta o irregular. No hace falta que aparezcan todas las señales ni que intentes diagnosticarle. Si empeora, no responde con normalidad o tienes dudas sobre su seguridad, llama al 112 y explica lo que observas. Mientras llega ayuda, quédate con la persona y vigila su respiración y respuesta."}},{"@type":"Question","name":"¿Cuándo debo llamar al 112 si alguien ha bebido demasiado?","acceptedAnswer":{"@type":"Answer","text":"Llama al 112 si la persona está inconsciente, cuesta despertarla, respira de forma anormal, convulsiona o presenta otros síntomas graves. También puedes llamar si no sabes valorar si está a salvo. Indica dónde estáis y describe con calma lo que observas; sigue las instrucciones del operador. No retrases la llamada para averiguar cuánto alcohol tomó exactamente. Si lo sabes, puedes comunicarlo mientras pides ayuda."}},{"@type":"Question","name":"¿Se puede dejar dormir a una persona que está muy borracha?","acceptedAnswer":{"@type":"Answer","text":"No la dejes sola ni supongas que dormir resolverá el problema. Si cuesta despertarla, está inconsciente o respira de forma anormal, llama al 112. Si está inconsciente pero respira normalmente, sigue las indicaciones del operador, que puede recomendar colocarla de lado. Vigílala de manera continua. No le des comida ni bebida si está somnolienta, inconsciente o no puede tragar con seguridad."}},{"@type":"Question","name":"¿Qué hago si una persona borracha vomita y se queda dormida?","acceptedAnswer":{"@type":"Answer","text":"Quédate a su lado y comprueba si responde y respira con normalidad. Si cuesta despertarla, empeora o su respiración es anormal, llama al 112. No la dejes tumbada boca arriba sin vigilancia y no intentes provocarle más vómitos. Si está inconsciente, sigue las instrucciones del operador sobre cómo colocarla y qué hacer mientras llega ayuda. No le des comida ni bebida si está adormecida."}},{"@type":"Question","name":"¿Debo darle café, agua o una ducha fría para que se espabile?","acceptedAnswer":{"@type":"Answer","text":"No: el café, las bebidas energéticas, las duchas frías y el ejercicio no revierten una intoxicación, y provocar el vómito puede ser peligroso. Si está muy somnolienta, inconsciente o no puede tragar con seguridad, no le des agua, comida ni otras bebidas, porque podría atragantarse. Vigílala y llama al 112 ante señales de alarma. Sigue las instrucciones de emergencias en lugar de probar remedios caseros."}},{"@type":"Question","name":"¿Cuánto tarda en pasarse una borrachera fuerte?","acceptedAnswer":{"@type":"Answer","text":"No hay un plazo único que permita saber cuánto esperar, y el tiempo transcurrido no basta para valorar si la persona está fuera de peligro. Si cuesta despertarla, empeora o presenta señales preocupantes, no esperes a que se le pase: llama al 112. Mientras tanto, no la dejes sola y vigila su respuesta y respiración. Sigue las indicaciones que recibas de los servicios de emergencia."}},{"@type":"Question","name":"¿Qué hago si también ha mezclado alcohol con medicamentos u otras sustancias?","acceptedAnswer":{"@type":"Answer","text":"Comunica la posible mezcla al pedir ayuda. Si la persona está muy afectada, no responde con normalidad o presenta síntomas graves, llama al 112 y explica qué medicamentos o sustancias podrían estar implicados, si lo sabes. No intentes contrarrestar sus efectos con café, comida u otros productos. Quédate con la persona, observa cualquier cambio y sigue las indicaciones del operador. No retrases la llamada para confirmar todos los detalles."}}]}
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" href="/assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: {
-        fontFamily: { display: ['Sora', 'system-ui', 'sans-serif'], sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'] },
-        colors: { ink: '#0B0B0F', surface: '#121218', neon: { cyan: '#00F2FE', blue: '#4FACFE', pink: '#FF2FB9', orange: '#FF7A18' } },
-      } },
-    };
-  </script>
-  <link rel="stylesheet" href="/css/styles.css?v=56" />
+  
+  <link rel="stylesheet" href="/css/styles.css?v=61" />
+  <link rel="stylesheet" href="/css/tailwind.css?v=2" />
   <style>.post-prose figure{margin:1.75rem 0}.post-prose figure img{display:block;width:100%;height:auto;border-radius:1.25rem}</style>
+  <link rel="icon" type="image/webp" href="/assets/fish.webp" />
 </head>
 
 <body class="bg-ink text-white font-sans antialiased overflow-x-hidden">
@@ -63,7 +69,7 @@
   <header id="nav" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
     <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 md:px-8" aria-label="Principal">
       <a href="/" class="brand" aria-label="Crea Despedidas — Inicio">
-        <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+        <img src="/assets/logo.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
       </a>
       <ul class="hidden items-center gap-8 text-sm text-white/70 lg:flex">
         <li class="nav-item has-submenu">
@@ -215,7 +221,7 @@
       <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
         <div>
           <a href="/" class="brand brand--footer" aria-label="Crea Despedidas — Inicio">
-            <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+            <img src="/assets/logo-lg.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" loading="lazy" decoding="async" />
           </a>
           <p class="mt-4 max-w-xs text-sm leading-relaxed text-white/50">Despedidas de soltero/a y eventos privados en Valencia. La despedida que nunca olvidaréis.</p>
         </div>
@@ -246,17 +252,17 @@
           </address>
         </div>
       </div>
-      <div class="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/40 md:flex-row">
+      <div class="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/60 md:flex-row">
         <p>© <span id="year">2026</span> Crea Despedidas. Todos los derechos reservados.</p>
         <ul class="flex gap-6"><li><a href="/" class="hover:text-white">Inicio</a></li></ul>
       </div>
     </div>
   </footer>
 
-  <img src="/assets/fish.png" id="fish-cursor" alt="" aria-hidden="true" />
+  <img src="/assets/fish.webp" id="fish-cursor" fetchpriority="low" decoding="async" alt="" aria-hidden="true" />
   <a href="https://crea-despedidas-crmdespe.fptzxz.easypanel.host/chat.html" target="_blank" rel="noopener" class="wa-float" aria-label="Escríbenos por WhatsApp">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.5-4.5A8 8 0 1 1 9 19L4 20Z"/><path d="M9 10c0 3 2.5 5.5 5.5 5.5M9 10c0-1 1-1.5 1.5-1l1 1.5-1 1M14.5 15.5c1 0 1.5-1 1-1.5L14 13l-1 1"/></svg>
   </a>
-  <script src="/js/main.js?v=58" defer></script>
+  <script src="/js/main.js?v=61" defer></script>
 </body>
 </html>

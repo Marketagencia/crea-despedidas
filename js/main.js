@@ -187,8 +187,31 @@
     const SUPABASE_URL = "https://rpauoapxjuujzqzxgkci.supabase.co";
     const SUPABASE_ANON_KEY = "sb_publishable_vpn5WvOo-TLrDBXkMNCD6g_nmA1_xGt";
     let supabaseClient = null;
-    if (window.supabase && typeof window.supabase.createClient === "function") {
-      supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    // El SDK de Supabase (~190 KB) se carga bajo demanda: al acercarse al configurador
+    // o al enviar la propuesta, no en cada visita (mejora la velocidad de carga).
+    let supabaseLoading = null;
+    function ensureSupabase() {
+      if (window.supabase && typeof window.supabase.createClient === "function") return Promise.resolve();
+      if (!supabaseLoading) {
+        supabaseLoading = new Promise((resolve) => {
+          const s = document.createElement('script');
+          s.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+          s.async = true;
+          s.onload = () => resolve();
+          s.onerror = () => resolve();
+          document.head.appendChild(s);
+        });
+      }
+      return supabaseLoading;
+    }
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          io.disconnect();
+          ensureSupabase();
+        }
+      }, { rootMargin: '600px 0px' });
+      io.observe(form);
     }
 
     function getDefaultActivityTime(name) {
@@ -579,6 +602,7 @@
       }
 
       // Sincronizar Supabase
+      await ensureSupabase();
       if (!supabaseClient && window.supabase && typeof window.supabase.createClient === "function") {
         supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
       }
@@ -961,6 +985,14 @@
     const strip = document.querySelector('[data-photo-strip]');
     if (!strip) return;
 
+    // La tira del hero solo se ve en escritorio (>=1024px): en móvil ni se construye,
+    // así no se descargan ni se pintan imágenes que nunca se muestran.
+    const inHero = strip.closest('.hero-marquee');
+    if (inHero && !window.matchMedia('(min-width: 1024px)').matches) {
+      inHero.remove();
+      return;
+    }
+
     const PICS = [
       ['velero', 'Grupo de fiesta en un barco velero al atardecer'],
       ['motos-agua', 'Moto de agua en la costa de Valencia'],
@@ -969,9 +1001,9 @@
       ['mega-big-paddle', 'Grupo en una tabla de paddle gigante'],
       ['humor-amarillo', 'Humor amarillo con trajes de sumo hinchables'],
       ['persona-al-agua', 'Grupo en una actividad acuática de equipo'],
-      ['comida-charanga-interior', 'Comida con charanga en salón interior', true],
-      ['comida-charanga-terraza', 'Comida con charanga en terraza', true],
-      ['humor-amarillo-despedidas', 'Despedida de soltera con humor amarillo', true],
+      ['comida-charanga-interior', 'Comida con charanga en salón interior'],
+      ['comida-charanga-terraza', 'Comida con charanga en terraza'],
+      ['humor-amarillo-despedidas', 'Despedida de soltera con humor amarillo'],
     ];
 
     // Barajado Fisher–Yates (orden aleatorio en cada carga)
@@ -981,18 +1013,15 @@
       [list[i], list[j]] = [list[j], list[i]];
     }
 
-    const REPEAT = 3; // repetir la secuencia para llenar pantallas anchas
+    const REPEAT = 2; // repetir la secuencia para llenar pantallas anchas
     const buildTrack = (decorative) => {
       let out = '';
       for (let r = 0; r < REPEAT; r++) {
-        for (const [name, alt, jpgOnly] of list) {
-          const src = '/assets/' + name + (jpgOnly ? '.jpg' : '.webp');
+        for (const [name, alt] of list) {
           out +=
-            '<img class="strip-photo" src="' + src + '" ' +
+            '<img class="strip-photo" src="/assets/strip/' + name + '.webp" width="460" height="324" ' +
             (decorative ? 'alt="" aria-hidden="true"' : 'alt="' + alt + '"') +
-            ' loading="lazy"' +
-            (jpgOnly ? '' : ' onerror="this.src=\'/assets/' + name + '.jpg\'"') +
-            '>';
+            ' loading="lazy" decoding="async">';
         }
       }
       return out;

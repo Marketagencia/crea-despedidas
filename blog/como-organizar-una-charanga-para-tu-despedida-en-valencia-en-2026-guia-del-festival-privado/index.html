@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10805472079"></script>
+  <meta charset="UTF-8" />
+  <!-- Google tag (gtag.js) · carga diferida: primera interacción o 5 s tras el load -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'AW-10805472079');
+    (function () {
+      var done = 0;
+      function load() {
+        if (done) return; done = 1;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-10805472079';
+        document.head.appendChild(s);
+      }
+      ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (e) {
+        addEventListener(e, load, { once: true, passive: true });
+      });
+      addEventListener('load', function () { setTimeout(load, 5000); });
+    })();
   </script>
 
-  <meta charset="UTF-8" />
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0B0B0F" />
   <script>document.documentElement.classList.add('js');</script>
@@ -36,21 +49,14 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"El tamaño del grupo: ¿Cuántos músicos necesitas?","acceptedAnswer":{"@type":"Answer","text":"¿Cuánta potencia buscáis? El tamaño sí importa cuando hablamos de sonoridad. Aunque existen formaciones reducidas, lo ideal para una charanga despedida valencia épica es contar con un grupo equilibrado que garantice un \"festín\" sonoro inolvidable. Si queréis redondear la jugada, lo más inteligente es combinar este ambiente con una buena mesa. Muchos grupos eligen nuestro pack de comida con charanga para que la transición entre el plato y la pista de baile sea inmediata. Cuantos más seáis, más instrumentos recomendamos para que la música envuelva a todo el grupo y nadie se quede fuera de la onda festiva. Organizar una charanga despedida valencia parece sencillo hasta que te topas con la realidad de la Ordenanza de Protección contra la Contaminación Acústica. En 2026, el Ayuntamiento de Valencia ha endurecido el control en barrios como Ruzafa, El Carmen o la zona de Xúquer, clasificadas como Zonas Acústicamente Saturadas (ZAS). Tocar sin permiso en plena calle puede salirte muy caro; las sanciones graves por exceso de ruido oscilan entre los 601 € y los 6.000 €. No es para asustarse, pero sí para ser listos y jugar con las reglas del juego. La clave es entender que la música en la vía pública requiere una licencia de ocupación de dominio público. Es un trámite burocrático que no se consigue de un día para otro. Es curioso porque, aunque la tradición bandística de la Comunidad Valenciana es Patrimonio Inmaterial protegido, la convivencia vecinal manda. Por eso, la mayoría de los grupos inteligentes optan por celebrar el grueso de la fiesta en recintos privados habilitados o terrazas autorizadas en la zona de la Marina, donde el volumen es sinónimo de diversión y no de multa."}},{"@type":"Question","name":"¿Es legal llevar una charanga por las calles de Valencia?","acceptedAnswer":{"@type":"Answer","text":"Es legal siempre que se cuente con la autorización municipal correspondiente o se realice en espacios privados habilitados. En Valencia existen normativas de ruido muy estrictas, especialmente en zonas saturadas acústicamente como Ruzafa o el Carmen. Para evitar multas que pueden llegar hasta los 6.000 €, lo ideal es delegar la gestión en expertos locales que conozcan las rutas autorizadas y los horarios permitidos para que vuestra fiesta no tenga interrupciones policiales."}},{"@type":"Question","name":"¿Cuántos músicos son recomendables para una despedida de 15 personas?","acceptedAnswer":{"@type":"Answer","text":"Para un grupo de 15 personas, recomendamos una formación de entre 5 y 7 músicos. Este tamaño asegura una sonoridad potente sin llegar a ser abrumadora para un grupo mediano. Con una plantilla que incluya trompetas, trombón, saxo y percusión, tendréis el equilibrio perfecto entre volumen y movilidad. Es la configuración ideal para que vuestra charanga despedida valencia suene profesional mientras recorréis las calles o disfrutáis de un tardeo privado con vuestro propio ritmo."}},{"@type":"Question","name":"¿Podemos elegir las canciones que tocará la charanga?","acceptedAnswer":{"@type":"Answer","text":"¡Por supuesto! Podéis personalizar el repertorio para que la música encaje totalmente con vuestro estilo. Las charangas actuales dominan desde los clásicos de verbena de toda la vida hasta los hits más virales de reggaeton y pop de este 2026. Solo tenéis que pasarnos vuestra lista de canciones imprescindibles o ese tema especial que queréis que sea el himno del novio. Los músicos se encargarán de que cada nota sea un auténtico chute de energía para el grupo."}},{"@type":"Question","name":"¿Qué pasa si llueve el día de la despedida?","acceptedAnswer":{"@type":"Answer","text":"La lluvia no detiene el festival, solo lo traslada de escenario. Si el tiempo se pone feo, coordinamos el cambio de la actuación a un espacio cubierto, como un local de ocio o un restaurante especializado en despedidas. Al trabajar con recintos privados en Valencia, siempre tenemos un plan B preparado para que la música siga sonando sin que los instrumentos ni vuestras ganas de fiesta se mojen. La seguridad y la diversión están garantizadas pase lo que pase."}},{"@type":"Question","name":"¿Hay que pedir permiso al Ayuntamiento para una charanga privada?","acceptedAnswer":{"@type":"Answer","text":"Sí, cualquier actuación musical en la vía pública de Valencia requiere un permiso de ocupación de dominio público tramitado ante el Ayuntamiento. No es algo que se consiga en el último minuto, por lo que contar con una agencia local facilita enormemente este proceso burocrático. Nosotros nos encargamos de gestionar los trámites necesarios o de proponeros ubicaciones privadas donde no sea necesaria dicha licencia, eliminando cualquier rastro de estrés para la persona encargada de organizar el grupo."}},{"@type":"Question","name":"¿Se puede contratar una charanga para recoger al novio en su hotel?","acceptedAnswer":{"@type":"Answer","text":"¡Es una de nuestras sorpresas favoritas! La recogida del protagonista en su hotel o alojamiento es el inicio perfecto para una jornada legendaria. Imagina su cara cuando baje a recepción y se encuentre con toda la banda tocando a máxima potencia. Solo necesitamos coordinar la ubicación exacta y asegurar que el horario cumple con las normas de convivencia vecinal. Es el despertador más ruidoso, divertido y épico que podéis regalarle al futuro novio en su gran día."}},{"@type":"Question","name":"¿Cuál es la duración mínima y máxima de una actuación?","acceptedAnswer":{"@type":"Answer","text":"Lo habitual es contratar sesiones que van desde la hora de impacto total hasta pasacalles de 3 horas de duración. Para una charanga despedida valencia redonda, solemos recomendar el pack de 1,5 o 2 horas. Es el tiempo perfecto para realizar una ruta de pasabares con energía constante sin que el grupo se agote físicamente. Si buscáis algo más largo, podemos planificar descansos estratégicos para que los músicos y vosotros recuperéis fuerzas antes del siguiente set."}},{"@type":"Question","name":"¿Es posible combinar la charanga con una fiesta en barco?","acceptedAnswer":{"@type":"Answer","text":"Es el combo imbatible del Mediterráneo. Aunque por espacio y seguridad no solemos subir la banda completa a bordo de un velero, lo que mejor funciona es el recibimiento triunfal en el muelle. Nada supera la sensación de desembarcar tras una sesión de adrenalina en el mar y que la charanga os esté esperando en el puerto para escoltaros hasta la comida. Es la transición ideal para llevar la fiesta del agua al asfalto valenciano con estilo."}}]}
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" href="/assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: {
-        fontFamily: { display: ['Sora', 'system-ui', 'sans-serif'], sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'] },
-        colors: { ink: '#0B0B0F', surface: '#121218', neon: { cyan: '#00F2FE', blue: '#4FACFE', pink: '#FF2FB9', orange: '#FF7A18' } },
-      } },
-    };
-  </script>
-  <link rel="stylesheet" href="/css/styles.css?v=55" />
+  
+  <link rel="stylesheet" href="/css/styles.css?v=61" />
+  <link rel="stylesheet" href="/css/tailwind.css?v=2" />
   <style>.post-prose figure{margin:1.75rem 0}.post-prose figure img{display:block;width:100%;height:auto;border-radius:1.25rem}</style>
+  <link rel="icon" type="image/webp" href="/assets/fish.webp" />
 </head>
 
 <body class="bg-ink text-white font-sans antialiased overflow-x-hidden">
@@ -63,7 +69,7 @@
   <header id="nav" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
     <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 md:px-8" aria-label="Principal">
       <a href="/" class="brand" aria-label="Crea Despedidas — Inicio">
-        <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+        <img src="/assets/logo.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
       </a>
       <ul class="hidden items-center gap-8 text-sm text-white/70 lg:flex">
         <li class="nav-item has-submenu">
@@ -203,7 +209,7 @@
       <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
         <div>
           <a href="/" class="brand brand--footer" aria-label="Crea Despedidas — Inicio">
-            <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+            <img src="/assets/logo-lg.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" loading="lazy" decoding="async" />
           </a>
           <p class="mt-4 max-w-xs text-sm leading-relaxed text-white/50">Despedidas de soltero/a y eventos privados en Valencia. La despedida que nunca olvidaréis.</p>
         </div>
@@ -234,17 +240,17 @@
           </address>
         </div>
       </div>
-      <div class="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/40 md:flex-row">
+      <div class="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/60 md:flex-row">
         <p>© <span id="year">2026</span> Crea Despedidas. Todos los derechos reservados.</p>
         <ul class="flex gap-6"><li><a href="/" class="hover:text-white">Inicio</a></li></ul>
       </div>
     </div>
   </footer>
 
-  <img src="/assets/fish.png" id="fish-cursor" alt="" aria-hidden="true" />
+  <img src="/assets/fish.webp" id="fish-cursor" fetchpriority="low" decoding="async" alt="" aria-hidden="true" />
   <a href="https://crea-despedidas-crmdespe.fptzxz.easypanel.host/chat.html" target="_blank" rel="noopener" class="wa-float" aria-label="Escríbenos por WhatsApp">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.5-4.5A8 8 0 1 1 9 19L4 20Z"/><path d="M9 10c0 3 2.5 5.5 5.5 5.5M9 10c0-1 1-1.5 1.5-1l1 1.5-1 1M14.5 15.5c1 0 1.5-1 1-1.5L14 13l-1 1"/></svg>
   </a>
-  <script src="/js/main.js?v=54" defer></script>
+  <script src="/js/main.js?v=61" defer></script>
 </body>
 </html>

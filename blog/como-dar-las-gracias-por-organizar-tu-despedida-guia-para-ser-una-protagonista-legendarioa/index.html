@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10805472079"></script>
+  <meta charset="UTF-8" />
+  <!-- Google tag (gtag.js) · carga diferida: primera interacción o 5 s tras el load -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'AW-10805472079');
+    (function () {
+      var done = 0;
+      function load() {
+        if (done) return; done = 1;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-10805472079';
+        document.head.appendChild(s);
+      }
+      ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (e) {
+        addEventListener(e, load, { once: true, passive: true });
+      });
+      addEventListener('load', function () { setTimeout(load, 5000); });
+    })();
   </script>
 
-  <meta charset="UTF-8" />
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0B0B0F" />
   <script>document.documentElement.classList.add('js');</script>
@@ -36,21 +49,14 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Cuándo es el mejor momento para dar las gracias después de la despedida?","acceptedAnswer":{"@type":"Answer","text":"Lo ideal es agradecerlo cuando ya puedas disfrutar del recuerdo con calma, sin dejar que pasen semanas. Un mensaje al día siguiente o cuando vuelvas a casa demuestra que tienes presente el esfuerzo del grupo. Después, puedes enviar una nota más personal o proponer una quedada para ver fotos y vídeos. No hace falta esperar a tener el regalo perfecto: unas palabras sinceras ya cuentan."}},{"@type":"Question","name":"¿Es obligatorio hacer un regalo físico a los organizadores?","acceptedAnswer":{"@type":"Answer","text":"No, un regalo físico no es obligatorio. El agradecimiento vale por la intención, no por el precio: puedes mandar un audio personal, escribir una nota o invitar a quien organizó a tomar algo. Si eliges un detalle, que tenga sentido para esa persona, como una foto con una dedicatoria o una canción que os recuerde una anécdota. Lo importante es que se note que pensaste en ella."}},{"@type":"Question","name":"¿Qué decir si algo en la despedida no me gustó pero quiero ser agradecido?","acceptedAnswer":{"@type":"Answer","text":"Agradece primero lo que sí valoraste y habla de lo que te incomodó en privado, con calma y sin convertir el chat en un juicio. Por ejemplo: «Gracias por todo el esfuerzo y por reunir al grupo. Me encantó compartirlo; quería contarte también que me sentí algo incómodo/a con cierto momento». Describe cómo te sentiste, no ataques a quien organizó. Así puedes cuidar la amistad y ser honesto/a."}},{"@type":"Question","name":"¿Cómo agradecer de forma especial a los amigos que viven fuera?","acceptedAnswer":{"@type":"Answer","text":"Reconoce directamente el viaje y el tiempo que reservaron para estar contigo. Puedes enviarles un mensaje individual, una foto del grupo con una dedicatoria o una nota de voz mencionando un recuerdo que compartisteis. Si no podéis reuniros pronto, proponles una videollamada para comentar la jugada. Ese detalle les hará saber que su esfuerzo contó, aunque no vivan cerca de Valencia."}},{"@type":"Question","name":"¿Debo agradecer individualmente o en el grupo de WhatsApp es suficiente?","acceptedAnswer":{"@type":"Answer","text":"Combinar ambas opciones suele ser una buena manera de incluir a todos y reconocer el esfuerzo especial de alguien. En el grupo, brinda por la cuadrilla y comparte una anécdota que os haga reír; después, escribe por privado a quien coordinó planes y agendas. Si te preguntas cómo dar las gracias por organizar tu despedida con autenticidad, adapta el mensaje a la relación y a lo que hizo cada persona."}},{"@type":"Question","name":"¿Qué ideas de agradecimiento son mejores para una despedida de soltera en Valencia?","acceptedAnswer":{"@type":"Answer","text":"Elige un plan que encaje con la energía de vuestro grupo y os permita seguir compartiendo tiempo. Una comida para ver fotos, una cena con espectáculo o una quedada tranquila pueden convertirse en otro recuerdo. En Valencia, podéis valorar actividades de ocio disponibles en la ciudad según vuestros gustos y comprobar los detalles antes de decidir. Añade una dedicatoria personal para que el plan no parezca una salida más."}},{"@type":"Question","name":"¿Cómo puedo involucrar a mi pareja en el agradecimiento a los amigos?","acceptedAnswer":{"@type":"Answer","text":"Invítale a participar si también quiere reconocer el cariño del grupo, pero mantén el agradecimiento ligado a vuestra experiencia compartida. Podéis firmar juntos una tarjeta, grabar un audio o proponer una comida para volver a veros. También podéis dividirlo: tú escribes a quien organizó y ambos enviáis un mensaje al grupo. Así tu pareja suma cercanía sin quitar protagonismo a la despedida ni a quienes la prepararon."}}]}
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" href="/assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: {
-        fontFamily: { display: ['Sora', 'system-ui', 'sans-serif'], sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'] },
-        colors: { ink: '#0B0B0F', surface: '#121218', neon: { cyan: '#00F2FE', blue: '#4FACFE', pink: '#FF2FB9', orange: '#FF7A18' } },
-      } },
-    };
-  </script>
-  <link rel="stylesheet" href="/css/styles.css?v=55" />
+  
+  <link rel="stylesheet" href="/css/styles.css?v=61" />
+  <link rel="stylesheet" href="/css/tailwind.css?v=2" />
   <style>.post-prose figure{margin:1.75rem 0}.post-prose figure img{display:block;width:100%;height:auto;border-radius:1.25rem}</style>
+  <link rel="icon" type="image/webp" href="/assets/fish.webp" />
 </head>
 
 <body class="bg-ink text-white font-sans antialiased overflow-x-hidden">
@@ -63,7 +69,7 @@
   <header id="nav" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
     <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 md:px-8" aria-label="Principal">
       <a href="/" class="brand" aria-label="Crea Despedidas — Inicio">
-        <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+        <img src="/assets/logo.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
       </a>
       <ul class="hidden items-center gap-8 text-sm text-white/70 lg:flex">
         <li class="nav-item has-submenu">
@@ -189,7 +195,7 @@
       <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
         <div>
           <a href="/" class="brand brand--footer" aria-label="Crea Despedidas — Inicio">
-            <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+            <img src="/assets/logo-lg.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" loading="lazy" decoding="async" />
           </a>
           <p class="mt-4 max-w-xs text-sm leading-relaxed text-white/50">Despedidas de soltero/a y eventos privados en Valencia. La despedida que nunca olvidaréis.</p>
         </div>
@@ -220,17 +226,17 @@
           </address>
         </div>
       </div>
-      <div class="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/40 md:flex-row">
+      <div class="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/60 md:flex-row">
         <p>© <span id="year">2026</span> Crea Despedidas. Todos los derechos reservados.</p>
         <ul class="flex gap-6"><li><a href="/" class="hover:text-white">Inicio</a></li></ul>
       </div>
     </div>
   </footer>
 
-  <img src="/assets/fish.png" id="fish-cursor" alt="" aria-hidden="true" />
+  <img src="/assets/fish.webp" id="fish-cursor" fetchpriority="low" decoding="async" alt="" aria-hidden="true" />
   <a href="https://crea-despedidas-crmdespe.fptzxz.easypanel.host/chat.html" target="_blank" rel="noopener" class="wa-float" aria-label="Escríbenos por WhatsApp">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.5-4.5A8 8 0 1 1 9 19L4 20Z"/><path d="M9 10c0 3 2.5 5.5 5.5 5.5M9 10c0-1 1-1.5 1.5-1l1 1.5-1 1M14.5 15.5c1 0 1.5-1 1-1.5L14 13l-1 1"/></svg>
   </a>
-  <script src="/js/main.js?v=54" defer></script>
+  <script src="/js/main.js?v=61" defer></script>
 </body>
 </html>

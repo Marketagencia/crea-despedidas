@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10805472079"></script>
+  <meta charset="UTF-8" />
+  <!-- Google tag (gtag.js) · carga diferida: primera interacción o 5 s tras el load -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'AW-10805472079');
+    (function () {
+      var done = 0;
+      function load() {
+        if (done) return; done = 1;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-10805472079';
+        document.head.appendChild(s);
+      }
+      ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (e) {
+        addEventListener(e, load, { once: true, passive: true });
+      });
+      addEventListener('load', function () { setTimeout(load, 5000); });
+    })();
   </script>
 
-  <meta charset="UTF-8" />
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0B0B0F" />
   <script>document.documentElement.classList.add('js');</script>
@@ -36,21 +49,14 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Cómo puedo recopilar todas las fotos de los invitados a una despedida?","acceptedAnswer":{"@type":"Answer","text":"Acordad antes de la celebración un único método para reunir las imágenes. Podéis usar un álbum compartido, el chat del grupo o encargar la recopilación a una persona. Compartid las instrucciones por el canal que ya utilizáis y comprobad que todos saben dónde enviar las fotos. Después, basta con un recordatorio amable para localizar las imágenes pendientes, sin tener que perseguir a los invitados semanas más tarde."}},{"@type":"Question","name":"¿Es mejor un álbum compartido o un grupo de WhatsApp para reunir fotos?","acceptedAnswer":{"@type":"Answer","text":"Depende de lo que le resulte más fácil al grupo. El chat permite compartir fotos rápidamente, pero pueden quedar mezcladas con mensajes y otros archivos. Un álbum compartido puede ayudar a tenerlas reunidas en un mismo lugar si todos pueden acceder. Antes de elegir, pensad qué herramienta conocen los invitados y probad desde un móvil que el acceso funcione como esperáis."}},{"@type":"Question","name":"¿Cómo creo un álbum compartido para los invitados?","acceptedAnswer":{"@type":"Answer","text":"Elegid una herramienta que el grupo conozca y designad a una persona para crear el álbum. Ponedle un nombre fácil de reconocer, por ejemplo, el de la celebración y su fecha si ya están confirmados. Compartid el acceso por el chat habitual y explicad cómo añadir las imágenes. Antes del evento, pedid a otra persona que pruebe a abrirlo y aportar una foto."}},{"@type":"Question","name":"¿Cuándo debería pedir a los invitados que compartan sus fotos?","acceptedAnswer":{"@type":"Answer","text":"Explicad el método antes de la despedida y enviad un recordatorio amable después. Así, cada persona sabrá dónde dejar sus imágenes y podrá compartirlas cuando le venga bien, durante o después de la celebración. Evitad insistir mientras estáis en plena actividad: la idea es guardar los recuerdos sin interrumpir las risas ni convertir el móvil en el centro del plan."}},{"@type":"Question","name":"¿Se pueden hacer fotos durante una actividad de Humor Amarillo en Valencia?","acceptedAnswer":{"@type":"Answer","text":"Consultadlo antes con la organización del recinto, porque las indicaciones sobre móviles y fotografías pueden variar según el lugar y la actividad. Al organizar humor amarillo valencia despedidas, no deis por hecho que se pueden hacer fotos en todo momento: preguntad qué se permite y respetad las indicaciones recibidas. Si no es posible fotografiar algún momento, podéis guardar imágenes de los preparativos y de después."}},{"@type":"Question","name":"¿Cómo organizo las fotos si algunos invitados no usan el álbum compartido?","acceptedAnswer":{"@type":"Answer","text":"Acordad una alternativa para que nadie se quede fuera. Por ejemplo, quien no pueda acceder puede enviar sus fotos a la persona coordinadora, que podrá incorporarlas al espacio común si la herramienta lo permite. Decidid de antemano quién recibirá esas imágenes y cómo enviarlas. No hace falta que todo el grupo instale una aplicación nueva para aportar sus recuerdos."}},{"@type":"Question","name":"¿Cómo evitar que se pierdan las fotos de una despedida?","acceptedAnswer":{"@type":"Answer","text":"Preparad antes un espacio común, explicad al grupo cómo compartir las imágenes y asignad a una persona para comprobar después si faltan aportaciones. Si usáis el chat, evitad depender solo de mensajes sueltos: quien coordina puede reunir las fotos en el lugar acordado. Revisad que los invitados puedan encontrar y consultar el material, y mandad un último recordatorio sin agobios."}}]}
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" href="/assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: {
-        fontFamily: { display: ['Sora', 'system-ui', 'sans-serif'], sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'] },
-        colors: { ink: '#0B0B0F', surface: '#121218', neon: { cyan: '#00F2FE', blue: '#4FACFE', pink: '#FF2FB9', orange: '#FF7A18' } },
-      } },
-    };
-  </script>
-  <link rel="stylesheet" href="/css/styles.css?v=56" />
+  
+  <link rel="stylesheet" href="/css/styles.css?v=61" />
+  <link rel="stylesheet" href="/css/tailwind.css?v=2" />
   <style>.post-prose figure{margin:1.75rem 0}.post-prose figure img{display:block;width:100%;height:auto;border-radius:1.25rem}</style>
+  <link rel="icon" type="image/webp" href="/assets/fish.webp" />
 </head>
 
 <body class="bg-ink text-white font-sans antialiased overflow-x-hidden">
@@ -63,7 +69,7 @@
   <header id="nav" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
     <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 md:px-8" aria-label="Principal">
       <a href="/" class="brand" aria-label="Crea Despedidas — Inicio">
-        <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+        <img src="/assets/logo.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
       </a>
       <ul class="hidden items-center gap-8 text-sm text-white/70 lg:flex">
         <li class="nav-item has-submenu">
@@ -180,7 +186,7 @@
       <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
         <div>
           <a href="/" class="brand brand--footer" aria-label="Crea Despedidas — Inicio">
-            <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+            <img src="/assets/logo-lg.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" loading="lazy" decoding="async" />
           </a>
           <p class="mt-4 max-w-xs text-sm leading-relaxed text-white/50">Despedidas de soltero/a y eventos privados en Valencia. La despedida que nunca olvidaréis.</p>
         </div>
@@ -211,17 +217,17 @@
           </address>
         </div>
       </div>
-      <div class="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/40 md:flex-row">
+      <div class="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/60 md:flex-row">
         <p>© <span id="year">2026</span> Crea Despedidas. Todos los derechos reservados.</p>
         <ul class="flex gap-6"><li><a href="/" class="hover:text-white">Inicio</a></li></ul>
       </div>
     </div>
   </footer>
 
-  <img src="/assets/fish.png" id="fish-cursor" alt="" aria-hidden="true" />
+  <img src="/assets/fish.webp" id="fish-cursor" fetchpriority="low" decoding="async" alt="" aria-hidden="true" />
   <a href="https://crea-despedidas-crmdespe.fptzxz.easypanel.host/chat.html" target="_blank" rel="noopener" class="wa-float" aria-label="Escríbenos por WhatsApp">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.5-4.5A8 8 0 1 1 9 19L4 20Z"/><path d="M9 10c0 3 2.5 5.5 5.5 5.5M9 10c0-1 1-1.5 1.5-1l1 1.5-1 1M14.5 15.5c1 0 1.5-1 1-1.5L14 13l-1 1"/></svg>
   </a>
-  <script src="/js/main.js?v=58" defer></script>
+  <script src="/js/main.js?v=61" defer></script>
 </body>
 </html>

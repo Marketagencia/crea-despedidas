@@ -448,6 +448,12 @@ def main():
     with open(os.path.join(BLOG_DIR, "index.html"), "w", encoding="utf-8") as f:
         f.write(index_html)
 
+    # Las páginas nuevas salen con la plantilla antigua (Tailwind CDN, Google Fonts...):
+    # optimize_head.py las deja igual de rápidas que el resto (idempotente).
+    if created:
+        import subprocess
+        subprocess.run([sys.executable, os.path.join(ROOT, "scripts", "optimize_head.py")], check=False)
+
     print(
         f"Hecho: {created} artículo(s) nuevo(s), {skipped} ya existían, "
         f"{len(manifest)} en total en blog/index.html.",

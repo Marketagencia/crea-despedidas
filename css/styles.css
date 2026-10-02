@@ -16,6 +16,24 @@
     12. Accesibilidad / reduced-motion / responsive
    ========================================================================== */
 
+/* Fuentes autoalojadas (variables, subset latin): evitan el CSS bloqueante de Google Fonts */
+@font-face {
+  font-family: "Sora";
+  font-style: normal;
+  font-weight: 600 800;
+  font-display: swap;
+  src: url("/assets/fonts/sora-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url("/assets/fonts/space-grotesk-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 /* ------------------------------------------------------------------ 1. Tokens */
 :root {
   --ink: #0b0b0f;
@@ -83,26 +101,26 @@ body { margin: 0; min-height: 100vh; }
 .orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.5;
+  /* sin filter: blur() (muy caro de pintar en móvil): el degradado radial ya se difumina solo */
+  opacity: 0.42;
   will-change: transform;
 }
 .orb--1 {
-  width: 42vw; height: 42vw;
-  left: -8vw; top: -6vw;
-  background: radial-gradient(circle at 30% 30%, var(--c-cyan), transparent 70%);
+  width: 56vw; height: 56vw;
+  left: -15vw; top: -14vw;
+  background: radial-gradient(closest-side, var(--c-cyan), rgba(0, 242, 254, 0.35) 45%, transparent);
   animation: float1 22s var(--ease) infinite alternate;
 }
 .orb--2 {
-  width: 38vw; height: 38vw;
-  right: -10vw; top: 20vh;
-  background: radial-gradient(circle at 60% 40%, var(--c-pink), transparent 70%);
+  width: 50vw; height: 50vw;
+  right: -17vw; top: 8vh;
+  background: radial-gradient(closest-side, var(--c-pink), rgba(255, 47, 185, 0.35) 45%, transparent);
   animation: float2 26s var(--ease) infinite alternate;
 }
 .orb--3 {
-  width: 30vw; height: 30vw;
-  left: 30vw; bottom: -12vw;
-  background: radial-gradient(circle at 50% 50%, var(--c-blue), transparent 70%);
+  width: 42vw; height: 42vw;
+  left: 24vw; bottom: -20vw;
+  background: radial-gradient(closest-side, var(--c-blue), rgba(79, 172, 254, 0.35) 45%, transparent);
   animation: float3 30s var(--ease) infinite alternate;
 }
 @keyframes float1 { to { transform: translate3d(6vw, 8vh, 0) scale(1.15); } }
@@ -117,6 +135,7 @@ body { margin: 0; min-height: 100vh; }
   opacity: 0.04;
   mix-blend-mode: overlay;
   animation: grain 6s steps(6) infinite;
+  display: none; /* a 4% de opacidad es imperceptible y repintaba una capa del 200% de la pantalla */
 }
 @keyframes grain {
   0%, 100% { transform: translate(0, 0); }
@@ -781,7 +800,7 @@ body { margin: 0; min-height: 100vh; }
   justify-content: space-between;
   margin-top: 0.5rem;
   font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.6);
 }
 
 /* Segmented control: pack vs a la carta */
@@ -878,15 +897,15 @@ body { margin: 0; min-height: 100vh; }
   background-clip: text;
   color: transparent;
 }
-.pack-price small { font-size: 0.68rem; font-weight: 500; -webkit-text-fill-color: rgba(255, 255, 255, 0.4); }
+.pack-price small { font-size: 0.68rem; font-weight: 500; -webkit-text-fill-color: rgba(255, 255, 255, 0.55); }
 .pack-price .pack-from {
   margin-right: 0.3rem;
   font-size: 0.6rem;
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.45);
-  -webkit-text-fill-color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.6);
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.6);
 }
 .pack-price s {
   margin-right: 0.35rem;
@@ -995,7 +1014,7 @@ body { margin: 0; min-height: 100vh; }
   transition: transform 0.18s var(--ease), border-color 0.18s var(--ease), background 0.18s var(--ease), color 0.18s var(--ease);
 }
 .chip-face b { font-weight: 700; color: rgba(255, 255, 255, 0.5); }
-.chip-face small { font-size: 0.72em; color: rgba(255, 255, 255, 0.4); }
+.chip-face small { font-size: 0.72em; color: rgba(255, 255, 255, 0.55); }
 .chip:hover .chip-face { transform: translateY(-2px); border-color: rgba(255, 255, 255, 0.28); }
 .chip input:checked + .chip-face {
   color: #05060a;
@@ -1243,6 +1262,12 @@ body { margin: 0; min-height: 100vh; }
 .js .reveal.is-visible {
   opacity: 1;
   transform: none;
+}
+/* El hero se ve desde el primer pintado (no espera al JS): es el LCP de la página */
+.js #inicio .reveal {
+  opacity: 1;
+  transform: none;
+  transition: none;
 }
 
 /* ------------------------------------------------------- 12. A11y / responsive */

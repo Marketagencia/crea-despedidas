@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10805472079"></script>
+  <meta charset="UTF-8" />
+  <!-- Google tag (gtag.js) · carga diferida: primera interacción o 5 s tras el load -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'AW-10805472079');
+    (function () {
+      var done = 0;
+      function load() {
+        if (done) return; done = 1;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-10805472079';
+        document.head.appendChild(s);
+      }
+      ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (e) {
+        addEventListener(e, load, { once: true, passive: true });
+      });
+      addEventListener('load', function () { setTimeout(load, 5000); });
+    })();
   </script>
 
-  <meta charset="UTF-8" />
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0B0B0F" />
   <script>document.documentElement.classList.add('js');</script>
@@ -36,21 +49,14 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Cuál es el plan más original para un cumpleaños de adultos en Valencia?","acceptedAnswer":{"@type":"Answer","text":"El plan más original combina la adrenalina del Humor Amarillo con la exclusividad de un Velero Party sobre el Mediterráneo. Son experiencias que rompen totalmente con la rutina de una cena convencional. En Valencia, estas actividades permiten que el grupo interactúe de forma activa y divertida. No hay nada como ver a tus amigos superando pruebas locas o brindando mientras navegáis con el skyline de la ciudad de fondo. Es el combo perfecto para un recuerdo imborrable."}},{"@type":"Question","name":"¿Con cuánta antelación debo reservar mi cumpleaños en Valencia?","acceptedAnswer":{"@type":"Answer","text":"Te recomendamos reservar con al menos 4 a 8 semanas de antelación para asegurar disponibilidad en las fechas más demandadas de 2026. Valencia es un destino top y los mejores horarios para el karting o los barcos privados vuelan rápido. Si vuestro grupo es numeroso o planeáis celebrar durante Fallas o los meses de verano, cuanto antes cerréis el plan, mucho mejor. Así garantizáis que todo salga perfecto sin el estrés de última hora."}},{"@type":"Question","name":"¿Existen opciones económicas para grupos grandes en Valencia?","acceptedAnswer":{"@type":"Answer","text":"¡Desde luego! Contamos con Packs Low Cost diseñados para ofrecer diversión máxima sin que el presupuesto del grupo se dispare. Estos paquetes suelen combinar actividades populares como el paintball o gincanas temáticas con cenas en restaurantes especializados de la ciudad. Al ser expertos locales, conseguimos tarifas preferentes para grupos grandes, permitiendo que todos disfruten de las mejores ideas cumpleaños adultos valencia sin renunciar a la calidad ni a la intensidad de la fiesta."}},{"@type":"Question","name":"¿Qué incluye normalmente una cena con espectáculo en Valencia?","acceptedAnswer":{"@type":"Answer","text":"Una cena con espectáculo en Valencia suele incluir un menú completo de calidad con barra libre de bebida durante la comida. Lo más importante es el entretenimiento en vivo, que cuenta con artistas, drag queens o humoristas que animan a todo el grupo a participar. Es una experiencia inmersiva donde la fiesta empieza directamente en la mesa. Además, muchos de estos planes incluyen después la entrada a las discotecas más potentes de la zona para bailar hasta el amanecer."}},{"@type":"Question","name":"¿Es posible personalizar las actividades del cumpleaños?","acceptedAnswer":{"@type":"Answer","text":"La personalización total es nuestro sello de identidad porque sabemos que cada grupo es un mundo distinto. Podéis configurar vuestro pack a medida mezclando aventura por la mañana, como el karting, con un tardeo relajado en velero o una gincana urbana. Tú eliges el ritmo y las actividades que mejor encajen con la personalidad del cumpleañero. Nosotros nos encargamos de que la logística fluya sin complicaciones para que vuestra única misión sea disfrutar del evento."}},{"@type":"Question","name":"¿Qué pasa si llueve el día de nuestra actividad al aire libre?","acceptedAnswer":{"@type":"Answer","text":"Si la lluvia aparece, no dejamos que la fiesta se agüe bajo ningún concepto. Dependiendo de la actividad, buscamos alternativas en espacios cubiertos o reprogramamos el horario para esquivar el mal tiempo. Valencia tiene un clima excelente, pero siempre tenemos un plan B preparado para actividades como el Humor Amarillo o las experiencias náuticas. Gestionamos cualquier cambio logístico necesario para que la diversión no se detenga y el grupo esté siempre cómodo y seco."}},{"@type":"Question","name":"¿Ofrecéis servicios de transporte como limusinas o buses para grupos?","acceptedAnswer":{"@type":"Answer","text":"Sí, gestionamos traslados en limusinas espectaculares para darle ese toque de glamour a vuestra noche valenciana. También coordinamos autobuses o minibuses para grupos grandes que necesitan desplazarse entre las actividades de aventura y el centro de la ciudad. Delegar el transporte en profesionales os permite olvidaros de los coches y disfrutar de la barra libre con total seguridad. Es la mejor forma de que el grupo se mantenga unido y la fiesta continúe sin interrupciones."}},{"@type":"Question","name":"¿Tenéis planes específicos para cumpleaños de 40 o 50 años?","acceptedAnswer":{"@type":"Answer","text":"¡Por supuesto! Para los 40 o 50 años, solemos recomendar planes que equilibren la exclusividad con la diversión, como una fiesta privada en velero al atardecer o una cena con espectáculo de alto nivel. Son celebraciones donde se valora la privacidad y el confort, pero sin renunciar a la energía vibrante de la ciudad. Adaptamos el tono de cada actividad para que todos los invitados se sientan cómodos y vivan una experiencia memorable y sofisticada."}}]}
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" href="/assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: {
-        fontFamily: { display: ['Sora', 'system-ui', 'sans-serif'], sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'] },
-        colors: { ink: '#0B0B0F', surface: '#121218', neon: { cyan: '#00F2FE', blue: '#4FACFE', pink: '#FF2FB9', orange: '#FF7A18' } },
-      } },
-    };
-  </script>
-  <link rel="stylesheet" href="/css/styles.css?v=56" />
+  
+  <link rel="stylesheet" href="/css/styles.css?v=61" />
+  <link rel="stylesheet" href="/css/tailwind.css?v=2" />
   <style>.post-prose figure{margin:1.75rem 0}.post-prose figure img{display:block;width:100%;height:auto;border-radius:1.25rem}</style>
+  <link rel="icon" type="image/webp" href="/assets/fish.webp" />
 </head>
 
 <body class="bg-ink text-white font-sans antialiased overflow-x-hidden">
@@ -63,7 +69,7 @@
   <header id="nav" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
     <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 md:px-8" aria-label="Principal">
       <a href="/" class="brand" aria-label="Crea Despedidas — Inicio">
-        <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+        <img src="/assets/logo.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
       </a>
       <ul class="hidden items-center gap-8 text-sm text-white/70 lg:flex">
         <li class="nav-item has-submenu">
@@ -190,7 +196,7 @@
       <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
         <div>
           <a href="/" class="brand brand--footer" aria-label="Crea Despedidas — Inicio">
-            <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+            <img src="/assets/logo-lg.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" loading="lazy" decoding="async" />
           </a>
           <p class="mt-4 max-w-xs text-sm leading-relaxed text-white/50">Despedidas de soltero/a y eventos privados en Valencia. La despedida que nunca olvidaréis.</p>
         </div>
@@ -221,17 +227,17 @@
           </address>
         </div>
       </div>
-      <div class="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/40 md:flex-row">
+      <div class="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/60 md:flex-row">
         <p>© <span id="year">2026</span> Crea Despedidas. Todos los derechos reservados.</p>
         <ul class="flex gap-6"><li><a href="/" class="hover:text-white">Inicio</a></li></ul>
       </div>
     </div>
   </footer>
 
-  <img src="/assets/fish.png" id="fish-cursor" alt="" aria-hidden="true" />
+  <img src="/assets/fish.webp" id="fish-cursor" fetchpriority="low" decoding="async" alt="" aria-hidden="true" />
   <a href="https://crea-despedidas-crmdespe.fptzxz.easypanel.host/chat.html" target="_blank" rel="noopener" class="wa-float" aria-label="Escríbenos por WhatsApp">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.5-4.5A8 8 0 1 1 9 19L4 20Z"/><path d="M9 10c0 3 2.5 5.5 5.5 5.5M9 10c0-1 1-1.5 1.5-1l1 1.5-1 1M14.5 15.5c1 0 1.5-1 1-1.5L14 13l-1 1"/></svg>
   </a>
-  <script src="/js/main.js?v=58" defer></script>
+  <script src="/js/main.js?v=61" defer></script>
 </body>
 </html>

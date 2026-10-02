@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10805472079"></script>
+  <meta charset="UTF-8" />
+  <!-- Google tag (gtag.js) · carga diferida: primera interacción o 5 s tras el load -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'AW-10805472079');
+    (function () {
+      var done = 0;
+      function load() {
+        if (done) return; done = 1;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-10805472079';
+        document.head.appendChild(s);
+      }
+      ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (e) {
+        addEventListener(e, load, { once: true, passive: true });
+      });
+      addEventListener('load', function () { setTimeout(load, 5000); });
+    })();
   </script>
 
-  <meta charset="UTF-8" />
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0B0B0F" />
   <script>document.documentElement.classList.add('js');</script>
@@ -36,21 +49,14 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Conviene devolver el sobrante a cada persona?","acceptedAnswer":{"@type":"Answer","text":"Devolverlo suele ser una alternativa clara si tenéis anotado quién aportó y cuánto. Si todas las aportaciones fueron iguales, podéis acordar un reparto por persona. Si fueron distintas, hablad de una devolución proporcional o de otra fórmula que todas las personas entiendan y acepten. Confirmad el criterio antes de hacer los pagos para que nadie tenga que deducir cómo se calculó su parte. Esta opción puede encajar si alguien no quiere participar en un plan extra o si el grupo prefiere cerrar el bote sin dejar dinero pendiente. Devolver las aportaciones no significa desaprovechar la celebración: permite que cada persona decida qué hacer con su parte."}},{"@type":"Question","name":"¿Y si el grupo prefiere reservarlo o gastarlo junto?","acceptedAnswer":{"@type":"Answer","text":"Reservar el saldo tiene sentido si queda un gasto compartido por pagar. Acordad para qué se guarda, quién se encargará de gestionarlo y cómo se informará al grupo cuando se use. Si no hay pagos pendientes, podéis plantear un extra común, pero esperad a que quienes aportaron confirmen que están de acuerdo antes de comprometer el dinero. Si celebráis en Valencia y os apetece sumar una noche especial, una cena con espectáculo puede ser una opción para valorar. Revisad la propuesta y sus condiciones, y elegidla solo si encaja con las preferencias del grupo y con el saldo disponible. Así, decidir qué hacer con el dinero que sobra del bote común puede dar pie a otro plan sin que unas personas decidan por las demás. Con el saldo confirmado, comparad las opciones según lo que necesita el grupo, no solo según lo que resulte más emocionante en el momento. Devolverlo puede encajar si alguien quiere recuperar su aportación; reservarlo, si queda un gasto común por cubrir; y añadir una actividad, si el dinero está libre y todas las personas quieren participar. No hay una respuesta única."}},{"@type":"Question","name":"¿Qué hacer con el dinero que sobra del bote común?","acceptedAnswer":{"@type":"Answer","text":"Primero, confirmad que los gastos están pagados y que no hay dinero reservado para compromisos pendientes. Después, compartid el saldo y plantead las opciones: devolver las aportaciones, guardar el dinero para un gasto común o acordar un plan extra. Qué hacer con el dinero que sobra del bote común depende de las preferencias de quienes participaron. Antes de moverlo, buscad un acuerdo claro."}},{"@type":"Question","name":"¿Es mejor devolver el sobrante del bote común o gastarlo en algo para todos?","acceptedAnswer":{"@type":"Answer","text":"No hay una opción mejor para todos los grupos. Devolverlo puede ser sencillo si tenéis registradas las aportaciones; gastarlo juntos puede encajar si el plan interesa a quienes participan y existe un acuerdo claro. Compartid el saldo y preguntad qué prefiere cada persona, sin dar por hecho que todo el mundo quiere añadir una actividad. Si no llegáis a un consenso, devolver el dinero es una alternativa prudente."}},{"@type":"Question","name":"¿Cómo se reparte el dinero sobrante si cada persona aportó una cantidad distinta?","acceptedAnswer":{"@type":"Answer","text":"Revisad el registro de aportaciones y no supongáis que todas las personas pusieron lo mismo. Si el grupo decide devolver el saldo, puede acordar una devolución proporcional a lo aportado o elegir otra fórmula que todas las personas entiendan y acepten. Dejad constancia del cálculo y del criterio acordado, por ejemplo, en el chat o en la hoja compartida, para que el reparto sea transparente."}},{"@type":"Question","name":"¿Qué pasa si alguien no está de acuerdo con gastar el sobrante?","acceptedAnswer":{"@type":"Answer","text":"No deis por hecho que el saldo puede destinarse a un plan extra si alguien prefiere otra opción. Escuchad su punto de vista y volved a presentar las alternativas, incluida la devolución. Explicar qué gastos se han pagado y cuánto queda disponible puede ayudar a que la conversación sea más clara. Si no llegáis a un acuerdo, podéis reservar el dinero para un gasto pendiente o devolverlo según lo que pacte el grupo."}},{"@type":"Question","name":"¿Se puede usar el sobrante del bote para añadir una actividad a una despedida en Valencia?","acceptedAnswer":{"@type":"Answer","text":"Sí, si las cuentas están cerradas y quienes aportaron aceptan destinar el saldo a ese plan. Elegid una opción que encaje con la celebración y con las preferencias del grupo; nadie debería sentirse obligado a participar si prefiere recuperar su aportación. En Valencia podéis valorar actividades de ocio para grupos o una cena con espectáculo. Crea Despedidas organiza celebraciones en Valencia y ofrece distintas propuestas para grupos."}},{"@type":"Question","name":"¿Cómo comunicar al grupo cuánto dinero ha sobrado?","acceptedAnswer":{"@type":"Answer","text":"Enviad un resumen fácil de revisar con el total recaudado, los gastos pagados y cualquier importe pendiente. Indicad el saldo disponible y presentad las alternativas de forma neutral. Podéis pedir que cada persona responda en el chat o usar una encuesta sencilla. Cuando decidáis, compartid la opción acordada y cómo se cerrará el bote. Así, todas las personas tienen la misma información y saben qué ocurrirá con el dinero."}},{"@type":"Question","name":"¿Qué hacer si sobra muy poco dinero del bote común?","acceptedAnswer":{"@type":"Answer","text":"Aplicad el mismo criterio de transparencia, pero elegid una solución que no complique el cierre. Podéis devolverlo, reservarlo para un gasto pendiente o sumarlo a una compra compartida si todas las personas están de acuerdo. No existe un mínimo universal que obligue a elegir una opción concreta. Lo más práctico dependerá del saldo, del registro de las aportaciones y de lo que prefiera el grupo."}}]}
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" href="/assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: {
-        fontFamily: { display: ['Sora', 'system-ui', 'sans-serif'], sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'] },
-        colors: { ink: '#0B0B0F', surface: '#121218', neon: { cyan: '#00F2FE', blue: '#4FACFE', pink: '#FF2FB9', orange: '#FF7A18' } },
-      } },
-    };
-  </script>
-  <link rel="stylesheet" href="/css/styles.css?v=56" />
+  
+  <link rel="stylesheet" href="/css/styles.css?v=61" />
+  <link rel="stylesheet" href="/css/tailwind.css?v=2" />
   <style>.post-prose figure{margin:1.75rem 0}.post-prose figure img{display:block;width:100%;height:auto;border-radius:1.25rem}</style>
+  <link rel="icon" type="image/webp" href="/assets/fish.webp" />
 </head>
 
 <body class="bg-ink text-white font-sans antialiased overflow-x-hidden">
@@ -63,7 +69,7 @@
   <header id="nav" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
     <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 md:px-8" aria-label="Principal">
       <a href="/" class="brand" aria-label="Crea Despedidas — Inicio">
-        <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+        <img src="/assets/logo.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
       </a>
       <ul class="hidden items-center gap-8 text-sm text-white/70 lg:flex">
         <li class="nav-item has-submenu">
@@ -209,7 +215,7 @@
       <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
         <div>
           <a href="/" class="brand brand--footer" aria-label="Crea Despedidas — Inicio">
-            <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+            <img src="/assets/logo-lg.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" loading="lazy" decoding="async" />
           </a>
           <p class="mt-4 max-w-xs text-sm leading-relaxed text-white/50">Despedidas de soltero/a y eventos privados en Valencia. La despedida que nunca olvidaréis.</p>
         </div>
@@ -240,17 +246,17 @@
           </address>
         </div>
       </div>
-      <div class="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/40 md:flex-row">
+      <div class="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/60 md:flex-row">
         <p>© <span id="year">2026</span> Crea Despedidas. Todos los derechos reservados.</p>
         <ul class="flex gap-6"><li><a href="/" class="hover:text-white">Inicio</a></li></ul>
       </div>
     </div>
   </footer>
 
-  <img src="/assets/fish.png" id="fish-cursor" alt="" aria-hidden="true" />
+  <img src="/assets/fish.webp" id="fish-cursor" fetchpriority="low" decoding="async" alt="" aria-hidden="true" />
   <a href="https://crea-despedidas-crmdespe.fptzxz.easypanel.host/chat.html" target="_blank" rel="noopener" class="wa-float" aria-label="Escríbenos por WhatsApp">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.5-4.5A8 8 0 1 1 9 19L4 20Z"/><path d="M9 10c0 3 2.5 5.5 5.5 5.5M9 10c0-1 1-1.5 1.5-1l1 1.5-1 1M14.5 15.5c1 0 1.5-1 1-1.5L14 13l-1 1"/></svg>
   </a>
-  <script src="/js/main.js?v=58" defer></script>
+  <script src="/js/main.js?v=61" defer></script>
 </body>
 </html>

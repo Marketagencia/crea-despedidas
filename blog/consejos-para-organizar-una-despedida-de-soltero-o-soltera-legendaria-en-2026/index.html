@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10805472079"></script>
+  <meta charset="UTF-8" />
+  <!-- Google tag (gtag.js) · carga diferida: primera interacción o 5 s tras el load -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'AW-10805472079');
+    (function () {
+      var done = 0;
+      function load() {
+        if (done) return; done = 1;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-10805472079';
+        document.head.appendChild(s);
+      }
+      ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (e) {
+        addEventListener(e, load, { once: true, passive: true });
+      });
+      addEventListener('load', function () { setTimeout(load, 5000); });
+    })();
   </script>
 
-  <meta charset="UTF-8" />
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0B0B0F" />
   <script>document.documentElement.classList.add('js');</script>
@@ -36,21 +49,14 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Por qué delegar en expertos locales?","acceptedAnswer":{"@type":"Answer","text":"Valencia es el paraíso de la fiesta, pero mover a un grupo grande por la ciudad sin conocer el terreno es jugársela. Delegar en expertos locales como nosotros es el \"cheat code\" definitivo. Te olvidas de coordinar cinco proveedores distintos y de las sorpresas de última hora con locales que no cumplen. Al contratar un pack de cena con espectáculo o actividades de aventura, tienes un contacto único que lo controla todo. Además, el ahorro es real. Los packs combinados siempre salen mejor que contratar cada servicio por tu cuenta."}},{"@type":"Question","name":"¿Con cuánta antelación debo empezar a organizar la despedida?","acceptedAnswer":{"@type":"Answer","text":"Lo ideal es empezar entre 3 y 4 meses antes del evento. Valencia es un destino con muchísima demanda, especialmente en primavera y verano. Si buscas los mejores consejos organizar despedida, la antelación es tu mejor aliada para asegurar disponibilidad en alojamientos céntricos y actividades exclusivas como el velero party. No esperes al último mes o te tocará conformarte con lo que sobre, perdiendo la oportunidad de elegir los mejores horarios para vuestro grupo."}},{"@type":"Question","name":"¿Qué pasa si alguien del grupo cancela a última hora?","acceptedAnswer":{"@type":"Answer","text":"Las cancelaciones de última hora suelen implicar la pérdida de la señal de esa persona. Es vital establecer una fecha límite de pago inamovible, como mencionamos en el cronograma, para evitar que el organizador pierda dinero. Nosotros gestionamos los cambios con flexibilidad hasta cierto punto, pero los proveedores locales suelen exigir el número final de asistentes con margen. Así garantizamos que el resto del grupo disfrute de la fiesta sin tener que asumir sobrecostes inesperados."}},{"@type":"Question","name":"¿Es mejor organizar una despedida de un día o de todo un fin de semana?","acceptedAnswer":{"@type":"Answer","text":"Un fin de semana completo es la opción ganadora para exprimir Valencia al máximo. Un solo día se queda corto para disfrutar de la playa, las actividades de adrenalina como el karting y la mítica fiesta nocturna. Al reservar un fin de semana, podéis combinar un sábado de locura con un domingo de relax en catamarán o una comida de despedida tranquila. La ciudad ofrece demasiadas opciones como para intentar comprimirlo todo en apenas unas horas de celebración."}},{"@type":"Question","name":"¿Cómo calculo un presupuesto que todos puedan pagar?","acceptedAnswer":{"@type":"Answer","text":"Define una cifra máxima realista y suma siempre un 10% para imprevistos. Lo más inteligente es optar por nuestros packs low cost, que ya incluyen las partidas principales como cena, actividad y alojamiento. De esta forma, cada invitado sabe exactamente cuánto va a gastar desde el principio. Evitad los presupuestos abiertos que generan desconfianza y discusiones en el grupo. Un precio cerrado transmite seguridad y facilita que todos paguen a tiempo sin poner excusas de última hora."}},{"@type":"Question","name":"¿Cuáles son las actividades más populares en Valencia para 2026?","acceptedAnswer":{"@type":"Answer","text":"Para 2026, el Humor Amarillo y las experiencias náuticas como el banana boat lideran las reservas. Los grupos buscan cada vez más la combinación de risas físicas y relax en el Mediterráneo. El karting y el paintball siguen siendo pilares fundamentales para los que necesitan soltar adrenalina pura. Además, el tardeo con charanga valenciana está ganando muchísima fuerza como el complemento perfecto antes de ir a las cenas con espectáculo más potentes y divertidas de la ciudad."}},{"@type":"Question","name":"¿Es necesario disfrazar al novio o a la novia?","acceptedAnswer":{"@type":"Answer","text":"No es obligatorio, pero un buen disfraz o un complemento temático sube el nivel de la fiesta al instante. Ayuda a identificar al grupo y hace que el protagonista se sienta el centro de atención total. Si decidís pasar de los disfraces integrales, podéis optar por camisetas personalizadas o accesorios divertidos que os unan como equipo. Lo importante es que el homenajeado esté cómodo y que el kit de supervivencia no falte para aguantar el ritmo valenciano."}},{"@type":"Question","name":"¿Qué incluye normalmente un pack de cena con espectáculo?","acceptedAnswer":{"@type":"Answer","text":"Estos packs suelen incluir una cena completa, barra libre durante la comida y un show en directo de máxima calidad. Dependiendo de la temática elegida, el espectáculo puede ser cómico, musical o picante, siempre adaptado al buen gusto del grupo. Además, muchas de nuestras opciones incluyen la entrada a discotecas punteras para que no tengáis que hacer colas ni pagar más tarde. Es la solución integral perfecta para resolver la noche valenciana con un solo movimiento logístico inteligente."}},{"@type":"Question","name":"¿Cómo gestionáis el transporte para grupos grandes en Valencia?","acceptedAnswer":{"@type":"Answer","text":"Contamos con una flota de limusinas y opciones de bus party para mover a grupos grandes con total comodidad. Olvidaos de buscar varios taxis libres o de decidir quién conduce esa noche. El transporte privado os permite viajar todos juntos, con la música a tope y manteniendo la energía alta entre actividad y actividad. Es una inversión en seguridad y diversión que marca la diferencia, evitando retrasos innecesarios y garantizando que nadie se pierda por las calles de Valencia."}}]}
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" href="/assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: {
-        fontFamily: { display: ['Sora', 'system-ui', 'sans-serif'], sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'] },
-        colors: { ink: '#0B0B0F', surface: '#121218', neon: { cyan: '#00F2FE', blue: '#4FACFE', pink: '#FF2FB9', orange: '#FF7A18' } },
-      } },
-    };
-  </script>
-  <link rel="stylesheet" href="/css/styles.css?v=56" />
+  
+  <link rel="stylesheet" href="/css/styles.css?v=61" />
+  <link rel="stylesheet" href="/css/tailwind.css?v=2" />
   <style>.post-prose figure{margin:1.75rem 0}.post-prose figure img{display:block;width:100%;height:auto;border-radius:1.25rem}</style>
+  <link rel="icon" type="image/webp" href="/assets/fish.webp" />
 </head>
 
 <body class="bg-ink text-white font-sans antialiased overflow-x-hidden">
@@ -63,7 +69,7 @@
   <header id="nav" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
     <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 md:px-8" aria-label="Principal">
       <a href="/" class="brand" aria-label="Crea Despedidas — Inicio">
-        <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+        <img src="/assets/logo.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
       </a>
       <ul class="hidden items-center gap-8 text-sm text-white/70 lg:flex">
         <li class="nav-item has-submenu">
@@ -188,7 +194,7 @@
       <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
         <div>
           <a href="/" class="brand brand--footer" aria-label="Crea Despedidas — Inicio">
-            <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+            <img src="/assets/logo-lg.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" loading="lazy" decoding="async" />
           </a>
           <p class="mt-4 max-w-xs text-sm leading-relaxed text-white/50">Despedidas de soltero/a y eventos privados en Valencia. La despedida que nunca olvidaréis.</p>
         </div>
@@ -219,17 +225,17 @@
           </address>
         </div>
       </div>
-      <div class="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/40 md:flex-row">
+      <div class="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/60 md:flex-row">
         <p>© <span id="year">2026</span> Crea Despedidas. Todos los derechos reservados.</p>
         <ul class="flex gap-6"><li><a href="/" class="hover:text-white">Inicio</a></li></ul>
       </div>
     </div>
   </footer>
 
-  <img src="/assets/fish.png" id="fish-cursor" alt="" aria-hidden="true" />
+  <img src="/assets/fish.webp" id="fish-cursor" fetchpriority="low" decoding="async" alt="" aria-hidden="true" />
   <a href="https://crea-despedidas-crmdespe.fptzxz.easypanel.host/chat.html" target="_blank" rel="noopener" class="wa-float" aria-label="Escríbenos por WhatsApp">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.5-4.5A8 8 0 1 1 9 19L4 20Z"/><path d="M9 10c0 3 2.5 5.5 5.5 5.5M9 10c0-1 1-1.5 1.5-1l1 1.5-1 1M14.5 15.5c1 0 1.5-1 1-1.5L14 13l-1 1"/></svg>
   </a>
-  <script src="/js/main.js?v=58" defer></script>
+  <script src="/js/main.js?v=61" defer></script>
 </body>
 </html>

@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10805472079"></script>
+  <meta charset="UTF-8" />
+  <!-- Google tag (gtag.js) · carga diferida: primera interacción o 5 s tras el load -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'AW-10805472079');
+    (function () {
+      var done = 0;
+      function load() {
+        if (done) return; done = 1;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-10805472079';
+        document.head.appendChild(s);
+      }
+      ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (e) {
+        addEventListener(e, load, { once: true, passive: true });
+      });
+      addEventListener('load', function () { setTimeout(load, 5000); });
+    })();
   </script>
 
-  <meta charset="UTF-8" />
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0B0B0F" />
   <script>document.documentElement.classList.add('js');</script>
@@ -36,21 +49,14 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Qué planes hay en Valencia para una despedida de soltero tranquila?","acceptedAnswer":{"@type":"Answer","text":"Valencia es el paraíso para quienes buscan algo diferente y emocionante. Tienes opciones brutales como un Gran Premio de Karting, una jornada de Paintball táctico o un paseo relajado en velero privado por la Marina. Si buscas algo más pausado pero muy divertido, las cenas con espectáculo ofrecen humor y magia sin el caos de un club nocturno. Son planes diseñados para disfrutar de la ciudad de día y de una buena mesa de noche."}},{"@type":"Question","name":"¿Es posible pasarlo bien en una despedida sin beber alcohol ni ir a discotecas?","acceptedAnswer":{"@type":"Answer","text":"¡Por supuesto que sí! La diversión real nace de la experiencia compartida y los piques sanos entre colegas. Al buscar ideas de despedida para novios que no les gusta la fiesta, descubrirás que la adrenalina de las motos de agua o las risas en el Humor Amarillo generan recuerdos mucho más potentes que cualquier noche de copas. La clave es la conexión del grupo a través de retos físicos y momentos cómicos únicos."}},{"@type":"Question","name":"¿Qué actividades de aventura son las mejores para grupos grandes en Valencia?","acceptedAnswer":{"@type":"Answer","text":"Para grupos grandes, el Humor Amarillo es el rey absoluto porque permite que todos participéis a la vez en pruebas tronchantes. El Paintball también es una opción ganadora para soltar tensiones en equipo mediante la estrategia. Si preferís algo más urbano, las gymkanas temáticas por el centro de Valencia o el alquiler de un catamarán permiten mantener a todo el grupo unido, garantizando que nadie se quede fuera de la acción constante."}},{"@type":"Question","name":"¿Cómo puedo convencer al grupo de hacer un plan alternativo si ellos quieren fiesta?","acceptedAnswer":{"@type":"Answer","text":"El truco está en vender la experiencia como algo épico y exclusivo que el novio agradecerá de verdad. Recuérdales que el objetivo es que el protagonista disfrute su día al máximo. Un plan de aventura ofrece fotos brutales y anécdotas que una discoteca normal nunca podrá igualar. Además, podéis proponer una cena con espectáculo como punto medio; tendréis barra libre durante la comida y animación constante, pero con la comodidad de un show de calidad."}},{"@type":"Question","name":"¿Qué incluye un pack de Humor Amarillo en Valencia?","acceptedAnswer":{"@type":"Answer","text":"Nuestros packs suelen incluir dos horas de pura locura en un circuito cerrado con pruebas míticas. Os enfrentaréis a la lucha de gladiadores, los rodillos locos, el futbolín humano y la famosa hamburguesa gigante. Todo el equipo de seguridad y los monitores están incluidos para que solo os preocupéis de no parar de reír. Es una actividad diseñada para liberar tensiones y crear fotos ridículamente divertidas que serán el tesoro del grupo."}},{"@type":"Question","name":"¿Vale la pena alquilar un velero privado para una despedida pequeña?","acceptedAnswer":{"@type":"Answer","text":"Totalmente. Un velero privado os da esa sensación de exclusividad y relax que un barco compartido no puede ofrecer. Es vuestro espacio para poner vuestra música, bañaros en alta mar tranquilamente y disfrutar de una paella valenciana con vistas al skyline. Para grupos pequeños, es la forma ideal de celebrar sin agobios, permitiendo charlas reales y una conexión mucho más profunda con los amigos de toda la vida bajo el sol."}},{"@type":"Question","name":"¿Cómo organizo el transporte para las actividades de aventura fuera de la ciudad?","acceptedAnswer":{"@type":"Answer","text":"En Crea Despedidas te lo ponemos muy fácil para que no sufras por la logística. Podemos gestionar el alquiler de limusinas para que el traslado sea parte de la fiesta o coordinar furgonetas para grupos grandes. La mayoría de nuestros centros de aventura están a menos de 20 minutos de Valencia, por lo que el trayecto es corto. Delegar el transporte os permite disfrutar de la jornada sin preocuparos de quién conduce."}},{"@type":"Question","name":"¿Qué pasa si llueve el día de la actividad de exterior?","acceptedAnswer":{"@type":"Answer","text":"No sufras por el tiempo, que en Valencia el sol es casi un residente fijo durante todo el año. Si la lluvia hace acto de presencia, siempre buscamos alternativas en recintos cubiertos como el karting indoor o salas para cenas temáticas. Dependiendo de la actividad y la disponibilidad, también podemos gestionar cambios de horario para que no os perdáis la diversión. Nuestro equipo de coordinación estará encima de todo para que el plan siga siendo legendario."}}]}
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" href="/assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: {
-        fontFamily: { display: ['Sora', 'system-ui', 'sans-serif'], sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'] },
-        colors: { ink: '#0B0B0F', surface: '#121218', neon: { cyan: '#00F2FE', blue: '#4FACFE', pink: '#FF2FB9', orange: '#FF7A18' } },
-      } },
-    };
-  </script>
-  <link rel="stylesheet" href="/css/styles.css?v=55" />
+  
+  <link rel="stylesheet" href="/css/styles.css?v=61" />
+  <link rel="stylesheet" href="/css/tailwind.css?v=2" />
   <style>.post-prose figure{margin:1.75rem 0}.post-prose figure img{display:block;width:100%;height:auto;border-radius:1.25rem}</style>
+  <link rel="icon" type="image/webp" href="/assets/fish.webp" />
 </head>
 
 <body class="bg-ink text-white font-sans antialiased overflow-x-hidden">
@@ -63,7 +69,7 @@
   <header id="nav" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
     <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 md:px-8" aria-label="Principal">
       <a href="/" class="brand" aria-label="Crea Despedidas — Inicio">
-        <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+        <img src="/assets/logo.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
       </a>
       <ul class="hidden items-center gap-8 text-sm text-white/70 lg:flex">
         <li class="nav-item has-submenu">
@@ -190,7 +196,7 @@
       <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
         <div>
           <a href="/" class="brand brand--footer" aria-label="Crea Despedidas — Inicio">
-            <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+            <img src="/assets/logo-lg.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" loading="lazy" decoding="async" />
           </a>
           <p class="mt-4 max-w-xs text-sm leading-relaxed text-white/50">Despedidas de soltero/a y eventos privados en Valencia. La despedida que nunca olvidaréis.</p>
         </div>
@@ -221,17 +227,17 @@
           </address>
         </div>
       </div>
-      <div class="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/40 md:flex-row">
+      <div class="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/60 md:flex-row">
         <p>© <span id="year">2026</span> Crea Despedidas. Todos los derechos reservados.</p>
         <ul class="flex gap-6"><li><a href="/" class="hover:text-white">Inicio</a></li></ul>
       </div>
     </div>
   </footer>
 
-  <img src="/assets/fish.png" id="fish-cursor" alt="" aria-hidden="true" />
+  <img src="/assets/fish.webp" id="fish-cursor" fetchpriority="low" decoding="async" alt="" aria-hidden="true" />
   <a href="https://crea-despedidas-crmdespe.fptzxz.easypanel.host/chat.html" target="_blank" rel="noopener" class="wa-float" aria-label="Escríbenos por WhatsApp">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.5-4.5A8 8 0 1 1 9 19L4 20Z"/><path d="M9 10c0 3 2.5 5.5 5.5 5.5M9 10c0-1 1-1.5 1.5-1l1 1.5-1 1M14.5 15.5c1 0 1.5-1 1-1.5L14 13l-1 1"/></svg>
   </a>
-  <script src="/js/main.js?v=54" defer></script>
+  <script src="/js/main.js?v=61" defer></script>
 </body>
 </html>

@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10805472079"></script>
+  <meta charset="UTF-8" />
+  <!-- Google tag (gtag.js) · carga diferida: primera interacción o 5 s tras el load -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'AW-10805472079');
+    (function () {
+      var done = 0;
+      function load() {
+        if (done) return; done = 1;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-10805472079';
+        document.head.appendChild(s);
+      }
+      ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (e) {
+        addEventListener(e, load, { once: true, passive: true });
+      });
+      addEventListener('load', function () { setTimeout(load, 5000); });
+    })();
   </script>
 
-  <meta charset="UTF-8" />
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0B0B0F" />
   <script>document.documentElement.classList.add('js');</script>
@@ -36,21 +49,14 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Cuánto tiempo debe durar el discurso del organizador de una despedida?","acceptedAnswer":{"@type":"Answer","text":"La duración ideal oscila entre los tres y cinco minutos como máximo. Ese tiempo es más que suficiente para arrancar carcajadas, dedicar unas palabras cariñosas y culminar con un brindis arrollador sin aburrir a nadie. Si hablas más de cinco minutos, la atención decae rápidamente en un restaurante ruidoso o antes de salir de marcha. Menos es más: sé breve, directo y remata cuando el ambiente esté en su punto más alto."}},{"@type":"Question","name":"¿Qué temas se deben evitar obligatoriamente en el brindis?","acceptedAnswer":{"@type":"Answer","text":"Debes tachar de forma tajante cualquier mención a exparejas, ligues del pasado o intimidades comprometedoras que la futura pareja no conozca. Tampoco conviene hablar de dinero, deudas o discusiones previas sobre los planes del viaje. El objetivo de una fiesta es sumar buen rollo. Céntrate en anécdotas cómicas cotidianas, aficiones curiosas o torpezas simpáticas que hagan reír a la mesa sin sembrar dudas ni crear malestar."}},{"@type":"Question","name":"¿Es mejor leer el discurso o memorizarlo por completo?","acceptedAnswer":{"@type":"Answer","text":"Lo más recomendable es utilizar un término medio: apóyate en un esquema con palabras clave en una tarjeta física o en las notas del móvil. Memorizarlo palabra por palabra aumenta el riesgo de quedarte en blanco por los nervios, mientras que leer un folio entero resta cercanía y dinamismo. Un buen discurso del organizador de la despedida fluye con naturalidad cuando miras a los ojos de tus amigos y solo consultas el guion para no olvidar ningún remate gracioso."}},{"@type":"Question","name":"¿En qué momento exacto de la fiesta conviene pronunciar el discurso?","acceptedAnswer":{"@type":"Answer","text":"El momento idóneo es durante los postres de la cena o justo antes de que comience el espectáculo de la noche. En ese intervalo el grupo ya ha roto el hielo inicial gracias a los entrantes, pero todavía mantiene la lucidez y la atención necesarias para disfrutar de las palabras. En una celebración en Valencia con espectáculo o cena temática, coordina tus palabras con los animadores para que tu intervención funcione como la previa perfecta antes de la música y el desmadre."}},{"@type":"Question","name":"¿Cómo vencer la timidez si no estoy acostumbrado a hablar en público?","acceptedAnswer":{"@type":"Answer","text":"Apóyate en el grupo desde el primer instante interactuando con ellos y repartiendo miradas para no sentir la carga en solitario. Recuerda que estás entre amigos que quieren divertirse, no ante un tribunal examinador. Realiza tres respiraciones profundas antes de levantarte, sonríe para relajar la musculatura facial y sujeta la copa con ambas manos si notas temblores. Una vez sueltes la primera broma y escuches las risas, los nervios se esfumarán por completo."}},{"@type":"Question","name":"¿Qué hacer si el protagonista se emociona demasiado o se siente avergonzado?","acceptedAnswer":{"@type":"Answer","text":"Si ves que la emoción le desborda o se incomoda, corta la narración al instante y dale un abrazo sincero. El éxito del discurso del organizador de la despedida reside en proteger siempre el bienestar del homenajeado. Transforma ese momento de vulnerabilidad en una ovación cerrando con un brindis colectivo o arrancando un cántico fiestero. Así desviarás la atención de toda la mesa hacia la celebración compartida, devolviendo la sonrisa inmediata a su cara."}}]}
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" href="/assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: {
-        fontFamily: { display: ['Sora', 'system-ui', 'sans-serif'], sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'] },
-        colors: { ink: '#0B0B0F', surface: '#121218', neon: { cyan: '#00F2FE', blue: '#4FACFE', pink: '#FF2FB9', orange: '#FF7A18' } },
-      } },
-    };
-  </script>
-  <link rel="stylesheet" href="/css/styles.css?v=55" />
+  
+  <link rel="stylesheet" href="/css/styles.css?v=61" />
+  <link rel="stylesheet" href="/css/tailwind.css?v=2" />
   <style>.post-prose figure{margin:1.75rem 0}.post-prose figure img{display:block;width:100%;height:auto;border-radius:1.25rem}</style>
+  <link rel="icon" type="image/webp" href="/assets/fish.webp" />
 </head>
 
 <body class="bg-ink text-white font-sans antialiased overflow-x-hidden">
@@ -63,7 +69,7 @@
   <header id="nav" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
     <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 md:px-8" aria-label="Principal">
       <a href="/" class="brand" aria-label="Crea Despedidas — Inicio">
-        <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+        <img src="/assets/logo.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
       </a>
       <ul class="hidden items-center gap-8 text-sm text-white/70 lg:flex">
         <li class="nav-item has-submenu">
@@ -213,7 +219,7 @@
       <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
         <div>
           <a href="/" class="brand brand--footer" aria-label="Crea Despedidas — Inicio">
-            <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+            <img src="/assets/logo-lg.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" loading="lazy" decoding="async" />
           </a>
           <p class="mt-4 max-w-xs text-sm leading-relaxed text-white/50">Despedidas de soltero/a y eventos privados en Valencia. La despedida que nunca olvidaréis.</p>
         </div>
@@ -244,17 +250,17 @@
           </address>
         </div>
       </div>
-      <div class="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/40 md:flex-row">
+      <div class="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/60 md:flex-row">
         <p>© <span id="year">2026</span> Crea Despedidas. Todos los derechos reservados.</p>
         <ul class="flex gap-6"><li><a href="/" class="hover:text-white">Inicio</a></li></ul>
       </div>
     </div>
   </footer>
 
-  <img src="/assets/fish.png" id="fish-cursor" alt="" aria-hidden="true" />
+  <img src="/assets/fish.webp" id="fish-cursor" fetchpriority="low" decoding="async" alt="" aria-hidden="true" />
   <a href="https://crea-despedidas-crmdespe.fptzxz.easypanel.host/chat.html" target="_blank" rel="noopener" class="wa-float" aria-label="Escríbenos por WhatsApp">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.5-4.5A8 8 0 1 1 9 19L4 20Z"/><path d="M9 10c0 3 2.5 5.5 5.5 5.5M9 10c0-1 1-1.5 1.5-1l1 1.5-1 1M14.5 15.5c1 0 1.5-1 1-1.5L14 13l-1 1"/></svg>
   </a>
-  <script src="/js/main.js?v=54" defer></script>
+  <script src="/js/main.js?v=61" defer></script>
 </body>
 </html>

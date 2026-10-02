@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10805472079"></script>
+  <meta charset="UTF-8" />
+  <!-- Google tag (gtag.js) · carga diferida: primera interacción o 5 s tras el load -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'AW-10805472079');
+    (function () {
+      var done = 0;
+      function load() {
+        if (done) return; done = 1;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-10805472079';
+        document.head.appendChild(s);
+      }
+      ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (e) {
+        addEventListener(e, load, { once: true, passive: true });
+      });
+      addEventListener('load', function () { setTimeout(load, 5000); });
+    })();
   </script>
 
-  <meta charset="UTF-8" />
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0B0B0F" />
   <script>document.documentElement.classList.add('js');</script>
@@ -36,21 +49,14 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Qué hago si el novio se niega rotundamente a tener una despedida?","acceptedAnswer":{"@type":"Answer","text":"Lo primero es escuchar sus motivos reales sin juzgarle. Casi siempre el miedo viene de los clichés absurdos que ha visto en otras fiestas. Explícale que no habrá disfraces ni situaciones ridículas que le hagan pasar vergüenza. Propón un día entre colegas enfocado totalmente en sus aficiones, como una buena parrillada o una competición de Karting. Al quitarle la etiqueta de despedida tradicional, su actitud cambiará por completo y se unirá al plan."}},{"@type":"Question","name":"¿Es mala idea organizar una despedida sorpresa si él ha dicho que no quiere?","acceptedAnswer":{"@type":"Answer","text":"Sinceramente, organizar algo sorpresa cuando ya ha dicho que no es un movimiento muy arriesgado. Podría sentirse presionado o incluso traicionado por sus amigos en un momento de mucho estrés pre-boda. Lo ideal es presentarle un itinerario cerrado que respete sus líneas rojas desde el principio. Cuando vea que el plan es una jornada de Paintball o un velero privado sin tonterías, se relajará. La confianza es la clave absoluta."}},{"@type":"Question","name":"¿Cómo convenzo al resto del grupo de hacer un plan más tranquilo?","acceptedAnswer":{"@type":"Answer","text":"Tienes que ser el portavoz del sentido común en el grupo de WhatsApp. Hazles ver que una despedida que el novio odie será un fracaso total para todos los asistentes. Propón alternativas que mantengan la adrenalina alta, como el Humor Amarillo, para que el grupo no sienta que se pierde la fiesta. Es mucho mejor un planazo de aventura que todos disfruten a una noche forzada que termine en un enfado monumental."}},{"@type":"Question","name":"¿Qué actividades en Valencia son mejores para novios que odian llamar la atención?","acceptedAnswer":{"@type":"Answer","text":"Valencia es el paraíso para los planes discretos pero sumamente intensos. Las actividades privadas son vuestra solución perfecta para evitar mirones. Un velero exclusivo para el grupo permite disfrutar del Mediterráneo con total intimidad. También podéis cerrar una tanda de karts solo para vosotros o reservar un espacio privado en un restaurante sin espectáculos invasivos. Así, el novio se siente arropado por sus amigos de siempre sin ser el centro de atención."}},{"@type":"Question","name":"¿Cuánto tiempo antes de la boda se debe organizar una despedida no tradicional?","acceptedAnswer":{"@type":"Answer","text":"Lo ideal es celebrarla entre un mes y quince días antes del gran día. Organizar una despedida no tradicional requiere margen para cuadrar las agendas de todos, especialmente en Valencia donde los mejores planes vuelan rápido. Si te bloqueas pensando qué hacer si el novio no quiere despedida de soltero cerca de la fecha, recuerda que su relax es la prioridad. Evita el fin de semana previo para que llegue descansado al altar."}},{"@type":"Question","name":"¿Se puede hacer una despedida mixta si el novio prefiere estar con su pareja?","acceptedAnswer":{"@type":"Answer","text":"¡Claro que sí! Las despedidas mixtas están pegando fuerte y en Valencia tenemos opciones brutales para ello. Podéis organizar una batalla épica de Paintball o una jornada de Banana Boat donde participen ambos grupos de amigos a la vez. Es la opción perfecta para novios que comparten el mismo círculo social y prefieren una celebración conjunta. Al final, lo que importa es la diversión y crear recuerdos legendarios todos juntos antes del enlace."}},{"@type":"Question","name":"¿Qué pasa si el presupuesto del grupo es bajo pero queremos algo original?","acceptedAnswer":{"@type":"Answer","text":"No necesitáis una fortuna para montar algo que sea épico. En Crea Despedidas tenemos packs low cost que combinan actividades como gymkanas temáticas o motos de agua con comidas de grupo muy completas. La clave de la originalidad está en elegir una experiencia que rompa la rutina diaria. Valencia ofrece opciones económicas muy potentes si sabes dónde buscar, permitiendo que todos los amigos participen sin que el bolsillo sufra lo más mínimo."}},{"@type":"Question","name":"¿Cómo ayuda Crea Despedidas a personalizar un plan para un novio tímido?","acceptedAnswer":{"@type":"Answer","text":"Nosotros funcionamos como vuestro filtro de seguridad personal. Si el novio es tímido, eliminamos directamente cualquier actividad que incluya interactuar con desconocidos o shows demasiado invasivos. Nos centramos en experiencias de grupo privadas y divertidas, como un velero party o una limusina para moveros con clase por la ciudad. Creamos un entorno seguro donde él pueda soltarse y disfrutar de verdad, sabiendo que tenemos toda la organización bajo control absoluto."}}]}
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" href="/assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: {
-        fontFamily: { display: ['Sora', 'system-ui', 'sans-serif'], sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'] },
-        colors: { ink: '#0B0B0F', surface: '#121218', neon: { cyan: '#00F2FE', blue: '#4FACFE', pink: '#FF2FB9', orange: '#FF7A18' } },
-      } },
-    };
-  </script>
-  <link rel="stylesheet" href="/css/styles.css?v=56" />
+  
+  <link rel="stylesheet" href="/css/styles.css?v=61" />
+  <link rel="stylesheet" href="/css/tailwind.css?v=2" />
   <style>.post-prose figure{margin:1.75rem 0}.post-prose figure img{display:block;width:100%;height:auto;border-radius:1.25rem}</style>
+  <link rel="icon" type="image/webp" href="/assets/fish.webp" />
 </head>
 
 <body class="bg-ink text-white font-sans antialiased overflow-x-hidden">
@@ -63,7 +69,7 @@
   <header id="nav" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
     <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 md:px-8" aria-label="Principal">
       <a href="/" class="brand" aria-label="Crea Despedidas — Inicio">
-        <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+        <img src="/assets/logo.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
       </a>
       <ul class="hidden items-center gap-8 text-sm text-white/70 lg:flex">
         <li class="nav-item has-submenu">
@@ -185,7 +191,7 @@
       <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
         <div>
           <a href="/" class="brand brand--footer" aria-label="Crea Despedidas — Inicio">
-            <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+            <img src="/assets/logo-lg.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" loading="lazy" decoding="async" />
           </a>
           <p class="mt-4 max-w-xs text-sm leading-relaxed text-white/50">Despedidas de soltero/a y eventos privados en Valencia. La despedida que nunca olvidaréis.</p>
         </div>
@@ -216,17 +222,17 @@
           </address>
         </div>
       </div>
-      <div class="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/40 md:flex-row">
+      <div class="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/60 md:flex-row">
         <p>© <span id="year">2026</span> Crea Despedidas. Todos los derechos reservados.</p>
         <ul class="flex gap-6"><li><a href="/" class="hover:text-white">Inicio</a></li></ul>
       </div>
     </div>
   </footer>
 
-  <img src="/assets/fish.png" id="fish-cursor" alt="" aria-hidden="true" />
+  <img src="/assets/fish.webp" id="fish-cursor" fetchpriority="low" decoding="async" alt="" aria-hidden="true" />
   <a href="https://crea-despedidas-crmdespe.fptzxz.easypanel.host/chat.html" target="_blank" rel="noopener" class="wa-float" aria-label="Escríbenos por WhatsApp">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.5-4.5A8 8 0 1 1 9 19L4 20Z"/><path d="M9 10c0 3 2.5 5.5 5.5 5.5M9 10c0-1 1-1.5 1.5-1l1 1.5-1 1M14.5 15.5c1 0 1.5-1 1-1.5L14 13l-1 1"/></svg>
   </a>
-  <script src="/js/main.js?v=58" defer></script>
+  <script src="/js/main.js?v=61" defer></script>
 </body>
 </html>

@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10805472079"></script>
+  <meta charset="UTF-8" />
+  <!-- Google tag (gtag.js) · carga diferida: primera interacción o 5 s tras el load -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'AW-10805472079');
+    (function () {
+      var done = 0;
+      function load() {
+        if (done) return; done = 1;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-10805472079';
+        document.head.appendChild(s);
+      }
+      ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (e) {
+        addEventListener(e, load, { once: true, passive: true });
+      });
+      addEventListener('load', function () { setTimeout(load, 5000); });
+    })();
   </script>
 
-  <meta charset="UTF-8" />
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0B0B0F" />
   <script>document.documentElement.classList.add('js');</script>
@@ -36,21 +49,14 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Es necesario tener carnet de conducir para participar en el karting o las motos de agua?","acceptedAnswer":{"@type":"Answer","text":"No necesitas ningún carnet oficial para ninguna de las dos actividades. Los karts de alquiler en circuito cerrado no exigen licencia de tráfico. En el caso de las motos de agua, las excursiones guiadas con monitores titulados permiten pilotar legalmente sin titulación náutica. Cualquier miembro del grupo mayor de edad puede ponerse a los mandos sin complicaciones previas."}},{"@type":"Question","name":"¿Cuántas personas se necesitan como mínimo para organizar un Gran Premio privado?","acceptedAnswer":{"@type":"Answer","text":"Para cerrar la pista en exclusiva y disputar una despedida de soltero para aficionados al motor con formato Gran Premio, suele requerirse un mínimo de entre seis y ocho pilotos. Si sois un grupo más numeroso, las parrillas admiten hasta veinte o treinta vehículos compitiendo rueda a rueda. Así garantizáis una tanda privada solo para vosotros."}},{"@type":"Question","name":"¿Qué equipamiento de seguridad nos proporciona la pista para la carrera?","acceptedAnswer":{"@type":"Answer","text":"El circuito entrega casco integral homologado con sotocasco higiénico desechable y chaleco o costillar protector. Los comisarios técnicos imparten un briefing obligatorio antes de arrancar los motores para explicar las banderas y las normas de adelantamiento. Vosotros solo debéis acudir con calzado cerrado cómodo y ropa deportiva adecuada para pilotar pegados al asfalto."}},{"@type":"Question","name":"¿Se pueden combinar los karts y las motos de agua en el mismo día?","acceptedAnswer":{"@type":"Answer","text":"Sí, es la combinación estrella para una despedida de soltero para aficionados al motor completa en Valencia. El itinerario perfecto arranca por la mañana en el circuito de karts cuando los reflejos están al cien por cien. Tras una buena comida para comentar los piques, la tarde continúa en la marina con la potencia de las motos acuáticas."}},{"@type":"Question","name":"¿Qué ocurre si las condiciones meteorológicas impiden hacer la actividad en el mar?","acceptedAnswer":{"@type":"Answer","text":"Si la capitanía marítima o los monitores determinan bandera roja por fuerte oleaje, la seguridad del grupo manda. En estos casos puntuales, adaptamos la jornada de inmediato reubicando el horario o sustituyendo la salida al mar por otra experiencia del catálogo, como humor amarillo o paintball. La diversión y la fiesta continúan siempre sin interrupciones."}},{"@type":"Question","name":"¿Cómo organizamos los desplazamientos entre el circuito de karts y el centro de la ciudad?","acceptedAnswer":{"@type":"Answer","text":"La forma más cómoda y festiva de mover al grupo es contratar el servicio de alquiler de limusinas o traslados privados coordinados. De esta manera, nadie tiene que preocuparse por conducir su propio coche, buscar aparcamiento en zonas concurridas ni designar a un conductor que se quede sin brindar durante las celebraciones de la despedida."}}]}
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" href="/assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: {
-        fontFamily: { display: ['Sora', 'system-ui', 'sans-serif'], sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'] },
-        colors: { ink: '#0B0B0F', surface: '#121218', neon: { cyan: '#00F2FE', blue: '#4FACFE', pink: '#FF2FB9', orange: '#FF7A18' } },
-      } },
-    };
-  </script>
-  <link rel="stylesheet" href="/css/styles.css?v=55" />
+  
+  <link rel="stylesheet" href="/css/styles.css?v=61" />
+  <link rel="stylesheet" href="/css/tailwind.css?v=2" />
   <style>.post-prose figure{margin:1.75rem 0}.post-prose figure img{display:block;width:100%;height:auto;border-radius:1.25rem}</style>
+  <link rel="icon" type="image/webp" href="/assets/fish.webp" />
 </head>
 
 <body class="bg-ink text-white font-sans antialiased overflow-x-hidden">
@@ -63,7 +69,7 @@
   <header id="nav" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
     <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 md:px-8" aria-label="Principal">
       <a href="/" class="brand" aria-label="Crea Despedidas — Inicio">
-        <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+        <img src="/assets/logo.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
       </a>
       <ul class="hidden items-center gap-8 text-sm text-white/70 lg:flex">
         <li class="nav-item has-submenu">
@@ -206,7 +212,7 @@
       <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
         <div>
           <a href="/" class="brand brand--footer" aria-label="Crea Despedidas — Inicio">
-            <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+            <img src="/assets/logo-lg.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" loading="lazy" decoding="async" />
           </a>
           <p class="mt-4 max-w-xs text-sm leading-relaxed text-white/50">Despedidas de soltero/a y eventos privados en Valencia. La despedida que nunca olvidaréis.</p>
         </div>
@@ -237,17 +243,17 @@
           </address>
         </div>
       </div>
-      <div class="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/40 md:flex-row">
+      <div class="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/60 md:flex-row">
         <p>© <span id="year">2026</span> Crea Despedidas. Todos los derechos reservados.</p>
         <ul class="flex gap-6"><li><a href="/" class="hover:text-white">Inicio</a></li></ul>
       </div>
     </div>
   </footer>
 
-  <img src="/assets/fish.png" id="fish-cursor" alt="" aria-hidden="true" />
+  <img src="/assets/fish.webp" id="fish-cursor" fetchpriority="low" decoding="async" alt="" aria-hidden="true" />
   <a href="https://crea-despedidas-crmdespe.fptzxz.easypanel.host/chat.html" target="_blank" rel="noopener" class="wa-float" aria-label="Escríbenos por WhatsApp">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.5-4.5A8 8 0 1 1 9 19L4 20Z"/><path d="M9 10c0 3 2.5 5.5 5.5 5.5M9 10c0-1 1-1.5 1.5-1l1 1.5-1 1M14.5 15.5c1 0 1.5-1 1-1.5L14 13l-1 1"/></svg>
   </a>
-  <script src="/js/main.js?v=54" defer></script>
+  <script src="/js/main.js?v=61" defer></script>
 </body>
 </html>

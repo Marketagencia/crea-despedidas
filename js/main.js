@@ -1003,7 +1003,7 @@
       ['persona-al-agua', 'Grupo en una actividad acuática de equipo'],
       ['comida-charanga-interior', 'Comida con charanga en salón interior'],
       ['comida-charanga-terraza', 'Comida con charanga en terraza'],
-      ['humor-amarillo-despedidas', 'Despedida de soltera con humor amarillo'],
+      ['buggies', 'Grupo en buggies por un circuito de tierra en Valencia'],
     ];
 
     // Barajado Fisher–Yates (orden aleatorio en cada carga)
@@ -1011,6 +1011,13 @@
     for (let i = list.length - 1; i > 0; i--) {
       const j = (Math.random() * (i + 1)) | 0;
       [list[i], list[j]] = [list[j], list[i]];
+    }
+    // Los buggies van siempre justo a continuación de la foto de humor amarillo
+    const iHumor = list.findIndex((p) => p[0] === 'humor-amarillo');
+    const iBuggy = list.findIndex((p) => p[0] === 'buggies');
+    if (iHumor > -1 && iBuggy > -1) {
+      const [buggy] = list.splice(iBuggy, 1);
+      list.splice(list.findIndex((p) => p[0] === 'humor-amarillo') + 1, 0, buggy);
     }
 
     const REPEAT = 2; // repetir la secuencia para llenar pantallas anchas

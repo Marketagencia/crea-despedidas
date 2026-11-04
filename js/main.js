@@ -480,6 +480,7 @@
           type: "pax",
           price: sel.perPerson,
           guests: sel.people,
+          fromWeb: true,
           cost: 0,
           date: dateVal,
           time: getDefaultActivityTime(sel.title),
@@ -517,6 +518,7 @@
             guests: effectiveUnit ? 1 : billedGuests,
             units: gu ? groupUnits : (isUnit ? 1 : undefined),
             isUnits: effectiveUnit,
+            fromWeb: true,
             cost: 0,
             date: dateVal,
             time: getDefaultActivityTime(i.label),
@@ -578,6 +580,7 @@
           guests: 1,
           units: 1,
           isUnits: true,
+          fromWeb: true,
           cost: 0,
           date: dateVal,
           time: "",
@@ -620,33 +623,92 @@
         dateToVal = d.toISOString().split('T')[0];
       }
 
+      // Una sola propuesta por cliente (teléfono): si ya hay una tarjeta web suya que el equipo
+      // aún no ha cerrado, se sobrescribe (mismo enlace) en vez de crear otra tarjeta en el CRM.
+      let leadId = randomId;
+      let updatedPrevious = false;
       if (supabaseClient) {
+        let existing = null;
         try {
-          const { error } = await supabaseClient
-            .from('groups')
-            .insert({
-              id: randomId,
+          const { data: found } = await supabaseClient.rpc('find_web_lead', { p_phone: phoneVal });
+          const row = Array.isArray(found) ? found[0] : found;
+          const EDITABLE = ['Nuevo', 'Seguimiento', 'Perdido'];
+          if (row && row.id && EDITABLE.includes(row.status) && !(Number(row.paid) > 0)) existing = row;
+        } catch (e) {
+          console.error("No se pudo buscar la propuesta anterior:", e);
+        }
+
+        if (existing) {
+          try {
+            const { data: prev } = await supabaseClient
+              .from('groups')
+              .select('supplierServices')
+              .eq('id', existing.id)
+              .single();
+            const oldServices = Array.isArray(prev && prev.supplierServices) ? prev.supplierServices : [];
+            // Servicios añadidos a mano en el CRM (sin marca fromWeb) se conservan, salvo que la
+            // propuesta sea antigua (ningún servicio con marca): entonces todo se considera de la web.
+            const legacy = !oldServices.some((o) => o && o.fromWeb === true);
+            const kept = legacy ? [] : oldServices.filter((o) => o && o.fromWeb !== true);
+            const merged = services.map((n) => {
+              const old = oldServices.find((o) => o && o.name === n.name);
+              return old ? { ...old, ...n, cost: old.cost != null ? old.cost : n.cost } : n;
+            });
+            const update = {
               organizer: `${nameVal} (Web)`,
               phone: phoneVal,
               date: dateVal,
               dateTo: dateToVal,
               guests: Number(sel.people) || 12,
               budget: Number(finalBudget) || 0,
-              paid: 0,
-              status: "Nuevo",
               activities: activitiesForCrm,
-              supplierServices: services,
-              assignedTo: "pablo",
-              statusChangedAt: new Date().toISOString(),
-              created_at: new Date().toISOString(),
-              reminderDays: 3
-            });
-
-          if (error) {
-            console.error("Error al registrar lead en Supabase:", error);
+              supplierServices: [...merged, ...kept],
+            };
+            if (existing.status === 'Perdido') {
+              update.status = 'Nuevo';
+              update.statusChangedAt = new Date().toISOString();
+            }
+            const { error } = await supabaseClient.from('groups').update(update).eq('id', existing.id);
+            if (error) throw error;
+            leadId = existing.id;
+            updatedPrevious = true;
+          } catch (e) {
+            console.error("No se pudo actualizar la propuesta anterior, se crea una nueva:", e);
           }
-        } catch (e) {
-          console.error("Excepción al guardar lead en Supabase:", e);
+        }
+
+        if (!updatedPrevious) {
+          // El id es aleatorio (G-XXXX): si coincide con uno existente se reintenta con otro
+          for (let attempt = 0; attempt < 3; attempt++) {
+            try {
+              const { error } = await supabaseClient
+                .from('groups')
+                .insert({
+                  id: leadId,
+                  organizer: `${nameVal} (Web)`,
+                  phone: phoneVal,
+                  date: dateVal,
+                  dateTo: dateToVal,
+                  guests: Number(sel.people) || 12,
+                  budget: Number(finalBudget) || 0,
+                  paid: 0,
+                  status: "Nuevo",
+                  activities: activitiesForCrm,
+                  supplierServices: services,
+                  assignedTo: "pablo",
+                  statusChangedAt: new Date().toISOString(),
+                  created_at: new Date().toISOString(),
+                  reminderDays: 3
+                });
+              if (!error) break;
+              console.error("Error al registrar lead en Supabase:", error);
+              if (error.code !== '23505') break;
+              leadId = `G-${Math.floor(1000 + Math.random() * 9000)}`;
+            } catch (e) {
+              console.error("Excepción al guardar lead en Supabase:", e);
+              break;
+            }
+          }
         }
       }
 
@@ -668,12 +730,12 @@
         } catch(e) {}
       }
 
-      const proposalUrl = `${baseCrmDomain}/p/${randomId}`;
+      const proposalUrl = `${baseCrmDomain}/p/${leadId}`;
       const parts = dateVal.split('-');
       const dateFriendly = parts.length === 3 ? `${parts[2]}/${parts[1]}/${parts[0]}` : dateVal;
 
       const waMsg =
-        `¡Hola Crea Despedidas! Soy ${nameVal}. Hemos configurado nuestro evento (${eventType}) para ${sel.people} personas el ${dateFriendly}.\n` +
+        `¡Hola Crea Despedidas! Soy ${nameVal}. ${updatedPrevious ? 'He actualizado nuestra propuesta' : 'Hemos configurado nuestro evento'} (${eventType}) para ${sel.people} personas el ${dateFriendly}.\n` +
         (sel.kind === 'pack' ? `Pack: ${sel.title} (${nf.format(sel.perPerson)} €/pax)\n` : `Servicios: ${waActList.join(', ')}\n`) +
         (wheelPrize ? `🎁 Premio ruleta ganado: ${wheelPrize}\n` : '') +
         (isPremioGordo && premioGordoDiscount > 0
@@ -691,7 +753,7 @@
       if (submitText) submitText.textContent = 'Abrir WhatsApp de nuevo';
       if (feedback) {
         feedback.innerHTML =
-          `¡Propuesta lista! Enlace de tu propuesta: <a href="${proposalUrl}" target="_blank" style="color: var(--c-cyan); text-decoration: underline; font-weight: bold;">Ver propuesta</a> ` +
+          `${updatedPrevious ? '¡Propuesta actualizada! Hemos sustituido tu propuesta anterior.' : '¡Propuesta lista!'} Enlace de tu propuesta: <a href="${proposalUrl}" target="_blank" style="color: var(--c-cyan); text-decoration: underline; font-weight: bold;">Ver propuesta</a> ` +
           `| <a href="${waUrl}" target="_blank" style="color: var(--c-pink); text-decoration: underline; font-weight: bold;">Abrir WhatsApp</a>`;
         feedback.style.color = '#ffffff';
       }

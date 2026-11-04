@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10805472079"></script>
+  <meta charset="UTF-8" />
+  <!-- Google tag (gtag.js) · carga diferida: primera interacción o 5 s tras el load -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'AW-10805472079');
+    (function () {
+      var done = 0;
+      function load() {
+        if (done) return; done = 1;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-10805472079';
+        document.head.appendChild(s);
+      }
+      ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (e) {
+        addEventListener(e, load, { once: true, passive: true });
+      });
+      addEventListener('load', function () { setTimeout(load, 5000); });
+    })();
   </script>
 
-  <meta charset="UTF-8" />
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0B0B0F" />
   <script>document.documentElement.classList.add('js');</script>
@@ -36,21 +49,14 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Quién puede ser responsable?","acceptedAnswer":{"@type":"Answer","text":"Puede responder la empresa que incumplió el compromiso y, a veces, también el organizador, si el fallo afectó directamente al evento. Distingue quién vendió la reserva, quién figura en el contrato y quién controlaba el aspecto problemático. Una gestión incorrecta de la reserva y un cambio de programación, por ejemplo, pueden implicar responsables distintos. Dirige cada petición a quien pueda explicar o resolver ese punto concreto."}},{"@type":"Question","name":"¿Qué necesitas para reclamar?","acceptedAnswer":{"@type":"Answer","text":"Debes poder demostrar qué contrataste, qué pagaste y cuál fue el problema. Reúne la confirmación de reserva, las condiciones aceptadas, el comprobante bancario y los mensajes intercambiados. Si una persona hizo la compra en nombre del grupo, identifica quién fue y conserva su autorización o los datos de la reserva. Una cronología breve ayuda a relacionar cada documento con el momento correspondiente."}},{"@type":"Question","name":"¿Qué puedes hacer legalmente?","acceptedAnswer":{"@type":"Answer","text":"Puedes pedir por escrito que se cumpla lo acordado, que se devuelva el importe correspondiente o que se compensen daños demostrables. También puedes trasladar el conflicto a Consumo y valorar el arbitraje. Si la disputa llega a los tribunales y la cuantía reclamada no supera los 2.000 euros, el Boletín Oficial del Estado establece que no necesitas abogado ni procurador. Conserva las pruebas y concreta qué solución solicitas."}},{"@type":"Question","name":"¿Y si solo perdí 50 o 100 euros?","acceptedAnswer":{"@type":"Answer","text":"Una cantidad de 50 o 100 euros también puede reclamarse; lo importante es explicar por qué corresponde y respaldar la petición. Guarda el pago, la reserva y la comunicación que demuestra el incumplimiento. Si valoras acudir a juicio, cuando la cuantía reclamada no supera los 2.000 euros no es necesario contar con abogado ni procurador, según el Boletín Oficial del Estado. Decide la vía según las pruebas y el resultado que buscas."}},{"@type":"Question","name":"¿Qué pruebas y documentos necesito para reclamar a una agencia de eventos?","acceptedAnswer":{"@type":"Answer","text":"Empieza por el justificante de compra y el comprobante de pago; añade conversaciones, correos y avisos sobre cambios o cancelaciones. Si una entrada no funcionaba, conserva una captura del error y los datos de la entrada. Para reclamar gastos, incorpora facturas y reservas relacionadas. Guarda los archivos originales y anota cuándo ocurrió cada intercambio: así presentarás una secuencia coherente, no una colección de documentos sueltos."}},{"@type":"Question","name":"¿Cómo presentar una hoja de reclamaciones contra una agencia de eventos?","acceptedAnswer":{"@type":"Answer","text":"En la hoja, explica qué contrataste, qué ocurrió y qué solución solicitas. Incluye la fecha del evento, el nombre de la empresa que aparece en la reserva y los datos para localizar la compra. Adjunta copias de los justificantes y conserva una copia completa. Si la explicación no cabe, añade un escrito e indica en la hoja que forma parte de la reclamación."}},{"@type":"Question","name":"¿Qué plazos hay para reclamar a una agencia de eventos en España?","acceptedAnswer":{"@type":"Answer","text":"Depende de la vía. Tras una reclamación escrita por la cancelación, la empresa tiene un mes para responder; si cancela el evento, la devolución debe hacerse en un máximo de 14 días desde la comunicación. Para solicitar al banco la retrocesión de un cargo por un problema con una entrada, el plazo suele ser de 120 días desde el cargo o desde que debía prestarse el servicio. Otros plazos varían según la reclamación."}},{"@type":"Question","name":"¿Se puede resolver una disputa con una agencia de eventos mediante arbitraje de consumo?","acceptedAnswer":{"@type":"Answer","text":"Sí, el arbitraje de Consumo puede ayudar a intentar resolver el conflicto sin limitarse a intercambiar mensajes con la empresa. Explica el caso con claridad y aporta documentos que respalden la compra, el incumplimiento y la solución solicitada. Si el servicio reservado difería de lo ofrecido, por ejemplo, adjunta ambas descripciones. Conserva también la reclamación inicial y la respuesta recibida para que el expediente muestre cómo evolucionó el desacuerdo."}}]}
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" href="/assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: {
-        fontFamily: { display: ['Sora', 'system-ui', 'sans-serif'], sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'] },
-        colors: { ink: '#0B0B0F', surface: '#121218', neon: { cyan: '#00F2FE', blue: '#4FACFE', pink: '#FF2FB9', orange: '#FF7A18' } },
-      } },
-    };
-  </script>
-  <link rel="stylesheet" href="/css/styles.css?v=55" />
+  
+  <link rel="stylesheet" href="/css/styles.css?v=61" />
+  <link rel="stylesheet" href="/css/tailwind.css?v=3" />
   <style>.post-prose figure{margin:1.75rem 0}.post-prose figure img{display:block;width:100%;height:auto;border-radius:1.25rem}</style>
+  <link rel="icon" type="image/webp" href="/assets/fish.webp" />
 </head>
 
 <body class="bg-ink text-white font-sans antialiased overflow-x-hidden">
@@ -63,7 +69,7 @@
   <header id="nav" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
     <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 md:px-8" aria-label="Principal">
       <a href="/" class="brand" aria-label="Crea Despedidas — Inicio">
-        <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+        <img src="/assets/logo.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
       </a>
       <ul class="hidden items-center gap-8 text-sm text-white/70 lg:flex">
         <li class="nav-item has-submenu">
@@ -187,7 +193,7 @@
       <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
         <div>
           <a href="/" class="brand brand--footer" aria-label="Crea Despedidas — Inicio">
-            <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+            <img src="/assets/logo-lg.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" loading="lazy" decoding="async" />
           </a>
           <p class="mt-4 max-w-xs text-sm leading-relaxed text-white/50">Despedidas de soltero/a y eventos privados en Valencia. La despedida que nunca olvidaréis.</p>
         </div>
@@ -225,7 +231,7 @@
     </div>
   </footer>
 
-  <img src="/assets/fish.png" id="fish-cursor" alt="" aria-hidden="true" />
+  <img src="/assets/fish.webp" id="fish-cursor" fetchpriority="low" decoding="async" alt="" aria-hidden="true" />
   <a href="https://crea-despedidas-crmdespe.fptzxz.easypanel.host/chat.html" target="_blank" rel="noopener" class="wa-float" aria-label="Escríbenos por WhatsApp">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.5-4.5A8 8 0 1 1 9 19L4 20Z"/><path d="M9 10c0 3 2.5 5.5 5.5 5.5M9 10c0-1 1-1.5 1.5-1l1 1.5-1 1M14.5 15.5c1 0 1.5-1 1-1.5L14 13l-1 1"/></svg>
   </a>

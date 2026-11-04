@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10805472079"></script>
+  <meta charset="UTF-8" />
+  <!-- Google tag (gtag.js) · carga diferida: primera interacción o 5 s tras el load -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'AW-10805472079');
+    (function () {
+      var done = 0;
+      function load() {
+        if (done) return; done = 1;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-10805472079';
+        document.head.appendChild(s);
+      }
+      ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (e) {
+        addEventListener(e, load, { once: true, passive: true });
+      });
+      addEventListener('load', function () { setTimeout(load, 5000); });
+    })();
   </script>
 
-  <meta charset="UTF-8" />
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0B0B0F" />
   <script>document.documentElement.classList.add('js');</script>
@@ -36,21 +49,14 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Qué hacer si ya estás en esta situación?","acceptedAnswer":{"@type":"Answer","text":"Empieza por distinguir si falta el pago o si la persona cuestiona el importe. Si se le ha pasado, envíale un recordatorio privado con el concepto y la forma de abonarlo. Si hay desacuerdo, pausa los nuevos gastos que dependan de ese dinero y revisad juntos el cálculo. Si la reserva está próxima, decidid si mantenéis el plan, cambiáis su alcance o esperáis a resolver la cuenta."}},{"@type":"Question","name":"¿Qué opciones existen si alguien no puede pagar?","acceptedAnswer":{"@type":"Answer","text":"Podéis pactar pagos parciales, aplazar una parte o reducir los gastos que todavía no se hayan contratado. Por ejemplo, si organizáis una escapada a Valencia, revisad qué elementos son opcionales antes de que alguien adelante más dinero. Acordad quién aporta cada cantidad y cuándo revisaréis el acuerdo. Si hay un préstamo, cualquier cambio en sus pagos debe tratarse con la entidad financiera, no solo entre amigos."}},{"@type":"Question","name":"¿Qué pasa si alguien de mi grupo falla en el pago?","acceptedAnswer":{"@type":"Answer","text":"El efecto depende de quién contrató el gasto y de lo que aceptó cada persona. Si alguien hizo una reserva a su nombre, comprobad las condiciones y qué importe sigue pendiente antes de decidir cómo continuar. En un préstamo compartido, revisad quiénes figuran como titulares y las cláusulas firmadas. No deis por hecho que quien presta el servicio reclamará a cada participante por separado."}},{"@type":"Question","name":"¿Cómo reclamar a un amigo que no paga su parte de una cuenta compartida?","acceptedAnswer":{"@type":"Answer","text":"Escríbele en privado y concreta qué cuenta compartida quedó pendiente, qué importe le atribuyes y cómo lo calculaste. Por ejemplo: «He pagado la compra para la cena; te paso el desglose de lo que acordamos». Si cree que hay un error, comparad el recibo con los consumos de cada persona. Mantén un tono respetuoso y evita exponer la deuda en redes o en chats ajenos al grupo."}},{"@type":"Question","name":"¿Qué hacer si alguien no paga su parte de un viaje, alquiler o comida compartida?","acceptedAnswer":{"@type":"Answer","text":"Separa los gastos según quién participó y qué se contrató para el grupo. En una comida, revisad la cuenta y apartad los consumos individuales; en un viaje, distinguíos los gastos comunes de las compras personales. Para un alquiler compartido, mirad quién firmó y qué condiciones aceptó. Si una reserva puede modificarse, comparad el coste del cambio con el de mantenerla antes de repartir diferencias."}},{"@type":"Question","name":"¿Cómo repartir gastos compartidos de forma justa y evitar impagos?","acceptedAnswer":{"@type":"Answer","text":"Elegid un criterio que encaje con el gasto: dividid por igual una compra común o asignad a cada persona lo que consumió. Antes de confirmar el plan, anotad quién participa en cada actividad y qué gastos quedan fuera del reparto. Después, nombrad a una persona para registrar pagos y devoluciones. Al cerrar la cuenta, compartid el desglose final para que cada integrante pueda revisar su saldo sin confundirlo con otros gastos."}}]}
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" href="/assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: {
-        fontFamily: { display: ['Sora', 'system-ui', 'sans-serif'], sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'] },
-        colors: { ink: '#0B0B0F', surface: '#121218', neon: { cyan: '#00F2FE', blue: '#4FACFE', pink: '#FF2FB9', orange: '#FF7A18' } },
-      } },
-    };
-  </script>
-  <link rel="stylesheet" href="/css/styles.css?v=55" />
+  
+  <link rel="stylesheet" href="/css/styles.css?v=61" />
+  <link rel="stylesheet" href="/css/tailwind.css?v=3" />
   <style>.post-prose figure{margin:1.75rem 0}.post-prose figure img{display:block;width:100%;height:auto;border-radius:1.25rem}</style>
+  <link rel="icon" type="image/webp" href="/assets/fish.webp" />
 </head>
 
 <body class="bg-ink text-white font-sans antialiased overflow-x-hidden">
@@ -63,7 +69,7 @@
   <header id="nav" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
     <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 md:px-8" aria-label="Principal">
       <a href="/" class="brand" aria-label="Crea Despedidas — Inicio">
-        <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+        <img src="/assets/logo.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
       </a>
       <ul class="hidden items-center gap-8 text-sm text-white/70 lg:flex">
         <li class="nav-item has-submenu">
@@ -194,7 +200,7 @@
       <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
         <div>
           <a href="/" class="brand brand--footer" aria-label="Crea Despedidas — Inicio">
-            <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+            <img src="/assets/logo-lg.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" loading="lazy" decoding="async" />
           </a>
           <p class="mt-4 max-w-xs text-sm leading-relaxed text-white/50">Despedidas de soltero/a y eventos privados en Valencia. La despedida que nunca olvidaréis.</p>
         </div>
@@ -232,7 +238,7 @@
     </div>
   </footer>
 
-  <img src="/assets/fish.png" id="fish-cursor" alt="" aria-hidden="true" />
+  <img src="/assets/fish.webp" id="fish-cursor" fetchpriority="low" decoding="async" alt="" aria-hidden="true" />
   <a href="https://crea-despedidas-crmdespe.fptzxz.easypanel.host/chat.html" target="_blank" rel="noopener" class="wa-float" aria-label="Escríbenos por WhatsApp">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.5-4.5A8 8 0 1 1 9 19L4 20Z"/><path d="M9 10c0 3 2.5 5.5 5.5 5.5M9 10c0-1 1-1.5 1.5-1l1 1.5-1 1M14.5 15.5c1 0 1.5-1 1-1.5L14 13l-1 1"/></svg>
   </a>

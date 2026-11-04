@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10805472079"></script>
+  <meta charset="UTF-8" />
+  <!-- Google tag (gtag.js) · carga diferida: primera interacción o 5 s tras el load -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'AW-10805472079');
+    (function () {
+      var done = 0;
+      function load() {
+        if (done) return; done = 1;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-10805472079';
+        document.head.appendChild(s);
+      }
+      ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (e) {
+        addEventListener(e, load, { once: true, passive: true });
+      });
+      addEventListener('load', function () { setTimeout(load, 5000); });
+    })();
   </script>
 
-  <meta charset="UTF-8" />
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0B0B0F" />
   <script>document.documentElement.classList.add('js');</script>
@@ -36,21 +49,14 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Preferís competir, resolver pistas o celebrar sin parar?","acceptedAnswer":{"@type":"Answer","text":"Si os motivan los desafíos y el pique sano, buscad un estilo de habilidad. Si os gusta darle vueltas a las ideas entre todos, os atraerá más una dinámica de pistas. Y si el objetivo es soltaros y celebrar, priorizad un tono festivo antes que la competición. Pensad en quién disfrutará de cada ambiente, no solo en quienes suelen hablar más alto."}},{"@type":"Question","name":"¿Qué es una gymkana para despedidas?","acceptedAnswer":{"@type":"Answer","text":"Es una actividad de ocio con una dinámica de juego compartida, pensada para que la despedida tenga un toque distinto y el grupo viva algo más que una comida o una salida. Es una excusa perfecta para animar la celebración y dar pie a bromas internas. Antes de organizarla, decidid qué queréis que recuerde la persona homenajeada: ¡ese detalle puede darle personalidad a todo el plan!"}},{"@type":"Question","name":"¿Qué tipo de gymkana es mejor para una despedida en Valencia?","acceptedAnswer":{"@type":"Answer","text":"La que mejor encaje con la persona homenajeada y con el ambiente que queréis llevaros de Valencia. Para afinar la elección, preguntadle qué le haría ilusión y qué preferiría evitar; después, pensad qué opciones cuadran con el resto de la celebración. Una gymkana para despedidas en Valencia tiene más posibilidades de convertirse en un momentazo cuando se siente pensada para esa persona."}},{"@type":"Question","name":"¿Puede participar todo el grupo en una gymkana?","acceptedAnswer":{"@type":"Answer","text":"La gymkana está pensada para compartirla, y no hace falta que todo el mundo tenga el mismo carácter para pasarlo bien. Al organizar, tened en cuenta las distintas personalidades y niveles de comodidad del grupo; también podéis explicar de antemano el estilo general de la actividad para que todos sepan qué esperar. ¡Cada persona aporta su chispa, y ahí nacen muchas de las mejores anécdotas!"}},{"@type":"Question","name":"¿Dónde se puede hacer una gymkana para despedidas en Valencia?","acceptedAnswer":{"@type":"Answer","text":"El lugar depende de la actividad y de cómo queráis vivir la celebración en Valencia. Antes de cerrar el itinerario, comprobad que el punto de encuentro y la zona del plan siguiente tengan sentido juntos, y compartid esa información de forma clara con el grupo. No todas las gymkanas implican recorrer la ciudad, así que elegid el entorno según la experiencia concreta, no según una ruta imaginada."}},{"@type":"Question","name":"¿Cómo se combina una gymkana con otros planes de despedida?","acceptedAnswer":{"@type":"Answer","text":"Podéis completarla con una comida, una cena o entretenimiento para grupos. Para que la combinación funcione, acordad cuál será el plan principal y evitad sumar opciones solo por llenar el día. Tened en cuenta las preferencias alimentarias al organizar la comida y comunicad al grupo qué momentos están definidos y cuáles quedan libres. Así la celebración conserva aire para las sorpresas, las fotos y los brindis espontáneos."}},{"@type":"Question","name":"¿Con cuánta antelación hay que organizar una gymkana para una despedida?","acceptedAnswer":{"@type":"Answer","text":"No existe un plazo universal: depende de la fecha que elijáis y de cuántas piezas queráis coordinar. Lo práctico es empezar cuando tengáis una fecha aproximada, especialmente si queréis sumar comida, cena u otras actividades. Así podéis ordenar las decisiones con calma y evitar que la conversación del grupo se convierta en una carrera de última hora. ¡Con el plan encaminado, ya podéis empezar a contar los días!"}},{"@type":"Question","name":"¿Se puede organizar una gymkana para una despedida de soltero o de soltera?","acceptedAnswer":{"@type":"Answer","text":"Sí, puede formar parte de una despedida de soltero o de soltera. La temática y el tono pueden adaptarse a los gustos de quien celebra, sin encasillar la fiesta en fórmulas típicas. Crea Despedidas organiza celebraciones de grupo en Valencia, incluidas gymkanas temáticas. Elegid una idea que le haga ilusión al protagonista y preparaos para compartir un día lleno de risas."}}]}
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" href="/assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: {
-        fontFamily: { display: ['Sora', 'system-ui', 'sans-serif'], sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'] },
-        colors: { ink: '#0B0B0F', surface: '#121218', neon: { cyan: '#00F2FE', blue: '#4FACFE', pink: '#FF2FB9', orange: '#FF7A18' } },
-      } },
-    };
-  </script>
-  <link rel="stylesheet" href="/css/styles.css?v=55" />
+  
+  <link rel="stylesheet" href="/css/styles.css?v=61" />
+  <link rel="stylesheet" href="/css/tailwind.css?v=3" />
   <style>.post-prose figure{margin:1.75rem 0}.post-prose figure img{display:block;width:100%;height:auto;border-radius:1.25rem}</style>
+  <link rel="icon" type="image/webp" href="/assets/fish.webp" />
 </head>
 
 <body class="bg-ink text-white font-sans antialiased overflow-x-hidden">
@@ -63,7 +69,7 @@
   <header id="nav" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
     <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 md:px-8" aria-label="Principal">
       <a href="/" class="brand" aria-label="Crea Despedidas — Inicio">
-        <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+        <img src="/assets/logo.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
       </a>
       <ul class="hidden items-center gap-8 text-sm text-white/70 lg:flex">
         <li class="nav-item has-submenu">
@@ -195,7 +201,7 @@
       <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
         <div>
           <a href="/" class="brand brand--footer" aria-label="Crea Despedidas — Inicio">
-            <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+            <img src="/assets/logo-lg.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" loading="lazy" decoding="async" />
           </a>
           <p class="mt-4 max-w-xs text-sm leading-relaxed text-white/50">Despedidas de soltero/a y eventos privados en Valencia. La despedida que nunca olvidaréis.</p>
         </div>
@@ -233,7 +239,7 @@
     </div>
   </footer>
 
-  <img src="/assets/fish.png" id="fish-cursor" alt="" aria-hidden="true" />
+  <img src="/assets/fish.webp" id="fish-cursor" fetchpriority="low" decoding="async" alt="" aria-hidden="true" />
   <a href="https://crea-despedidas-crmdespe.fptzxz.easypanel.host/chat.html" target="_blank" rel="noopener" class="wa-float" aria-label="Escríbenos por WhatsApp">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.5-4.5A8 8 0 1 1 9 19L4 20Z"/><path d="M9 10c0 3 2.5 5.5 5.5 5.5M9 10c0-1 1-1.5 1.5-1l1 1.5-1 1M14.5 15.5c1 0 1.5-1 1-1.5L14 13l-1 1"/></svg>
   </a>

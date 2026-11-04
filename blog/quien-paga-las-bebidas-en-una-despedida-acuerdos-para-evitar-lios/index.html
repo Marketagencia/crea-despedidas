@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10805472079"></script>
+  <meta charset="UTF-8" />
+  <!-- Google tag (gtag.js) · carga diferida: primera interacción o 5 s tras el load -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'AW-10805472079');
+    (function () {
+      var done = 0;
+      function load() {
+        if (done) return; done = 1;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-10805472079';
+        document.head.appendChild(s);
+      }
+      ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (e) {
+        addEventListener(e, load, { once: true, passive: true });
+      });
+      addEventListener('load', function () { setTimeout(load, 5000); });
+    })();
   </script>
 
-  <meta charset="UTF-8" />
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0B0B0F" />
   <script>document.documentElement.classList.add('js');</script>
@@ -36,21 +49,14 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿La persona homenajeada paga sus bebidas?","acceptedAnswer":{"@type":"Answer","text":"Puede participar en el reparto, recibir una invitación del grupo o quedar fuera solo de algunos gastos. Ninguna opción es obligatoria para todos: depende de lo que la cuadrilla quiera celebrar y pueda asumir. Si decidís invitarle, concretad si cubrís todas sus bebidas o solo una parte. Así el gesto no se convierte en un compromiso abierto que alguien no esperaba. También cuenta cómo se siente la persona homenajeada. Quizá prefiera aportar su parte para no cargar al resto, o le haga ilusión que el grupo le invite a una ronda. Habladlo con naturalidad y sin poner a nadie en un aprieto. Para conocer la historia y significado de las despedidas de soltero, podéis consultar este resumen general. La forma de repartir la cuenta, en cambio, sigue siendo una decisión vuestra."}},{"@type":"Question","name":"¿Es obligatorio que los amigos paguen las bebidas del novio o la novia?","acceptedAnswer":{"@type":"Answer","text":"No, el grupo no tiene que asumir ese gasto por obligación. Si os preguntáis quién paga las bebidas en una despedida, pensad en la invitación como un detalle voluntario, no como una norma. Quienes quieran pueden regalar una ronda y el resto pagar sus consumiciones. Acordad también si la persona homenajeada conoce el plan o si preferís que la invitación sea una sorpresa."}},{"@type":"Question","name":"¿Hay que pagar las bebidas de alguien que no bebe?","acceptedAnswer":{"@type":"Answer","text":"No deis por hecho que una persona que no bebe participa en una cuenta de bebidas. Si el grupo ha organizado otros gastos compartidos, como una comida, podéis tratar cada partida por separado. Por ejemplo, alguien puede contribuir a la actividad común y no a una ronda de copas. Lo mejor es que esa diferencia se pueda expresar con naturalidad, sin pedir explicaciones ni convertirla en un tema personal."}},{"@type":"Question","name":"¿Cómo se reparten las bebidas si alguien llega tarde a la despedida?","acceptedAnswer":{"@type":"Answer","text":"Decidid si esa persona se incorpora a los gastos desde el momento en que llega. Si el grupo ya ha pedido una ronda, podéis dejar esa consumición fuera de su parte y contar con ella desde la siguiente. Otra opción es que se sume a una cuenta común futura, pero no a los gastos anteriores. Avisarle al llegar evita que descubra una parte de la cuenta que no esperaba."}},{"@type":"Question","name":"¿Qué hago si no estoy de acuerdo con pagar una ronda común?","acceptedAnswer":{"@type":"Answer","text":"Di que prefieres no participar antes de que se haga el pedido, con un tono tranquilo y directo. Puedes proponer una alternativa concreta: “Yo pago lo que pida, ¿os parece que esta ronda la compartan quienes quieran?”. Así planteas una solución sin cuestionar lo que el resto quiera hacer. Si la ronda ya se ha pedido, habladlo sin reproches y acordad cómo resolver esa cuenta puntual."}},{"@type":"Question","name":"¿Conviene decidir quién paga las bebidas antes de reservar la despedida?","acceptedAnswer":{"@type":"Answer","text":"Sí, aunque no hace falta decidir la reserva y las bebidas como un único paquete. Podéis cerrar la actividad o la cena y acordar aparte cómo gestionar las consumiciones. Por ejemplo, dejad previsto que cada persona pague lo que pida después de la cena. Si cambia el número de asistentes o el recorrido del plan, actualizad el acuerdo para que nadie se guíe por una versión antigua."}},{"@type":"Question","name":"¿Cómo se puede invitar al homenajeado a unas bebidas sin hacer pagar de más al grupo?","acceptedAnswer":{"@type":"Answer","text":"Delimitad la invitación antes de ofrecerla: puede ser una ronda de bienvenida, una consumición durante la cena o un brindis concreto. Después, quienes quieran participar pueden acordar cómo repartir ese detalle, sin presentarlo como una aportación obligatoria para todo el grupo. Si alguien no se suma, mantened esa decisión separada de la amistad y de los demás gastos de la despedida."}},{"@type":"Question","name":"¿Qué pasa si nadie habló del reparto de bebidas antes de la despedida?","acceptedAnswer":{"@type":"Answer","text":"Antes de pagar, separad las consumiciones que cada persona reconoce como propias de las rondas que se pidieron para compartir. Si hay dudas, repasad los pedidos con calma y preguntad quién participó, en vez de imponer una división a partes iguales. Quizá no resolváis todo de inmediato, pero una conversación breve puede evitar que el desacuerdo crezca. Para la próxima salida, dejad el criterio acordado por escrito."}}]}
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" href="/assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: {
-        fontFamily: { display: ['Sora', 'system-ui', 'sans-serif'], sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'] },
-        colors: { ink: '#0B0B0F', surface: '#121218', neon: { cyan: '#00F2FE', blue: '#4FACFE', pink: '#FF2FB9', orange: '#FF7A18' } },
-      } },
-    };
-  </script>
-  <link rel="stylesheet" href="/css/styles.css?v=55" />
+  
+  <link rel="stylesheet" href="/css/styles.css?v=61" />
+  <link rel="stylesheet" href="/css/tailwind.css?v=3" />
   <style>.post-prose figure{margin:1.75rem 0}.post-prose figure img{display:block;width:100%;height:auto;border-radius:1.25rem}</style>
+  <link rel="icon" type="image/webp" href="/assets/fish.webp" />
 </head>
 
 <body class="bg-ink text-white font-sans antialiased overflow-x-hidden">
@@ -63,7 +69,7 @@
   <header id="nav" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
     <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 md:px-8" aria-label="Principal">
       <a href="/" class="brand" aria-label="Crea Despedidas — Inicio">
-        <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+        <img src="/assets/logo.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
       </a>
       <ul class="hidden items-center gap-8 text-sm text-white/70 lg:flex">
         <li class="nav-item has-submenu">
@@ -208,7 +214,7 @@
       <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
         <div>
           <a href="/" class="brand brand--footer" aria-label="Crea Despedidas — Inicio">
-            <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+            <img src="/assets/logo-lg.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" loading="lazy" decoding="async" />
           </a>
           <p class="mt-4 max-w-xs text-sm leading-relaxed text-white/50">Despedidas de soltero/a y eventos privados en Valencia. La despedida que nunca olvidaréis.</p>
         </div>
@@ -246,7 +252,7 @@
     </div>
   </footer>
 
-  <img src="/assets/fish.png" id="fish-cursor" alt="" aria-hidden="true" />
+  <img src="/assets/fish.webp" id="fish-cursor" fetchpriority="low" decoding="async" alt="" aria-hidden="true" />
   <a href="https://crea-despedidas-crmdespe.fptzxz.easypanel.host/chat.html" target="_blank" rel="noopener" class="wa-float" aria-label="Escríbenos por WhatsApp">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.5-4.5A8 8 0 1 1 9 19L4 20Z"/><path d="M9 10c0 3 2.5 5.5 5.5 5.5M9 10c0-1 1-1.5 1.5-1l1 1.5-1 1M14.5 15.5c1 0 1.5-1 1-1.5L14 13l-1 1"/></svg>
   </a>

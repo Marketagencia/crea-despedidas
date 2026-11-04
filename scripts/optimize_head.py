@@ -21,7 +21,7 @@ import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CSS_V = os.environ.get("CSS_V", "61")      # ?v= de styles.css
-TW_V = os.environ.get("TW_V", "2")         # ?v= de tailwind.css
+TW_V = os.environ.get("TW_V", "3")         # ?v= de tailwind.css
 
 GTAG_NEW = """<!-- Google tag (gtag.js) · carga diferida: primera interacción o 5 s tras el load -->
   <script>

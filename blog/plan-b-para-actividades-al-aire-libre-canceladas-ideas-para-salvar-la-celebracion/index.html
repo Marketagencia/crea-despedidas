@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10805472079"></script>
+  <meta charset="UTF-8" />
+  <!-- Google tag (gtag.js) · carga diferida: primera interacción o 5 s tras el load -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'AW-10805472079');
+    (function () {
+      var done = 0;
+      function load() {
+        if (done) return; done = 1;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-10805472079';
+        document.head.appendChild(s);
+      }
+      ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (e) {
+        addEventListener(e, load, { once: true, passive: true });
+      });
+      addEventListener('load', function () { setTimeout(load, 5000); });
+    })();
   </script>
 
-  <meta charset="UTF-8" />
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0B0B0F" />
   <script>document.documentElement.classList.add('js');</script>
@@ -36,21 +49,14 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Qué hacer si cancelan una actividad al aire libre el día de una despedida?","acceptedAnswer":{"@type":"Answer","text":"Primero, comprobad el aviso de quien organiza la actividad y cualquier indicación oficial relevante para la seguridad. Después, revisad las condiciones de la reserva y localizad qué partes del día siguen en pie. Si la comida ya está organizada, por ejemplo, buscad una alternativa que encaje antes o después de ese compromiso. Una persona coordinadora puede reunir la información y evitar decisiones contradictorias en el grupo."}},{"@type":"Question","name":"¿Qué plan B elegir para una despedida en Valencia si llueve?","acceptedAnswer":{"@type":"Answer","text":"Elegidlo según el tipo de celebración que os apetece y las condiciones de cada propuesta. Una cena con espectáculo puede dar protagonismo a la experiencia compartida; si preferís participar activamente, valorad otra actividad y cómo le afecta el tiempo. No asumáis que una opción es cubierta o adecuada para cualquier meteorología. Así, el plan B para actividades al aire libre canceladas se decide con información práctica y no solo por impulso."}},{"@type":"Question","name":"¿Puede una cena con espectáculo sustituir una actividad al aire libre cancelada?","acceptedAnswer":{"@type":"Answer","text":"Sí, puede ser el eje de una celebración reorganizada, sobre todo si os apetece compartir mesa y entretenimiento en vez de reemplazar una actividad por otra parecida. Pensad qué papel tenía el plan original: ¿era el momento principal o una parte más de la jornada? Si era el plato fuerte, ajustad el resto del programa para que la cena tenga protagonismo y no quede encajada con prisas."}},{"@type":"Question","name":"¿Cómo avisar al grupo de un cambio de plan de última hora?","acceptedAnswer":{"@type":"Answer","text":"Mandad un único mensaje breve con tres datos: qué se ha cancelado o modificado, qué propuesta planteáis y qué aspectos siguen pendientes. Por ejemplo: «La actividad exterior cambia; estamos reorganizando el horario y mantenemos la comida prevista. Os confirmamos el nuevo punto de encuentro cuando esté cerrado». Evitad reenviar rumores o compartir capturas sin contexto. Un mensaje claro baja el ruido y permite que todos sepan qué esperar."}},{"@type":"Question","name":"¿Qué alternativa elegir si el grupo tiene gustos diferentes?","acceptedAnswer":{"@type":"Answer","text":"Buscad un punto en común antes de comparar actividades: quizá todos queréis compartir una comida, aunque no coincidáis en cuánto movimiento os apetece. Una opción que reúna al grupo y deje espacio para conversar puede funcionar como base; después, añadid una actividad solo si suma y encaja con la agenda. Si hacéis una votación, limitadla a propuestas viables y acordad quién toma la decisión final."}},{"@type":"Question","name":"¿Conviene cambiar el horario o sustituir la actividad cancelada?","acceptedAnswer":{"@type":"Answer","text":"Depende de si la actividad puede realizarse más tarde y de cómo afecte el cambio al resto de la jornada. Si el nuevo horario choca con una comida o una reserva posterior, valorad otro formato. Revisad las condiciones de cada reserva: un aplazamiento, una modificación y una cancelación pueden tener procedimientos distintos. Elegid la opción que conserve más compromisos confirmados sin forzar el ritmo del grupo."}},{"@type":"Question","name":"¿Cómo organizar comida y actividad en un plan B para una celebración?","acceptedAnswer":{"@type":"Answer","text":"Colocad primero en la agenda los elementos con hora fijada y añadid la actividad alrededor, teniendo en cuenta los desplazamientos por Valencia. Comprobad que el grupo tenga tiempo para llegar, comer y disfrutar sin enlazar cada parte con prisas. Si comida y entretenimiento forman parte de una misma propuesta, la organización puede resultar más sencilla; si son planes separados, dejad claro el punto de encuentro y quién comunica cualquier ajuste confirmado."}}]}
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" href="/assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: {
-        fontFamily: { display: ['Sora', 'system-ui', 'sans-serif'], sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'] },
-        colors: { ink: '#0B0B0F', surface: '#121218', neon: { cyan: '#00F2FE', blue: '#4FACFE', pink: '#FF2FB9', orange: '#FF7A18' } },
-      } },
-    };
-  </script>
-  <link rel="stylesheet" href="/css/styles.css?v=55" />
+  
+  <link rel="stylesheet" href="/css/styles.css?v=61" />
+  <link rel="stylesheet" href="/css/tailwind.css?v=3" />
   <style>.post-prose figure{margin:1.75rem 0}.post-prose figure img{display:block;width:100%;height:auto;border-radius:1.25rem}</style>
+  <link rel="icon" type="image/webp" href="/assets/fish.webp" />
 </head>
 
 <body class="bg-ink text-white font-sans antialiased overflow-x-hidden">
@@ -63,7 +69,7 @@
   <header id="nav" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
     <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 md:px-8" aria-label="Principal">
       <a href="/" class="brand" aria-label="Crea Despedidas — Inicio">
-        <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+        <img src="/assets/logo.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
       </a>
       <ul class="hidden items-center gap-8 text-sm text-white/70 lg:flex">
         <li class="nav-item has-submenu">
@@ -209,7 +215,7 @@
       <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
         <div>
           <a href="/" class="brand brand--footer" aria-label="Crea Despedidas — Inicio">
-            <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+            <img src="/assets/logo-lg.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" loading="lazy" decoding="async" />
           </a>
           <p class="mt-4 max-w-xs text-sm leading-relaxed text-white/50">Despedidas de soltero/a y eventos privados en Valencia. La despedida que nunca olvidaréis.</p>
         </div>
@@ -247,7 +253,7 @@
     </div>
   </footer>
 
-  <img src="/assets/fish.png" id="fish-cursor" alt="" aria-hidden="true" />
+  <img src="/assets/fish.webp" id="fish-cursor" fetchpriority="low" decoding="async" alt="" aria-hidden="true" />
   <a href="https://crea-despedidas-crmdespe.fptzxz.easypanel.host/chat.html" target="_blank" rel="noopener" class="wa-float" aria-label="Escríbenos por WhatsApp">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.5-4.5A8 8 0 1 1 9 19L4 20Z"/><path d="M9 10c0 3 2.5 5.5 5.5 5.5M9 10c0-1 1-1.5 1.5-1l1 1.5-1 1M14.5 15.5c1 0 1.5-1 1-1.5L14 13l-1 1"/></svg>
   </a>

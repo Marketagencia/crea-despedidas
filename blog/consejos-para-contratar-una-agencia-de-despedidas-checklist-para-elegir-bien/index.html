@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10805472079"></script>
+  <meta charset="UTF-8" />
+  <!-- Google tag (gtag.js) · carga diferida: primera interacción o 5 s tras el load -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'AW-10805472079');
+    (function () {
+      var done = 0;
+      function load() {
+        if (done) return; done = 1;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-10805472079';
+        document.head.appendChild(s);
+      }
+      ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (e) {
+        addEventListener(e, load, { once: true, passive: true });
+      });
+      addEventListener('load', function () { setTimeout(load, 5000); });
+    })();
   </script>
 
-  <meta charset="UTF-8" />
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0B0B0F" />
   <script>document.documentElement.classList.add('js');</script>
@@ -36,21 +49,14 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Qué debe quedar claro antes de pedir una propuesta?","acceptedAnswer":{"@type":"Answer","text":"Preparad una pequeña ficha para compartir con la agencia. No hace falta tenerlo todo atado: anotad una fecha o varias alternativas, el número aproximado de asistentes y el tipo de celebración que imagináis. Añadid qué le gusta al protagonista y qué preferencias personales conviene respetar. La historia y variedades de las despedidas de soltero muestran que no hay una única forma de celebrar. Lo importante es que el plan encaje con quien está en el centro de la fiesta. Después, acordad el ritmo. ¿Os apetece una jornada completa, con actividad, comida y más planes, o una celebración más sencilla alrededor de una experiencia concreta? Podéis valorar Humor Amarillo, paintball, una Cena con Espectáculo o una salida en barco, según los gustos del grupo y la disponibilidad. Separad los imprescindibles de las ideas flexibles: quizá la actividad sea prioritaria y el transporte o el alojamiento se ajusten después."}},{"@type":"Question","name":"¿Cuánto tarda Crea Despedidas en enviar una propuesta?","acceptedAnswer":{"@type":"Answer","text":"Crea Despedidas envía la propuesta en menos de 24 h. Para que refleje lo que buscáis, tened a mano la fecha prevista, el número aproximado de asistentes y las ideas principales del grupo. Así podréis revisar si el tipo de celebración encaja y decidir qué priorizar para vuestra despedida en Valencia."}},{"@type":"Question","name":"¿Puedo crear una despedida a la carta en lugar de elegir un pack?","acceptedAnswer":{"@type":"Answer","text":"Sí, podéis montar una opción a la carta con los servicios que os interesan, en vez de partir de un pack. Es útil si ya sabéis qué actividad ilusiona al protagonista o queréis combinar ideas concretas para el grupo. El Configurador rápido permite dar forma a esa propuesta personalizada, para que la celebración tenga vuestro estilo y no dependa de un plan idéntico para todos."}},{"@type":"Question","name":"¿Crea Despedidas organiza planes para grupos que vienen de otras ciudades?","acceptedAnswer":{"@type":"Answer","text":"Sí, Crea Despedidas organiza celebraciones en Valencia para grupos de toda España. Si viajáis desde otra ciudad, podéis acordar quién reúne la información del grupo y compartir con los asistentes los datos prácticos, como la fecha y el punto de encuentro previsto. Tenerlos localizados facilita que todos sepan cómo sumarse al plan y evita repetir la información en distintas conversaciones."}},{"@type":"Question","name":"¿Qué valoración tiene Crea Despedidas?","acceptedAnswer":{"@type":"Answer","text":"Crea Despedidas tiene una valoración de 4.7 ★ basada en 329 reseñas reales. Al leer opiniones, fijaos en los aspectos que más os importan para vuestra celebración, como la comunicación, la organización o la experiencia del grupo. Contrastad esos comentarios con vuestras prioridades y con la propuesta que estáis preparando."}},{"@type":"Question","name":"¿Necesito registrarme para usar el Configurador rápido?","acceptedAnswer":{"@type":"Answer","text":"No, el Configurador rápido se utiliza sin registro. En 30 segundos podéis empezar a elegir un pack o combinar servicios a la carta y ver una estimación instantánea. Es una forma ágil de aterrizar ideas cuando el grupo aún está decidiendo el tipo de fiesta: podéis explorar opciones y comentar qué os encaja antes de cerrar los detalles de la celebración en Valencia."}},{"@type":"Question","name":"¿Qué pasa si una actividad o un alojamiento no está disponible?","acceptedAnswer":{"@type":"Answer","text":"Las actividades, el alojamiento y el transporte se organizan según disponibilidad. Si una opción no encaja, podéis mantener flexibilidad en las prioridades del grupo y valorar otras actividades o servicios que también representen al protagonista. Así la celebración puede seguir tomando forma sin perder de vista el ambiente que queréis crear."}}]}
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" href="/assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: {
-        fontFamily: { display: ['Sora', 'system-ui', 'sans-serif'], sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'] },
-        colors: { ink: '#0B0B0F', surface: '#121218', neon: { cyan: '#00F2FE', blue: '#4FACFE', pink: '#FF2FB9', orange: '#FF7A18' } },
-      } },
-    };
-  </script>
-  <link rel="stylesheet" href="/css/styles.css?v=55" />
+  
+  <link rel="stylesheet" href="/css/styles.css?v=61" />
+  <link rel="stylesheet" href="/css/tailwind.css?v=3" />
   <style>.post-prose figure{margin:1.75rem 0}.post-prose figure img{display:block;width:100%;height:auto;border-radius:1.25rem}</style>
+  <link rel="icon" type="image/webp" href="/assets/fish.webp" />
 </head>
 
 <body class="bg-ink text-white font-sans antialiased overflow-x-hidden">
@@ -63,7 +69,7 @@
   <header id="nav" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
     <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 md:px-8" aria-label="Principal">
       <a href="/" class="brand" aria-label="Crea Despedidas — Inicio">
-        <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+        <img src="/assets/logo.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
       </a>
       <ul class="hidden items-center gap-8 text-sm text-white/70 lg:flex">
         <li class="nav-item has-submenu">
@@ -180,7 +186,7 @@
       <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
         <div>
           <a href="/" class="brand brand--footer" aria-label="Crea Despedidas — Inicio">
-            <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+            <img src="/assets/logo-lg.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" loading="lazy" decoding="async" />
           </a>
           <p class="mt-4 max-w-xs text-sm leading-relaxed text-white/50">Despedidas de soltero/a y eventos privados en Valencia. La despedida que nunca olvidaréis.</p>
         </div>
@@ -218,7 +224,7 @@
     </div>
   </footer>
 
-  <img src="/assets/fish.png" id="fish-cursor" alt="" aria-hidden="true" />
+  <img src="/assets/fish.webp" id="fish-cursor" fetchpriority="low" decoding="async" alt="" aria-hidden="true" />
   <a href="https://crea-despedidas-crmdespe.fptzxz.easypanel.host/chat.html" target="_blank" rel="noopener" class="wa-float" aria-label="Escríbenos por WhatsApp">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.5-4.5A8 8 0 1 1 9 19L4 20Z"/><path d="M9 10c0 3 2.5 5.5 5.5 5.5M9 10c0-1 1-1.5 1.5-1l1 1.5-1 1M14.5 15.5c1 0 1.5-1 1-1.5L14 13l-1 1"/></svg>
   </a>

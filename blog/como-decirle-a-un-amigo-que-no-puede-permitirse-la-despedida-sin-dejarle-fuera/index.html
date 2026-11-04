@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10805472079"></script>
+  <meta charset="UTF-8" />
+  <!-- Google tag (gtag.js) · carga diferida: primera interacción o 5 s tras el load -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'AW-10805472079');
+    (function () {
+      var done = 0;
+      function load() {
+        if (done) return; done = 1;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-10805472079';
+        document.head.appendChild(s);
+      }
+      ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (e) {
+        addEventListener(e, load, { once: true, passive: true });
+      });
+      addEventListener('load', function () { setTimeout(load, 5000); });
+    })();
   </script>
 
-  <meta charset="UTF-8" />
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0B0B0F" />
   <script>document.documentElement.classList.add('js');</script>
@@ -36,21 +49,14 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Tiene que explicar exactamente cuánto puede gastar?","acceptedAnswer":{"@type":"Answer","text":"No, no tiene que explicar cuánto puede gastar exactamente. Para organizarse, basta con que indique si el plan completo le encaja o qué parte preferiría evitar. Puedes preguntarle: «¿Te viene bien sumarte a la cena o prefieres otro formato?». Así obtienes una respuesta práctica sin abrir sus cuentas. Si buscas cómo decirle a un amigo que no puede permitirse la despedida, respeta el límite que quiera compartir, sin pedir cifras ni detalles personales."}},{"@type":"Question","name":"¿Qué hacer si el grupo ya ha reservado una actividad?","acceptedAnswer":{"@type":"Answer","text":"Si ya hay una reserva, revisa primero qué compromiso asumió el grupo y qué opciones permite, sin atribuirle automáticamente el coste a tu amigo. Habla con él por separado y explícale la situación con claridad, pero sin plantearlo como una deuda personal. Después, valorad si puede incorporarse a otro momento o si existe una alternativa práctica para el grupo. Evita prometer cambios antes de saber qué se puede reorganizar."}},{"@type":"Question","name":"¿Es buena idea que el resto del grupo pague su parte?","acceptedAnswer":{"@type":"Answer","text":"Puede ser una opción únicamente si el grupo quiere ofrecerla y tu amigo se siente cómodo aceptándola. Antes de reunir dinero, acordad con quienes participarían cuánto aportarían y para qué se usaría. Después, plantea la ayuda con discreción y deja que él decida sin tener que responder delante de todos. Si no le apetece aceptarla, no insistas: buscad otra forma de compartir la celebración."}},{"@type":"Question","name":"¿Y si solo puede asistir a una parte de la despedida?","acceptedAnswer":{"@type":"Answer","text":"Perfecto: concretad qué tramo le encaja y organizad la información para que pueda sumarse sin confusiones. Por ejemplo, enviadle el lugar y la hora de encuentro para la comida, además del plan de transporte desde ese punto si lo habéis previsto. Dejad claro qué gastos corresponden a esa parte y cuáles son de otros momentos. Así puede disfrutar de la celebración con el grupo sin comprometerse con el día entero."}},{"@type":"Question","name":"¿Cómo saber si acepta por compromiso y no porque le apetece?","acceptedAnswer":{"@type":"Answer","text":"No puedes saberlo solo por un «sí», así que evita interpretar gestos o mensajes como una prueba. Haz una comprobación sencilla y sin dramatismo: «¿Te apetece de verdad o prefieres que busquemos otra opción?». Dale tiempo para pensarlo y procura que pueda cambiar de opinión sin dar explicaciones. Si contesta con dudas, no cierres decisiones en su nombre; deja la conversación abierta y respeta lo que decida después."}},{"@type":"Question","name":"¿Conviene cambiar toda la despedida por una sola persona?","acceptedAnswer":{"@type":"Answer","text":"No necesariamente. En vez de decidirlo como todo o nada, identificad qué parte del plan es esencial para celebrar juntos y qué elementos se pueden ajustar o dejar aparte. En una despedida en Valencia, por ejemplo, el grupo puede conservar el encuentro principal y revisar actividades añadidas que no sean imprescindibles. Elegid una fórmula que el grupo vea viable, sin cargar a esa persona con la responsabilidad de cambiar o mantener todo el plan."}}]}
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" href="/assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: {
-        fontFamily: { display: ['Sora', 'system-ui', 'sans-serif'], sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'] },
-        colors: { ink: '#0B0B0F', surface: '#121218', neon: { cyan: '#00F2FE', blue: '#4FACFE', pink: '#FF2FB9', orange: '#FF7A18' } },
-      } },
-    };
-  </script>
-  <link rel="stylesheet" href="/css/styles.css?v=55" />
+  
+  <link rel="stylesheet" href="/css/styles.css?v=61" />
+  <link rel="stylesheet" href="/css/tailwind.css?v=3" />
   <style>.post-prose figure{margin:1.75rem 0}.post-prose figure img{display:block;width:100%;height:auto;border-radius:1.25rem}</style>
+  <link rel="icon" type="image/webp" href="/assets/fish.webp" />
 </head>
 
 <body class="bg-ink text-white font-sans antialiased overflow-x-hidden">
@@ -63,7 +69,7 @@
   <header id="nav" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
     <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 md:px-8" aria-label="Principal">
       <a href="/" class="brand" aria-label="Crea Despedidas — Inicio">
-        <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+        <img src="/assets/logo.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
       </a>
       <ul class="hidden items-center gap-8 text-sm text-white/70 lg:flex">
         <li class="nav-item has-submenu">
@@ -197,7 +203,7 @@
       <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
         <div>
           <a href="/" class="brand brand--footer" aria-label="Crea Despedidas — Inicio">
-            <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+            <img src="/assets/logo-lg.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" loading="lazy" decoding="async" />
           </a>
           <p class="mt-4 max-w-xs text-sm leading-relaxed text-white/50">Despedidas de soltero/a y eventos privados en Valencia. La despedida que nunca olvidaréis.</p>
         </div>
@@ -235,7 +241,7 @@
     </div>
   </footer>
 
-  <img src="/assets/fish.png" id="fish-cursor" alt="" aria-hidden="true" />
+  <img src="/assets/fish.webp" id="fish-cursor" fetchpriority="low" decoding="async" alt="" aria-hidden="true" />
   <a href="https://crea-despedidas-crmdespe.fptzxz.easypanel.host/chat.html" target="_blank" rel="noopener" class="wa-float" aria-label="Escríbenos por WhatsApp">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.5-4.5A8 8 0 1 1 9 19L4 20Z"/><path d="M9 10c0 3 2.5 5.5 5.5 5.5M9 10c0-1 1-1.5 1.5-1l1 1.5-1 1M14.5 15.5c1 0 1.5-1 1-1.5L14 13l-1 1"/></svg>
   </a>

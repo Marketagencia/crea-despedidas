@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10805472079"></script>
+  <meta charset="UTF-8" />
+  <!-- Google tag (gtag.js) · carga diferida: primera interacción o 5 s tras el load -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'AW-10805472079');
+    (function () {
+      var done = 0;
+      function load() {
+        if (done) return; done = 1;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-10805472079';
+        document.head.appendChild(s);
+      }
+      ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (e) {
+        addEventListener(e, load, { once: true, passive: true });
+      });
+      addEventListener('load', function () { setTimeout(load, 5000); });
+    })();
   </script>
 
-  <meta charset="UTF-8" />
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0B0B0F" />
   <script>document.documentElement.classList.add('js');</script>
@@ -36,21 +49,14 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿A quién contarle el plan y cuándo?","acceptedAnswer":{"@type":"Answer","text":"Invitad a quienes deban ayudar y puedan guardar la sorpresa, no a todo el grupo de amistades por inercia. Repartid tareas concretas: una persona coordina las llegadas, otra se ocupa de un preparativo y otra acompaña a la persona homenajeada. Compartid la dirección, el horario y los detalles sensibles solo cuando hagan falta. Así cada cual podrá cumplir su misión sin manejar información que no necesita."}},{"@type":"Question","name":"¿Cómo mantener el secreto de una fiesta sorpresa?","acceptedAnswer":{"@type":"Answer","text":"¡Con un equipo pequeño y un plan claro! Nombrad a una persona coordinadora, usad un canal privado y compartid cada detalle solo con quien lo necesite. Acordad una explicación sencilla para la persona homenajeada y mantened sus rutinas habituales, desde los horarios hasta la forma de llegar. Así habrá menos cambios sospechosos y más posibilidades de que el gran “¡sorpresa!” llegue intacto."}},{"@type":"Question","name":"¿Qué hacer si alguien revela por accidente una fiesta sorpresa?","acceptedAnswer":{"@type":"Answer","text":"Que nadie improvise una versión distinta. La persona coordinadora puede decidir cómo responder con naturalidad y si hace falta ajustar algún detalle. Si la persona homenajeada solo ha oído una pista, no confirméis el plan ni añadáis información innecesaria. ¿Ya lo ha descubierto? ¡La celebración sigue en pie! Conservad el motivo para reuniros y convertid la sorpresa revelada en una invitación divertida para disfrutar juntos."}},{"@type":"Question","name":"¿Se puede organizar una fiesta sorpresa por WhatsApp sin que se descubra?","acceptedAnswer":{"@type":"Answer","text":"Sí, WhatsApp puede servir para coordinaros si creáis un chat separado de vuestras conversaciones habituales y dejáis fuera a la persona homenajeada. Pedid al grupo que no reenvíe mensajes ni capturas y que cuide las notificaciones visibles, sobre todo si incluyen nombres, direcciones o reservas. Concentrad las decisiones y los recordatorios en la persona coordinadora. Menos chats dispersos significa menos confusiones y más emoción para el día de la fiesta."}},{"@type":"Question","name":"¿Cómo evitar que las redes sociales arruinen una sorpresa?","acceptedAnswer":{"@type":"Answer","text":"¡Guardad las pistas para después! Acordad que nadie publique preparativos, ubicaciones, fotos del lugar ni etiquetas antes de la celebración. Decidid también quién puede compartir imágenes y cuándo dar luz verde. Una historia en directo podría revelar dónde está el grupo justo antes del gran momento. Con una norma clara desde el principio, evitaréis carreras para borrar publicaciones y podréis disfrutar de la sorpresa sin mirar el móvil cada dos minutos."}},{"@type":"Question","name":"¿Cómo inventar una excusa creíble para una fiesta sorpresa?","acceptedAnswer":{"@type":"Answer","text":"Elegid una explicación sencilla que encaje con los hábitos de la persona homenajeada, como quedar para tomar algo o dar un paseo. Compartid la misma versión con quienes participen en la cobertura y no añadáis detalles difíciles de recordar. Si cambia el horario, actualizad el plan entre las personas implicadas. Una historia breve y natural ayuda a mantener la calma y deja toda la emoción para el momento de revelar la fiesta."}},{"@type":"Question","name":"¿Con cuánta antelación hay que organizar una fiesta sorpresa?","acceptedAnswer":{"@type":"Answer","text":"No existe un plazo único: depende del grupo, los preparativos y el tipo de celebración que queráis montar. Empezad por fijar la fecha y resolver lo esencial: quién coordina, cómo convocaréis a los invitados y cómo llegará la persona homenajeada. Después, repartid tareas y confirmad horarios con margen para ajustar el plan sin una avalancha de mensajes. Así podréis dedicar más energía a preparar una celebración que dé ganas de brindar."}},{"@type":"Question","name":"¿Qué plan sorpresa se puede organizar en Valencia para un grupo?","acceptedAnswer":{"@type":"Answer","text":"Elegid algo que encaje con los gustos de la persona homenajeada y el ambiente que le apetece al grupo. En Valencia, una cena con espectáculo puede ser el plato fuerte: coordinad la llegada y preparaos para pasar de la intriga a una noche de risas, brindis y diversión. Crea Despedidas organiza celebraciones, cenas con espectáculo y actividades de ocio para grupos en Valencia. ¡Preparad la sorpresa y disfrutad de la fiesta juntos!"}}]}
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" href="/assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: {
-        fontFamily: { display: ['Sora', 'system-ui', 'sans-serif'], sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'] },
-        colors: { ink: '#0B0B0F', surface: '#121218', neon: { cyan: '#00F2FE', blue: '#4FACFE', pink: '#FF2FB9', orange: '#FF7A18' } },
-      } },
-    };
-  </script>
-  <link rel="stylesheet" href="/css/styles.css?v=55" />
+  
+  <link rel="stylesheet" href="/css/styles.css?v=61" />
+  <link rel="stylesheet" href="/css/tailwind.css?v=3" />
   <style>.post-prose figure{margin:1.75rem 0}.post-prose figure img{display:block;width:100%;height:auto;border-radius:1.25rem}</style>
+  <link rel="icon" type="image/webp" href="/assets/fish.webp" />
 </head>
 
 <body class="bg-ink text-white font-sans antialiased overflow-x-hidden">
@@ -63,7 +69,7 @@
   <header id="nav" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
     <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 md:px-8" aria-label="Principal">
       <a href="/" class="brand" aria-label="Crea Despedidas — Inicio">
-        <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+        <img src="/assets/logo.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
       </a>
       <ul class="hidden items-center gap-8 text-sm text-white/70 lg:flex">
         <li class="nav-item has-submenu">
@@ -204,7 +210,7 @@
       <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
         <div>
           <a href="/" class="brand brand--footer" aria-label="Crea Despedidas — Inicio">
-            <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+            <img src="/assets/logo-lg.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" loading="lazy" decoding="async" />
           </a>
           <p class="mt-4 max-w-xs text-sm leading-relaxed text-white/50">Despedidas de soltero/a y eventos privados en Valencia. La despedida que nunca olvidaréis.</p>
         </div>
@@ -242,7 +248,7 @@
     </div>
   </footer>
 
-  <img src="/assets/fish.png" id="fish-cursor" alt="" aria-hidden="true" />
+  <img src="/assets/fish.webp" id="fish-cursor" fetchpriority="low" decoding="async" alt="" aria-hidden="true" />
   <a href="https://crea-despedidas-crmdespe.fptzxz.easypanel.host/chat.html" target="_blank" rel="noopener" class="wa-float" aria-label="Escríbenos por WhatsApp">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.5-4.5A8 8 0 1 1 9 19L4 20Z"/><path d="M9 10c0 3 2.5 5.5 5.5 5.5M9 10c0-1 1-1.5 1.5-1l1 1.5-1 1M14.5 15.5c1 0 1.5-1 1-1.5L14 13l-1 1"/></svg>
   </a>

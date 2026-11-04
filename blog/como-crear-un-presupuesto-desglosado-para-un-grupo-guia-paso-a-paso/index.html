@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10805472079"></script>
+  <meta charset="UTF-8" />
+  <!-- Google tag (gtag.js) · carga diferida: primera interacción o 5 s tras el load -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'AW-10805472079');
+    (function () {
+      var done = 0;
+      function load() {
+        if (done) return; done = 1;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-10805472079';
+        document.head.appendChild(s);
+      }
+      ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (e) {
+        addEventListener(e, load, { once: true, passive: true });
+      });
+      addEventListener('load', function () { setTimeout(load, 5000); });
+    })();
   </script>
 
-  <meta charset="UTF-8" />
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0B0B0F" />
   <script>document.documentElement.classList.add('js');</script>
@@ -36,21 +49,14 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Cómo se calcula el presupuesto por persona para un grupo?","acceptedAnswer":{"@type":"Answer","text":"Suma las partidas que corresponden a cada participante y divide ese subtotal entre quienes comparten esos gastos. Si todas las personas hacen el mismo plan, el cálculo será igual para el grupo; si hay actividades distintas, calcula cada bloque por separado. Para saber cómo crear un presupuesto desglosado para un grupo, empieza por identificar quién paga cada concepto y evita dividir automáticamente el total entre asistentes que no participan en todo."}},{"@type":"Question","name":"¿Qué gastos debo incluir en un presupuesto para una despedida?","acceptedAnswer":{"@type":"Answer","text":"Incluye los conceptos que realmente forman parte del plan: por ejemplo, actividad, comida, alojamiento o transporte. Añade cada servicio en una línea independiente para que el grupo pueda ver qué cubre. Si hay opciones individuales, como una actividad que no hará todo el mundo, sepárala de los gastos comunes. Usa los importes de la propuesta concreta y deja fuera conceptos que no hayáis decidido incorporar."}},{"@type":"Question","name":"¿Cómo se reparten los gastos si no todo el grupo participa en una actividad?","acceptedAnswer":{"@type":"Answer","text":"Calcula esa actividad solo entre quienes hayan decidido apuntarse, salvo que el grupo acuerde expresamente otro reparto. Anota los nombres o el número de participantes y comunica cuánto aporta cada persona que se suma, según el importe confirmado. Por ejemplo, si una parte del grupo elige una experiencia adicional, su coste no tiene por qué mezclarse con el de la comida compartida por todos."}},{"@type":"Question","name":"¿Qué hago si cambia el número de asistentes después de preparar el presupuesto?","acceptedAnswer":{"@type":"Answer","text":"Actualiza primero la lista de asistentes y comprueba qué conceptos dependen de ese cambio. Después, recalcula únicamente las partidas afectadas con el criterio que el grupo había acordado y comparte la nueva versión, indicando qué ha variado. No supongas que una baja modifica todos los gastos ni des por hecho cómo se resuelven cancelaciones: basa cualquier ajuste en las condiciones de la propuesta correspondiente y en el acuerdo del grupo."}},{"@type":"Question","name":"¿Es mejor usar una hoja de cálculo para organizar los gastos del grupo?","acceptedAnswer":{"@type":"Answer","text":"Puede resultar práctica si queréis consultar y modificar la información entre varias personas, pero no es imprescindible. También sirve una tabla sencilla o un documento compartido, siempre que el contenido esté claro y el grupo sepa cuál es la versión vigente. Elegid el formato que todos puedan abrir con facilidad. Si usáis una hoja, añadid filtros o colores solo si ayudan a distinguir partidas y estados, no por obligación."}},{"@type":"Question","name":"¿Cómo presento al grupo un presupuesto sin que haya malentendidos?","acceptedAnswer":{"@type":"Answer","text":"Envía el desglose junto a un mensaje corto que explique qué plan se está valorando, qué conceptos se comparten y cuáles dependen de una elección individual. Aclara si los datos son orientativos o están confirmados e indica qué decisión falta. Por ejemplo: “La comida está incluida para quienes vienen; la actividad adicional es voluntaria. Falta acordar quién se apunta”. Así el grupo puede responder sobre el mismo escenario."}},{"@type":"Question","name":"¿Se pueden incluir actividades opcionales en el presupuesto de una celebración?","acceptedAnswer":{"@type":"Answer","text":"Sí. Añádelas en un apartado diferenciado y explica cómo se calcula la parte de quienes las eligen. Deja claro que no forman parte de la aportación común si solo las hará una parte del grupo. Así cada persona puede valorar el plan completo y decidir si se suma a esa experiencia, mientras el presupuesto principal sigue reflejando los gastos que el grupo ha acordado compartir."}}]}
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" href="/assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: {
-        fontFamily: { display: ['Sora', 'system-ui', 'sans-serif'], sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'] },
-        colors: { ink: '#0B0B0F', surface: '#121218', neon: { cyan: '#00F2FE', blue: '#4FACFE', pink: '#FF2FB9', orange: '#FF7A18' } },
-      } },
-    };
-  </script>
-  <link rel="stylesheet" href="/css/styles.css?v=55" />
+  
+  <link rel="stylesheet" href="/css/styles.css?v=61" />
+  <link rel="stylesheet" href="/css/tailwind.css?v=3" />
   <style>.post-prose figure{margin:1.75rem 0}.post-prose figure img{display:block;width:100%;height:auto;border-radius:1.25rem}</style>
+  <link rel="icon" type="image/webp" href="/assets/fish.webp" />
 </head>
 
 <body class="bg-ink text-white font-sans antialiased overflow-x-hidden">
@@ -63,7 +69,7 @@
   <header id="nav" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
     <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 md:px-8" aria-label="Principal">
       <a href="/" class="brand" aria-label="Crea Despedidas — Inicio">
-        <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+        <img src="/assets/logo.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
       </a>
       <ul class="hidden items-center gap-8 text-sm text-white/70 lg:flex">
         <li class="nav-item has-submenu">
@@ -230,7 +236,7 @@
       <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
         <div>
           <a href="/" class="brand brand--footer" aria-label="Crea Despedidas — Inicio">
-            <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+            <img src="/assets/logo-lg.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" loading="lazy" decoding="async" />
           </a>
           <p class="mt-4 max-w-xs text-sm leading-relaxed text-white/50">Despedidas de soltero/a y eventos privados en Valencia. La despedida que nunca olvidaréis.</p>
         </div>
@@ -268,7 +274,7 @@
     </div>
   </footer>
 
-  <img src="/assets/fish.png" id="fish-cursor" alt="" aria-hidden="true" />
+  <img src="/assets/fish.webp" id="fish-cursor" fetchpriority="low" decoding="async" alt="" aria-hidden="true" />
   <a href="https://crea-despedidas-crmdespe.fptzxz.easypanel.host/chat.html" target="_blank" rel="noopener" class="wa-float" aria-label="Escríbenos por WhatsApp">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.5-4.5A8 8 0 1 1 9 19L4 20Z"/><path d="M9 10c0 3 2.5 5.5 5.5 5.5M9 10c0-1 1-1.5 1.5-1l1 1.5-1 1M14.5 15.5c1 0 1.5-1 1-1.5L14 13l-1 1"/></svg>
   </a>

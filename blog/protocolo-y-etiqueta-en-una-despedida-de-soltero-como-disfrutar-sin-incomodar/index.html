@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10805472079"></script>
+  <meta charset="UTF-8" />
+  <!-- Google tag (gtag.js) · carga diferida: primera interacción o 5 s tras el load -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'AW-10805472079');
+    (function () {
+      var done = 0;
+      function load() {
+        if (done) return; done = 1;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-10805472079';
+        document.head.appendChild(s);
+      }
+      ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (e) {
+        addEventListener(e, load, { once: true, passive: true });
+      });
+      addEventListener('load', function () { setTimeout(load, 5000); });
+    })();
   </script>
 
-  <meta charset="UTF-8" />
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0B0B0F" />
   <script>document.documentElement.classList.add('js');</script>
@@ -36,21 +49,14 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Qué significa tener buena etiqueta en una despedida?","acceptedAnswer":{"@type":"Answer","text":"Significa combinar espontaneidad con consideración y un mínimo de organización. No hace falta controlar cada momento, pero sí evitar que la improvisación deje a alguien fuera. Avisar de un cambio de plan o fijar de antemano un punto de encuentro puede marcar la diferencia. Las preferencias del novio pesan más que las tradiciones impuestas. Si disfruta bailando, una noche animada puede encajar; si prefiere charlar con sus amistades, un plan más relajado también puede ser una fiestaza. La misma idea sirve para elegir actividades. A un grupo con ganas de competir y reírse en equipo podría encajarle una partida de paintball en Valencia para despedidas. A otro, no tanto. No existe una opción universal: importa que el plan tenga sentido para el protagonista y que el grupo pueda sumarse con ganas."}},{"@type":"Question","name":"¿Hay reglas obligatorias de protocolo en una despedida de soltero?","acceptedAnswer":{"@type":"Answer","text":"No existe una fórmula única de etiqueta que sirva para todos los grupos. El protocolo y etiqueta en una despedida de soltero consiste, sobre todo, en acordar un plan que respete al novio, a quienes asisten y al lugar donde celebráis. Consultad sus preferencias generales, evitad presiones y compartid la información práctica. La etiqueta debe ayudaros a disfrutar, no convertirse en una lista rígida de prohibiciones."}},{"@type":"Question","name":"¿Se debe consultar al novio antes de organizar una despedida sorpresa?","acceptedAnswer":{"@type":"Answer","text":"Sí, conviene consultarle lo que afecta a su disponibilidad y comodidad, aunque mantengáis en secreto los detalles divertidos. Preguntadle qué fechas le vienen bien, qué tipo de plan le apetece y si hay situaciones que preferiría evitar. Así podéis preparar una sorpresa con ilusión sin interferir con sus compromisos ni arriesgaros a organizar algo que le incomode. El misterio funciona mejor cuando el protagonista se siente tranquilo."}},{"@type":"Question","name":"¿A quién se invita a una despedida de soltero?","acceptedAnswer":{"@type":"Answer","text":"Invitad a las personas cercanas con quienes el novio disfruta compartiendo tiempo. La lista puede variar según sus amistades y la dinámica del grupo, así que no hace falta seguir una norma fija ni invitar por compromiso. Si tenéis dudas sobre alguien, preguntadle al protagonista de forma discreta por sus preferencias. Coordinar las invitaciones con tiempo también ayuda a evitar malentendidos y a que todos sepan cómo encaja el plan."}},{"@type":"Question","name":"¿Qué bromas son apropiadas en una despedida de soltero?","acceptedAnswer":{"@type":"Answer","text":"Elegid bromas que encajen con el sentido del humor del novio y que no lo expongan ni lo presionen. Un guiño a una afición compartida puede hacerle gracia; usar una inseguridad personal como chiste o forzarle a participar puede convertir la celebración en un mal rato. Si dudáis de cómo se lo tomará, escoged una alternativa amable. La complicidad del grupo vale más que conseguir la reacción más llamativa."}},{"@type":"Question","name":"¿Cómo organizar una despedida de soltero en Valencia sin estrés?","acceptedAnswer":{"@type":"Answer","text":"Acordad primero las preferencias del novio, la fecha y quiénes asistirán. Después, elegid una cena o actividad que encaje con su estilo y compartid horarios y puntos de encuentro. Una persona coordinadora puede centralizar los avisos y comunicar cambios sin saturar al grupo. En Valencia, Crea Despedidas organiza celebraciones con cenas con espectáculo, actividades de ocio y coordinación logística para grupos, para que quien organiza pueda centrarse en disfrutar del plan."}},{"@type":"Question","name":"¿Es necesario que todos participen en las actividades de la despedida?","acceptedAnswer":{"@type":"Answer","text":"No, participar debe ser una decisión libre. El novio y sus invitados pueden tener distintos gustos, límites o niveles de energía, así que explicad de antemano en qué consiste cada actividad y dejad espacio para descansar o saltarse una parte. Por ejemplo, alguien puede preferir acompañar al grupo sin participar en una prueba física. La fiesta no depende de que todos hagan lo mismo, sino de que cada cual pueda disfrutar a su manera."}}]}
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" href="/assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: {
-        fontFamily: { display: ['Sora', 'system-ui', 'sans-serif'], sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'] },
-        colors: { ink: '#0B0B0F', surface: '#121218', neon: { cyan: '#00F2FE', blue: '#4FACFE', pink: '#FF2FB9', orange: '#FF7A18' } },
-      } },
-    };
-  </script>
-  <link rel="stylesheet" href="/css/styles.css?v=55" />
+  
+  <link rel="stylesheet" href="/css/styles.css?v=61" />
+  <link rel="stylesheet" href="/css/tailwind.css?v=3" />
   <style>.post-prose figure{margin:1.75rem 0}.post-prose figure img{display:block;width:100%;height:auto;border-radius:1.25rem}</style>
+  <link rel="icon" type="image/webp" href="/assets/fish.webp" />
 </head>
 
 <body class="bg-ink text-white font-sans antialiased overflow-x-hidden">
@@ -63,7 +69,7 @@
   <header id="nav" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
     <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 md:px-8" aria-label="Principal">
       <a href="/" class="brand" aria-label="Crea Despedidas — Inicio">
-        <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+        <img src="/assets/logo.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
       </a>
       <ul class="hidden items-center gap-8 text-sm text-white/70 lg:flex">
         <li class="nav-item has-submenu">
@@ -203,7 +209,7 @@
       <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
         <div>
           <a href="/" class="brand brand--footer" aria-label="Crea Despedidas — Inicio">
-            <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+            <img src="/assets/logo-lg.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" loading="lazy" decoding="async" />
           </a>
           <p class="mt-4 max-w-xs text-sm leading-relaxed text-white/50">Despedidas de soltero/a y eventos privados en Valencia. La despedida que nunca olvidaréis.</p>
         </div>
@@ -241,7 +247,7 @@
     </div>
   </footer>
 
-  <img src="/assets/fish.png" id="fish-cursor" alt="" aria-hidden="true" />
+  <img src="/assets/fish.webp" id="fish-cursor" fetchpriority="low" decoding="async" alt="" aria-hidden="true" />
   <a href="https://crea-despedidas-crmdespe.fptzxz.easypanel.host/chat.html" target="_blank" rel="noopener" class="wa-float" aria-label="Escríbenos por WhatsApp">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.5-4.5A8 8 0 1 1 9 19L4 20Z"/><path d="M9 10c0 3 2.5 5.5 5.5 5.5M9 10c0-1 1-1.5 1.5-1l1 1.5-1 1M14.5 15.5c1 0 1.5-1 1-1.5L14 13l-1 1"/></svg>
   </a>

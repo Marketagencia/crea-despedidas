@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10805472079"></script>
+  <meta charset="UTF-8" />
+  <!-- Google tag (gtag.js) · carga diferida: primera interacción o 5 s tras el load -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'AW-10805472079');
+    (function () {
+      var done = 0;
+      function load() {
+        if (done) return; done = 1;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-10805472079';
+        document.head.appendChild(s);
+      }
+      ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (e) {
+        addEventListener(e, load, { once: true, passive: true });
+      });
+      addEventListener('load', function () { setTimeout(load, 5000); });
+    })();
   </script>
 
-  <meta charset="UTF-8" />
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0B0B0F" />
   <script>document.documentElement.classList.add('js');</script>
@@ -36,21 +49,14 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Qué hace que una despedida en Valencia sea económica?","acceptedAnswer":{"@type":"Answer","text":"La diferencia está en priorizar, no en renunciar a la diversión. Decidid qué es imprescindible: quizá una actividad compartida, una comida especial o una noche de espectáculo. Después, separad las partidas para compararlas con claridad: Así podéis comparar opciones por lo que aportan y por el trabajo que os ahorran, no solo por cuántos elementos aparecen juntos. Por ejemplo, si os tira la acción, podéis revisar qué implica una sesión de Humor Amarillo en Valencia y confirmar sus condiciones para vuestra fecha y grupo."}},{"@type":"Question","name":"Pack cerrado o plan a la carta: ¿qué os conviene?","acceptedAnswer":{"@type":"Answer","text":"Un pack reúne varios componentes en una propuesta, lo que puede simplificar la coordinación si queréis combinar, por ejemplo, una actividad con una comida o una cena con espectáculo. Un plan a la carta permite poner por delante las opciones que más le apetecen al grupo y dejar fuera lo que no necesita. Ninguno es automáticamente más económico: comparad los detalles confirmados y el valor de la experiencia completa, no solo cuántos elementos incluye."}},{"@type":"Question","name":"¿Se puede organizar una despedida low cost en Valencia sin renunciar a la diversión?","acceptedAnswer":{"@type":"Answer","text":"Sí, podéis preparar una despedida low cost valencia con mucha diversión si elegís primero los momentos que más ilusión le hacen al grupo y dejáis fuera los extras prescindibles. Por ejemplo, podéis centrar el plan en una actividad compartida o en una comida festiva, en vez de intentar incluirlo todo. Comparad las opciones con el presupuesto acordado y confirmad qué servicios están incluidos para vuestra fecha y grupo."}},{"@type":"Question","name":"¿Qué suele incluir un pack para una despedida en Valencia?","acceptedAnswer":{"@type":"Answer","text":"Depende de la propuesta concreta: un pack puede reunir varios servicios, pero no conviene dar por hecho que incluya una actividad, comida, transporte o alojamiento determinados. Antes de elegir, pedid el desglose de lo que forma parte de la opción y de lo que se contrata aparte. También confirmad horarios, condiciones y disponibilidad. Así sabréis qué está organizado y qué tareas todavía tendría que asumir el grupo."}},{"@type":"Question","name":"¿Cómo elegir entre una actividad, una comida o una cena con espectáculo?","acceptedAnswer":{"@type":"Answer","text":"Elegid según el ambiente que queréis y las preferencias de quienes celebran. Una actividad como karting, paintball o Humor Amarillo puede encajar con un grupo que disfruta los retos; una comida puede ser el centro de una reunión animada, mientras que una cena con espectáculo añade entretenimiento a la velada. Comparad qué ofrece cada formato, cómo encaja en el horario y qué detalles debéis confirmar en Valencia."}},{"@type":"Question","name":"¿Se puede personalizar un pack de despedida según el presupuesto del grupo?","acceptedAnswer":{"@type":"Answer","text":"Podéis consultar tanto packs como alternativas a la carta para priorizar lo que más os apetece. Crea Despedidas puede gestionar packs o planes personalizados para celebraciones en Valencia, pero las opciones concretas dependen de los detalles que se confirmen para vuestro grupo. Explicad qué elementos son imprescindibles y preguntad qué se puede adaptar, qué incluye cada propuesta y qué condiciones o disponibilidad debéis verificar antes de decidir."}},{"@type":"Question","name":"¿Qué actividades se pueden hacer en una despedida en Valencia?","acceptedAnswer":{"@type":"Answer","text":"Entre las opciones de Crea Despedidas figuran karting, paintball, Humor Amarillo, gymkanas temáticas, experiencias náuticas, taller de flamenco y cena con espectáculo. No todas encajarán con todos los grupos, así que pensad si preferís acción, juegos, baile o una celebración alrededor de la mesa. Consultad directamente cuáles pueden organizarse en Valencia para vuestra fecha y qué condiciones concretas tiene cada propuesta."}},{"@type":"Question","name":"¿Con cuánta antelación conviene consultar disponibilidad para una despedida?","acceptedAnswer":{"@type":"Answer","text":"No hay un plazo único que pueda recomendarse para todas las actividades y fechas. Consultad disponibilidad en cuanto tengáis una fecha orientativa y una idea del número de asistentes; así podréis comparar las opciones que puedan encajar y revisar sus condiciones. Antes de dar el plan por cerrado, confirmad los servicios elegidos y cualquier detalle pendiente directamente con la agencia. La disponibilidad puede variar según la propuesta y la fecha."}},{"@type":"Question","name":"¿Cómo se organiza el transporte entre actividades en Valencia?","acceptedAnswer":{"@type":"Answer","text":"Primero, anotad dónde se realiza cada parte del plan y en qué horarios, y después preguntad si el transporte está incluido o hay que organizarlo aparte. Crea Despedidas ofrece opciones de transporte, como alquiler de limusinas, pero no asumáis que forman parte de cualquier pack. Una vez confirmados los trayectos, compartid con el grupo los puntos de encuentro, los horarios y el itinerario para que todos sepan cómo moverse por Valencia."}}]}
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" href="/assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: {
-        fontFamily: { display: ['Sora', 'system-ui', 'sans-serif'], sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'] },
-        colors: { ink: '#0B0B0F', surface: '#121218', neon: { cyan: '#00F2FE', blue: '#4FACFE', pink: '#FF2FB9', orange: '#FF7A18' } },
-      } },
-    };
-  </script>
-  <link rel="stylesheet" href="/css/styles.css?v=55" />
+  
+  <link rel="stylesheet" href="/css/styles.css?v=61" />
+  <link rel="stylesheet" href="/css/tailwind.css?v=3" />
   <style>.post-prose figure{margin:1.75rem 0}.post-prose figure img{display:block;width:100%;height:auto;border-radius:1.25rem}</style>
+  <link rel="icon" type="image/webp" href="/assets/fish.webp" />
 </head>
 
 <body class="bg-ink text-white font-sans antialiased overflow-x-hidden">
@@ -63,7 +69,7 @@
   <header id="nav" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
     <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 md:px-8" aria-label="Principal">
       <a href="/" class="brand" aria-label="Crea Despedidas — Inicio">
-        <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+        <img src="/assets/logo.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
       </a>
       <ul class="hidden items-center gap-8 text-sm text-white/70 lg:flex">
         <li class="nav-item has-submenu">
@@ -203,7 +209,7 @@
       <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
         <div>
           <a href="/" class="brand brand--footer" aria-label="Crea Despedidas — Inicio">
-            <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+            <img src="/assets/logo-lg.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" loading="lazy" decoding="async" />
           </a>
           <p class="mt-4 max-w-xs text-sm leading-relaxed text-white/50">Despedidas de soltero/a y eventos privados en Valencia. La despedida que nunca olvidaréis.</p>
         </div>
@@ -241,7 +247,7 @@
     </div>
   </footer>
 
-  <img src="/assets/fish.png" id="fish-cursor" alt="" aria-hidden="true" />
+  <img src="/assets/fish.webp" id="fish-cursor" fetchpriority="low" decoding="async" alt="" aria-hidden="true" />
   <a href="https://crea-despedidas-crmdespe.fptzxz.easypanel.host/chat.html" target="_blank" rel="noopener" class="wa-float" aria-label="Escríbenos por WhatsApp">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.5-4.5A8 8 0 1 1 9 19L4 20Z"/><path d="M9 10c0 3 2.5 5.5 5.5 5.5M9 10c0-1 1-1.5 1.5-1l1 1.5-1 1M14.5 15.5c1 0 1.5-1 1-1.5L14 13l-1 1"/></svg>
   </a>

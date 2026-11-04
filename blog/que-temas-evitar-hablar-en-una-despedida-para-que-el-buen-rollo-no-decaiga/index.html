@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10805472079"></script>
+  <meta charset="UTF-8" />
+  <!-- Google tag (gtag.js) · carga diferida: primera interacción o 5 s tras el load -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'AW-10805472079');
+    (function () {
+      var done = 0;
+      function load() {
+        if (done) return; done = 1;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-10805472079';
+        document.head.appendChild(s);
+      }
+      ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (e) {
+        addEventListener(e, load, { once: true, passive: true });
+      });
+      addEventListener('load', function () { setTimeout(load, 5000); });
+    })();
   </script>
 
-  <meta charset="UTF-8" />
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0B0B0F" />
   <script>document.documentElement.classList.add('js');</script>
@@ -36,21 +49,14 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Por qué algunos temas pueden cortar el buen rollo?","acceptedAnswer":{"@type":"Answer","text":"La incomodidad depende de tres ingredientes: confianza, momento y tono. Una historia puede sonar divertida entre amigos que conocen sus límites, pero no tener gracia para invitados nuevos. También cambia la situación si se saca un tema sensible durante un brindis, se insiste tras una respuesta breve o se remata con una broma dirigida a una sola persona. Fíjate en las reacciones: alguien puede reírse por compromiso, quedarse callado o apartarse de la conversación. No hace falta dramatizar ni interrogarle; basta con bajar el ritmo y abrir otro camino. Cuidar el ambiente es dejar espacio para que cada cual participe a su manera."}},{"@type":"Question","name":"¿Qué temas conviene evitar en una despedida de soltero o soltera?","acceptedAnswer":{"@type":"Answer","text":"Para decidir qué temas evitar hablar en una despedida, tened tacto con las exparejas, las intimidades, las inseguridades, los conflictos personales y los asuntos que puedan generar bandos. No son temas prohibidos para todos: influyen la confianza, el momento y cómo se siente la persona homenajeada. Si alguien responde con monosílabos o intenta apartarse, no insistáis. Cambiad hacia un recuerdo compartido o una conversación en la que cualquiera pueda participar."}},{"@type":"Question","name":"¿Se puede hablar de la boda durante una despedida?","acceptedAnswer":{"@type":"Answer","text":"Sí, si a la persona homenajeada le apetece. Podéis preguntarle con naturalidad: «¿Te apetece hablar de los preparativos o cambiamos de tema por hoy?». Si disfruta contando alguna anécdota, seguid su ritmo; si empieza a enumerar preocupaciones o responde sin ganas, no transforméis la celebración en una reunión de tareas. Dejad espacio para hablar de música, viajes, amistades o planes que le hagan ilusión más allá de la boda."}},{"@type":"Question","name":"¿Cómo cambio de tema sin que parezca incómodo?","acceptedAnswer":{"@type":"Answer","text":"Haz una transición breve y enlázala con algo que ya esté pasando: «¡Brindemos por la protagonista!» o «¿Qué canción pondríais ahora mismo?». También puedes preguntar qué plan les gustaría repetir juntos. No hace falta explicar delante de todos por qué cambias el rumbo ni reprochar a quien hablaba. Si alguien parece incómodo, abre una conversación nueva y deja que se incorpore cuando quiera, sin pedirle que cuente qué le ha molestado."}},{"@type":"Question","name":"¿Qué hago si una broma molesta al novio, la novia o un invitado?","acceptedAnswer":{"@type":"Answer","text":"Para la broma y reconoce el efecto sin discutir la intención: «Perdona, no quería que te sentara mal». Después, pasa a otro asunto y evita pedir a la persona que explique su reacción ante el grupo. Si notas que necesita apoyo, puedes acercarte en privado y escuchar sin presionarla. La complicidad no se mide por cuánto aguanta alguien, sino por que quien protagoniza la broma también pueda disfrutarla."}},{"@type":"Question","name":"¿Cómo incluir en la conversación a personas que no se conocen?","acceptedAnswer":{"@type":"Answer","text":"Invítalas con preguntas sencillas que no dependan de conocer las bromas internas: «¿Cómo conociste a la protagonista?» o «¿Qué plan te gusta para desconectar?». Procura que no sea un interrogatorio; comparte también tu respuesta para que la conversación circule. Si el grupo se divide en corrillos, podéis proponer un brindis o una foto conjunta que reúna a todos de forma espontánea, sin obligar a nadie a convertirse en el centro de atención."}},{"@type":"Question","name":"¿Es mala idea hablar de exparejas en una despedida?","acceptedAnswer":{"@type":"Answer","text":"No necesariamente, pero conviene no convertir una relación pasada en el tema principal de la celebración. Si la persona homenajeada saca el asunto y cuenta una historia con ganas, escucha sin pedir detalles ni compararla con su relación actual. Si cambia de expresión, responde con poco entusiasmo o desvía la charla, seguid esa pista y hablad de otra cosa. Así, una anécdota espontánea no se convierte en una conversación que la persona no quería tener."}},{"@type":"Question","name":"¿Qué temas ayudan a animar una despedida en Valencia?","acceptedAnswer":{"@type":"Answer","text":"Podéis sacar conversación a partir de recuerdos divertidos con la persona homenajeada, sitios de Valencia que os apetezca descubrir o actividades que os gustaría compartir. Una cena con espectáculo, una actividad de ocio o una comida con charanga puede dar al grupo una experiencia común y nuevas anécdotas. No hace falta llenar cada pausa: una pregunta abierta, una propuesta que ilusione y espacio para escuchar suelen bastar para mantener el ambiente vivo."}}]}
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" href="/assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: {
-        fontFamily: { display: ['Sora', 'system-ui', 'sans-serif'], sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'] },
-        colors: { ink: '#0B0B0F', surface: '#121218', neon: { cyan: '#00F2FE', blue: '#4FACFE', pink: '#FF2FB9', orange: '#FF7A18' } },
-      } },
-    };
-  </script>
-  <link rel="stylesheet" href="/css/styles.css?v=55" />
+  
+  <link rel="stylesheet" href="/css/styles.css?v=61" />
+  <link rel="stylesheet" href="/css/tailwind.css?v=3" />
   <style>.post-prose figure{margin:1.75rem 0}.post-prose figure img{display:block;width:100%;height:auto;border-radius:1.25rem}</style>
+  <link rel="icon" type="image/webp" href="/assets/fish.webp" />
 </head>
 
 <body class="bg-ink text-white font-sans antialiased overflow-x-hidden">
@@ -63,7 +69,7 @@
   <header id="nav" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
     <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 md:px-8" aria-label="Principal">
       <a href="/" class="brand" aria-label="Crea Despedidas — Inicio">
-        <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+        <img src="/assets/logo.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
       </a>
       <ul class="hidden items-center gap-8 text-sm text-white/70 lg:flex">
         <li class="nav-item has-submenu">
@@ -186,7 +192,7 @@
       <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
         <div>
           <a href="/" class="brand brand--footer" aria-label="Crea Despedidas — Inicio">
-            <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+            <img src="/assets/logo-lg.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" loading="lazy" decoding="async" />
           </a>
           <p class="mt-4 max-w-xs text-sm leading-relaxed text-white/50">Despedidas de soltero/a y eventos privados en Valencia. La despedida que nunca olvidaréis.</p>
         </div>
@@ -224,7 +230,7 @@
     </div>
   </footer>
 
-  <img src="/assets/fish.png" id="fish-cursor" alt="" aria-hidden="true" />
+  <img src="/assets/fish.webp" id="fish-cursor" fetchpriority="low" decoding="async" alt="" aria-hidden="true" />
   <a href="https://crea-despedidas-crmdespe.fptzxz.easypanel.host/chat.html" target="_blank" rel="noopener" class="wa-float" aria-label="Escríbenos por WhatsApp">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.5-4.5A8 8 0 1 1 9 19L4 20Z"/><path d="M9 10c0 3 2.5 5.5 5.5 5.5M9 10c0-1 1-1.5 1.5-1l1 1.5-1 1M14.5 15.5c1 0 1.5-1 1-1.5L14 13l-1 1"/></svg>
   </a>

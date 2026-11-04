@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10805472079"></script>
+  <meta charset="UTF-8" />
+  <!-- Google tag (gtag.js) · carga diferida: primera interacción o 5 s tras el load -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'AW-10805472079');
+    (function () {
+      var done = 0;
+      function load() {
+        if (done) return; done = 1;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-10805472079';
+        document.head.appendChild(s);
+      }
+      ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (e) {
+        addEventListener(e, load, { once: true, passive: true });
+      });
+      addEventListener('load', function () { setTimeout(load, 5000); });
+    })();
   </script>
 
-  <meta charset="UTF-8" />
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0B0B0F" />
   <script>document.documentElement.classList.add('js');</script>
@@ -36,21 +49,14 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Qué hago si la novia dice que no quiere ninguna de las actividades propuestas?","acceptedAnswer":{"@type":"Answer","text":"Si descarta todas, no insistáis con otra ronda de opciones en ese momento. Puede que ninguna encaje o que todavía no tenga claro qué le apetece. Para decidir qué hacer si a la novia no le gusta el plan de despedida, preguntadle si prefiere pensar alternativas más adelante o explicar primero qué tipo de experiencia sí le atrae. Mientras tanto, evitad cerrar nuevas reservas y dadle espacio para responder sin presión."}},{"@type":"Question","name":"¿La novia debe decidir todo el plan de su despedida?","acceptedAnswer":{"@type":"Answer","text":"No tiene que ocuparse de cada detalle, pero sí conviene que pueda marcar sus límites y orientar el estilo de la celebración. Podéis mantener en secreto elementos secundarios, como una decoración o un brindis, si sabéis que le harán ilusión. En cambio, es mejor no ocultar la actividad principal si podría incomodarla. Así conserva sorpresas agradables sin encontrarse con un plan que no habría elegido."}},{"@type":"Question","name":"¿Cómo le digo a la novia que ya habíamos preparado otro plan?","acceptedAnswer":{"@type":"Answer","text":"Contádselo con naturalidad y sin convertir el esfuerzo del grupo en una deuda. Podéis decir: «Habíamos pensado otra cosa, pero preferimos adaptarla a lo que te apetece». Si ya hay una reserva o una decisión tomada, explicadlo con claridad, sin esperar que ella acepte el plan por compromiso. La conversación debe transmitir que puede hablar con sinceridad y que su respuesta no va a estropear la amistad."}},{"@type":"Question","name":"¿Es buena idea sorprender a la novia si no le gusta el plan inicial?","acceptedAnswer":{"@type":"Answer","text":"Sí, pero reservad la sorpresa para detalles cuyo estilo sabéis que disfruta, no para imponerle una actividad nueva. Por ejemplo, podéis mantener ocultos un mensaje de las amigas o un pequeño detalle durante la celebración, siempre que no contradiga sus preferencias. Si la sorpresa implica exposición pública, una dinámica de grupo o una actividad intensa, no deis por hecho que le encantará: preguntad antes por ese tipo de experiencia."}},{"@type":"Question","name":"¿Qué hago si el grupo quiere una despedida distinta a la que quiere la novia?","acceptedAnswer":{"@type":"Answer","text":"Separad las ganas del grupo de las condiciones personales de la protagonista. Si unas amigas quieren una actividad movida y ella prefiere un ambiente tranquilo, priorizad una celebración que le resulte cómoda y buscad maneras de que todas participen a gusto. Evitad convertir la decisión en una votación por mayoría. También ayuda hablar pronto de cuestiones prácticas, como el horario o el presupuesto individual, para prevenir nuevos roces."}},{"@type":"Question","name":"¿Cómo puedo cambiar el plan de despedida sin estropear la sorpresa?","acceptedAnswer":{"@type":"Answer","text":"Mantened en secreto los detalles que no afectan a sus límites, pero no el tipo de celebración que necesita aceptar para disfrutar. Podéis contarle el ambiente general y preguntarle si le encaja sin desvelar la decoración, el orden de algunos momentos o quién preparará un brindis. Acordad con una amiga de confianza qué partes pueden seguir siendo sorpresa y cuáles requieren su aprobación. Así protegéis la ilusión sin jugar a adivinar sus preferencias."}},{"@type":"Question","name":"¿Cuándo conviene pedir ayuda para reorganizar una despedida en Valencia?","acceptedAnswer":{"@type":"Answer","text":"Pedid apoyo si cambiar el plan implica coordinar varias actividades, comidas, desplazamientos o servicios para el grupo y la conversación se llena de mensajes cruzados. Crea Despedidas organiza celebraciones en Valencia y puede coordinar esas piezas a partir del ambiente que quiere la novia, tanto si imagináis una cena como si preferís una propuesta de ocio. Contactad con Crea Despedidas para organizar vuestro plan en Valencia y centraos en disfrutar juntas de la celebración."}}]}
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" href="/assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: {
-        fontFamily: { display: ['Sora', 'system-ui', 'sans-serif'], sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'] },
-        colors: { ink: '#0B0B0F', surface: '#121218', neon: { cyan: '#00F2FE', blue: '#4FACFE', pink: '#FF2FB9', orange: '#FF7A18' } },
-      } },
-    };
-  </script>
-  <link rel="stylesheet" href="/css/styles.css?v=55" />
+  
+  <link rel="stylesheet" href="/css/styles.css?v=61" />
+  <link rel="stylesheet" href="/css/tailwind.css?v=3" />
   <style>.post-prose figure{margin:1.75rem 0}.post-prose figure img{display:block;width:100%;height:auto;border-radius:1.25rem}</style>
+  <link rel="icon" type="image/webp" href="/assets/fish.webp" />
 </head>
 
 <body class="bg-ink text-white font-sans antialiased overflow-x-hidden">
@@ -63,7 +69,7 @@
   <header id="nav" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
     <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 md:px-8" aria-label="Principal">
       <a href="/" class="brand" aria-label="Crea Despedidas — Inicio">
-        <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+        <img src="/assets/logo.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
       </a>
       <ul class="hidden items-center gap-8 text-sm text-white/70 lg:flex">
         <li class="nav-item has-submenu">
@@ -208,7 +214,7 @@
       <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
         <div>
           <a href="/" class="brand brand--footer" aria-label="Crea Despedidas — Inicio">
-            <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+            <img src="/assets/logo-lg.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" loading="lazy" decoding="async" />
           </a>
           <p class="mt-4 max-w-xs text-sm leading-relaxed text-white/50">Despedidas de soltero/a y eventos privados en Valencia. La despedida que nunca olvidaréis.</p>
         </div>
@@ -246,7 +252,7 @@
     </div>
   </footer>
 
-  <img src="/assets/fish.png" id="fish-cursor" alt="" aria-hidden="true" />
+  <img src="/assets/fish.webp" id="fish-cursor" fetchpriority="low" decoding="async" alt="" aria-hidden="true" />
   <a href="https://crea-despedidas-crmdespe.fptzxz.easypanel.host/chat.html" target="_blank" rel="noopener" class="wa-float" aria-label="Escríbenos por WhatsApp">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.5-4.5A8 8 0 1 1 9 19L4 20Z"/><path d="M9 10c0 3 2.5 5.5 5.5 5.5M9 10c0-1 1-1.5 1.5-1l1 1.5-1 1M14.5 15.5c1 0 1.5-1 1-1.5L14 13l-1 1"/></svg>
   </a>

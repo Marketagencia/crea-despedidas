@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10805472079"></script>
+  <meta charset="UTF-8" />
+  <!-- Google tag (gtag.js) · carga diferida: primera interacción o 5 s tras el load -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'AW-10805472079');
+    (function () {
+      var done = 0;
+      function load() {
+        if (done) return; done = 1;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-10805472079';
+        document.head.appendChild(s);
+      }
+      ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (e) {
+        addEventListener(e, load, { once: true, passive: true });
+      });
+      addEventListener('load', function () { setTimeout(load, 5000); });
+    })();
   </script>
 
-  <meta charset="UTF-8" />
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0B0B0F" />
   <script>document.documentElement.classList.add('js');</script>
@@ -35,21 +48,14 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Cómo elegir la música si al grupo le gustan estilos diferentes?","acceptedAnswer":{"@type":"Answer","text":"Empezad con canciones que varias personas conozcan y añadid propuestas personales del novio y sus amistades. Para que las ideas para una despedida de soltero centrada en la música no se conviertan en una competición de gustos, acordad qué estilos os apetecen y cuáles preferís dejar fuera. También podéis asignar canciones a momentos distintos, como la llegada, la comida o un brindis, y dejar que cada persona participe a su manera."}},{"@type":"Question","name":"¿Hace falta contratar música en directo para una despedida centrada en la música?","acceptedAnswer":{"@type":"Answer","text":"No, una selección preparada por el grupo puede acompañar la celebración sin contratar música en directo. Si buscáis un formato más festivo, Crea Despedidas organiza charangas en Valencia. Pensad primero qué queréis que haga la música: animar una llegada, sumar ambiente a una comida o dar protagonismo a un momento. Después elegid el formato que encaje con el plan y con la forma de celebrar del novio."}},{"@type":"Question","name":"¿Se puede organizar una despedida musical en Valencia si el grupo viene de otra ciudad?","acceptedAnswer":{"@type":"Answer","text":"Sí, Crea Despedidas organiza celebraciones en Valencia para grupos que llegan desde distintos puntos de España. Para que el viaje sea más fácil de coordinar, nombrad a una persona de referencia y reunid en un mismo mensaje el punto de encuentro, las actividades elegidas y el orden general del día. El equipo local puede coordinar los servicios del plan, como restaurante, actividades y transporte, según disponibilidad."}},{"@type":"Question","name":"¿Qué hacer si el novio no quiere ser el centro de atención todo el tiempo?","acceptedAnswer":{"@type":"Answer","text":"Preparad una celebración en la que los detalles para él sean especiales, pero no constantes. Podéis dedicarle una canción o un brindis breve y dejar que el resto del tiempo fluya como un encuentro entre amigos. Antes de organizar sorpresas, pensad qué gestos disfruta de verdad y cuáles podrían incomodarle. Así tendrá un papel protagonista sin sentirse observado en cada actividad ni obligado a reaccionar ante todo el grupo."}},{"@type":"Question","name":"¿Cómo sorprender al novio con canciones sin arruinar la sorpresa?","acceptedAnswer":{"@type":"Answer","text":"Pedid las propuestas en privado a quienes organizan y guardadlas en una lista aparte, fuera del chat donde participa el novio. Elegid una ocasión natural para ponerlas, como un brindis o una pausa entre actividades, y evitad anunciar que se acerca “la gran sorpresa”. El efecto puede estar en reconocer la canción y descubrir quién la eligió; no hace falta sumar pistas complicadas ni cambiar todo el itinerario."}},{"@type":"Question","name":"¿Pueden participar en la despedida personas que no suelen escuchar música de fiesta?","acceptedAnswer":{"@type":"Answer","text":"Claro, porque disfrutar de una celebración musical no obliga a bailar ni a conocer todos los temas. Podéis incluir canciones familiares para el grupo, momentos tranquilos para conversar y actividades que no dependan de la música. También se puede participar eligiendo un tema, contando qué recuerdo trae o simplemente acompañando el brindis. Dejad que cada persona encuentre su sitio y la fiesta será más cómoda para todo el grupo."}}]}
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" href="/assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: {
-        fontFamily: { display: ['Sora', 'system-ui', 'sans-serif'], sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'] },
-        colors: { ink: '#0B0B0F', surface: '#121218', neon: { cyan: '#00F2FE', blue: '#4FACFE', pink: '#FF2FB9', orange: '#FF7A18' } },
-      } },
-    };
-  </script>
-  <link rel="stylesheet" href="/css/styles.css?v=55" />
+  
+  <link rel="stylesheet" href="/css/styles.css?v=61" />
+  <link rel="stylesheet" href="/css/tailwind.css?v=3" />
   <style>.post-prose figure{margin:1.75rem 0}.post-prose figure img{display:block;width:100%;height:auto;border-radius:1.25rem}</style>
+  <link rel="icon" type="image/webp" href="/assets/fish.webp" />
 </head>
 
 <body class="bg-ink text-white font-sans antialiased overflow-x-hidden">
@@ -62,7 +68,7 @@
   <header id="nav" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
     <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 md:px-8" aria-label="Principal">
       <a href="/" class="brand" aria-label="Crea Despedidas — Inicio">
-        <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+        <img src="/assets/logo.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
       </a>
       <ul class="hidden items-center gap-8 text-sm text-white/70 lg:flex">
         <li class="nav-item has-submenu">
@@ -206,7 +212,7 @@
       <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
         <div>
           <a href="/" class="brand brand--footer" aria-label="Crea Despedidas — Inicio">
-            <img src="/assets/logo.png" class="brand-logo" alt="Crea Despedidas" width="972" height="701" />
+            <img src="/assets/logo-lg.webp" class="brand-logo" alt="Crea Despedidas" width="972" height="701" loading="lazy" decoding="async" />
           </a>
           <p class="mt-4 max-w-xs text-sm leading-relaxed text-white/50">Despedidas de soltero/a y eventos privados en Valencia. La despedida que nunca olvidaréis.</p>
         </div>
@@ -244,7 +250,7 @@
     </div>
   </footer>
 
-  <img src="/assets/fish.png" id="fish-cursor" alt="" aria-hidden="true" />
+  <img src="/assets/fish.webp" id="fish-cursor" fetchpriority="low" decoding="async" alt="" aria-hidden="true" />
   <a href="https://crea-despedidas-crmdespe.fptzxz.easypanel.host/chat.html" target="_blank" rel="noopener" class="wa-float" aria-label="Escríbenos por WhatsApp">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.5-4.5A8 8 0 1 1 9 19L4 20Z"/><path d="M9 10c0 3 2.5 5.5 5.5 5.5M9 10c0-1 1-1.5 1.5-1l1 1.5-1 1M14.5 15.5c1 0 1.5-1 1-1.5L14 13l-1 1"/></svg>
   </a>
